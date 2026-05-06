@@ -17,13 +17,13 @@ Artifacts that appear in multiple versions (by SHA-256 match).
 
 - **open-design**: `skills/image-poster/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/image-poster/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `b8fdd56defdfe308...` (2 occurrences)
 
 - **open-design**: `skills/web-prototype/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/web-prototype/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `2603a66c33c4e941...` (2 occurrences)
 
@@ -41,25 +41,25 @@ Artifacts that appear in multiple versions (by SHA-256 match).
 
 - **open-design**: `skills/saas-landing/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/saas-landing/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `1ed8d0c3a7ff61e8...` (2 occurrences)
 
 - **open-design**: `skills/tweaks/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/tweaks/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `a817cad6d0e0493a...` (2 occurrences)
 
 - **open-design**: `skills/pricing-page/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/pricing-page/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `8be14787443af3a3...` (2 occurrences)
 
 - **open-design**: `skills/mobile-app/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/mobile-app/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `5386013acda77897...` (2 occurrences)
 
@@ -77,205 +77,205 @@ Artifacts that appear in multiple versions (by SHA-256 match).
 
 - **open-design**: `skills/sprite-animation/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/sprite-animation/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `cb0c3ac321cbd850...` (2 occurrences)
 
 - **open-design**: `skills/social-carousel/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/social-carousel/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `ce20f2731d9c10f7...` (2 occurrences)
 
 - **open-design**: `skills/magazine-poster/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/magazine-poster/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `50eb30517c23efa8...` (2 occurrences)
 
 - **open-design**: `skills/dashboard/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/dashboard/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `e500c2459ab87d89...` (2 occurrences)
 
 - **open-design**: `skills/motion-frames/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/motion-frames/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `fd4e93e2cfea8ba7...` (2 occurrences)
 
 - **open-design**: `skills/wireframe-sketch/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/wireframe-sketch/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `95441b8bbec9a66f...` (2 occurrences)
 
 - **open-design**: `skills/web-prototype-taste-soft/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/web-prototype-taste-soft/SKILL.md` (skill)
-- Description: Web Prototype — Soft Premium
+- Description: Apple-tier soft web prototype. Silver/cream canvas, double-bezel cards, button-in-button CTAs, gener
 
 ## SHA-256: `8727e6489d802edc...` (2 occurrences)
 
 - **open-design**: `skills/critique/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/critique/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `4cc5333cf71949b3...` (2 occurrences)
 
 - **open-design**: `skills/blog-post/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/blog-post/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `ddcb70ae1ba4688e...` (2 occurrences)
 
 - **open-design**: `skills/design-brief/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/design-brief/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `fb3f506ea8ea7f6f...` (2 occurrences)
 
 - **open-design**: `skills/docs-page/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/docs-page/SKILL.md` (skill)
-- Description: ---
+- Description: |
 
 ## SHA-256: `e106346107ba01fa...` (2 occurrences)
 
 - **open-design**: `skills/web-prototype-taste-brutalist/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/web-prototype-taste-brutalist/SKILL.md` (skill)
-- Description: Web Prototype — Industrial Brutalist (Swiss Print)
+- Description: Swiss industrial-print web prototype. Newsprint canvas, monolithic black grotesque, viewport-bleedin
 
 ## SHA-256: `02a9ffad31dd2e2a...` (2 occurrences)
 
 - **open-design**: `skills/web-prototype-taste-editorial/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/web-prototype-taste-editorial/SKILL.md` (skill)
-- Description: Web Prototype — Editorial Minimalism
+- Description: Editorial-minimalist web prototype. Warm monochrome canvas, serif display + grotesque body, 1px hair
 
 ## SHA-256: `b5b2bac1adbd3ffc...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-ecc/ui-demo.md` (skill)
 - **gsd-design**: `.claude/skills/ui-demo/SKILL.md` (skill)
-- Description: UI Demo Video Recorder
+- Description: Record polished UI demo videos using Playwright. Use when the user asks to create a demo, walkthroug
 
 ## SHA-256: `d0e093a02c3d2ed3...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-ecc/multi-frontend.md` (skill)
 - **gsd-design**: `.claude/commands/multi-frontend.md` (command)
-- Description: Frontend - Frontend-Focused Development
+- Description: Run a frontend-focused multi-model workflow for components, layouts, animation, and UI polish.
 
 ## SHA-256: `bc890c0deeb766e7...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-ecc/frontend-slides.md` (skill)
 - **gsd-design**: `.claude/skills/frontend-slides/SKILL.md` (skill)
-- Description: Frontend Slides
+- Description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. U
 
 ## SHA-256: `dd04a1c02503036e...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-ecc/frontend-patterns.md` (skill)
 - **gsd-design**: `.claude/skills/frontend-patterns/SKILL.md` (skill)
-- Description: Frontend Development Patterns
+- Description: Frontend development patterns for React, Next.js, state management, performance optimization, and UI
 
 ## SHA-256: `c35893e221e28895...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-official/theme-factory.md` (skill)
 - **gsd-design**: `.claude/skills/anthropic-theme-factory/SKILL.md` (skill)
-- Description: Theme Factory Skill
+- Description: Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML la
 
 ## SHA-256: `51b7349e77ec63b7...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-official/webapp-testing.md` (skill)
 - **gsd-design**: `.claude/skills/anthropic-webapp-testing/SKILL.md` (skill)
-- Description: Web Application Testing
+- Description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying
 
 ## SHA-256: `a1f288079624402f...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-official/canvas-design.md` (skill)
 - **gsd-design**: `.claude/skills/anthropic-canvas-design/SKILL.md` (skill)
-- Description: ---
+- Description: DESIGN PHILOSOPHY CREATION
 
 ## SHA-256: `81c5002c6643b0de...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-official/web-artifacts-builder.md` (skill)
 - **gsd-design**: `.claude/skills/anthropic-web-artifacts-builder/SKILL.md` (skill)
-- Description: Web Artifacts Builder
+- Description: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern fronten
 
 ## SHA-256: `b81e2ff87ed8fa4d...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-official/frontend-design.md` (skill)
 - **gsd-design**: `.claude/skills/anthropic-frontend-design/SKILL.md` (skill)
-- Description: ---
+- Description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill wh
 
 ## SHA-256: `1120b3769e2985ce...` (2 occurrences)
 
 - **desigjn-toolkit**: `.claude/skills-official/brand-guidelines.md` (skill)
 - **gsd-design**: `.claude/skills/anthropic-brand-guidelines/SKILL.md` (skill)
-- Description: Anthropic Brand Styling
+- Description: Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit fr
 
 ## SHA-256: `b0c4837e1bd140ca...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/brandkit/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-brandkit/SKILL.md` (skill)
-- Description: BRANDKIT IMAGE GENERATION SKILL
+- Description: Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems
 
 ## SHA-256: `2e64c269953f2656...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/gpt-tasteskill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-gpt-tasteskill/SKILL.md` (skill)
-- Description: CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING
+- Description: Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout va
 
 ## SHA-256: `e1e32f5e2d420872...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/soft-skill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-soft-skill/SKILL.md` (skill)
-- Description: Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier)
+- Description: Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card str
 
 ## SHA-256: `98ad3e5b051bfb71...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/redesign-skill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-redesign-skill/SKILL.md` (skill)
-- Description: Redesign Skill
+- Description: Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI
 
 ## SHA-256: `36bc7328f085405f...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/minimalist-skill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-minimalist-skill/SKILL.md` (skill)
-- Description: Protocol: Premium Utilitarian Minimalism UI Architect
+- Description: Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, m
 
 ## SHA-256: `fffbaac8597f0767...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/brutalist-skill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-brutalist-skill/SKILL.md` (skill)
-- Description: SKILL: Industrial Brutalism & Tactical Telemetry UI
+- Description: Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid gr
 
 ## SHA-256: `e5bf48b1ae561511...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/output-skill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-output-skill/SKILL.md` (skill)
-- Description: Full-Output Enforcement
+- Description: Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patte
 
 ## SHA-256: `8a33389979f3074f...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/imagegen-frontend-mobile/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-imagegen-frontend-mobile/SKILL.md` (skill)
-- Description: CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION
+- Description: Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. 
 
 ## SHA-256: `6b5c2256522fdba1...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/imagegen-frontend-web/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-imagegen-frontend-web/SKILL.md` (skill)
-- Description: HARD OUTPUT RULE — READ FIRST
+- Description: Elite frontend image-direction skill for generating premium, conversion-aware website design referen
 
 ## SHA-256: `4c060a8064a8b133...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/taste/skills/image-to-code-skill/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/taste-image-to-code-skill/SKILL.md` (skill)
-- Description: CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE
+- Description: Elite website image-to-code skill for Codex. For visually important web tasks, it must first generat
 
 ## SHA-256: `db4aa37419416587...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/browserbase/skills/event-prospecting/scripts/extract_page.mjs` (skill)
 - **gsd-design**: `.claude/skills/browserbase/skills/company-research/scripts/extract_page.mjs` (skill)
-- Description: !/usr/bin/env node
+- Description: Extract structured page content for company research.
 
 ## SHA-256: `0a967ca3bd829d32...` (2 occurrences)
 
@@ -329,19 +329,19 @@ Artifacts that appear in multiple versions (by SHA-256 match).
 
 - **gsd-design**: `.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/data/_sync_all.py` (skill)
 - **gsd-design**: `.claude/skills/ui-ux-pro-max/cli/assets/data/_sync_all.py` (skill)
-- Description: !/usr/bin/env python3
+- Description: ─── Color derivation helpers ────────────────────────────────────────────────
 
 ## SHA-256: `f7a21e83739c5ac6...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/design_system.py` (skill)
 - **gsd-design**: `.claude/skills/ui-ux-pro-max/cli/assets/scripts/design_system.py` (skill)
-- Description: !/usr/bin/env python3
+- Description: -*- coding: utf-8 -*-
 
 ## SHA-256: `41fccbe44d4882f4...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/frontend-slides-zara/SKILL.md` (skill)
 - **gsd-design**: `.claude/skills/frontend-slides-zara/plugins/frontend-slides/skills/frontend-slides/SKILL.md` (skill)
-- Description: Frontend Slides
+- Description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. U
 
 ## SHA-256: `1b7b7409893b68c0...` (2 occurrences)
 
@@ -365,17 +365,17 @@ Artifacts that appear in multiple versions (by SHA-256 match).
 
 - **gsd-design**: `.claude/skills/frontend-slides-zara/plugins/frontend-slides/skills/frontend-slides/scripts/deploy.sh` (skill)
 - **gsd-design**: `.claude/skills/frontend-slides-zara/scripts/deploy.sh` (skill)
-- Description: !/usr/bin/env bash
+- Description: deploy.sh — Deploy a slide deck to Vercel for instant sharing
 
 ## SHA-256: `16336202904f677b...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/frontend-slides-zara/plugins/frontend-slides/skills/frontend-slides/scripts/export-pdf.sh` (skill)
 - **gsd-design**: `.claude/skills/frontend-slides-zara/scripts/export-pdf.sh` (skill)
-- Description: !/usr/bin/env bash
+- Description: export-pdf.sh — Export an HTML presentation to PDF
 
 ## SHA-256: `4f5e7603c99b8b53...` (2 occurrences)
 
 - **gsd-design**: `.claude/skills/frontend-slides-zara/plugins/frontend-slides/skills/frontend-slides/scripts/extract-pptx.py` (skill)
 - **gsd-design**: `.claude/skills/frontend-slides-zara/scripts/extract-pptx.py` (skill)
-- Description: !/usr/bin/env python3
+- Description: Extract all content from a PowerPoint file (.pptx).
 
