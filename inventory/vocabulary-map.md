@@ -1,572 +1,317 @@
 # Vocabulary Map
 
-Cross-reference of terminology, concepts, and vocabulary across all 5 workflow versions.
-
-## Terminology Frequency by Version
-
-### Build Terms
-
-| Term | open-design | desigjn toolkit | gsd-design | WEBSITES | design-self-create |
-|------|------|------|------|------|------|
-| build | 0 | 0 | 0 | 0 | 0 |
-| cd | 0 | 0 | 0 | 0 | 0 |
-| ci | 0 | 0 | 0 | 0 | 0 |
-| deploy | 0 | 0 | 0 | 0 | 0 |
-| docker | 0 | 0 | 0 | 0 | 0 |
-| netlify | 0 | 0 | 0 | 0 | 0 |
-| vercel | 0 | 0 | 0 | 0 | 0 |
-
-### Design Terms
-
-| Term | open-design | desigjn toolkit | gsd-design | WEBSITES | design-self-create |
-|------|------|------|------|------|------|
-| animation | 0 | 0 | 0 | 0 | 0 |
-| brand | 0 | 0 | 0 | 0 | 0 |
-| color | 0 | 0 | 0 | 0 | 0 |
-| component | 0 | 0 | 0 | 0 | 0 |
-| design | 0 | 0 | 0 | 0 | 0 |
-| layout | 0 | 0 | 0 | 0 | 0 |
-| theme | 0 | 0 | 0 | 0 | 0 |
-| typography | 0 | 0 | 0 | 0 | 0 |
-
-### Skill Types
-
-| Term | open-design | desigjn toolkit | gsd-design | WEBSITES | design-self-create |
-|------|------|------|------|------|------|
-| agent | 0 | 0 | 0 | 0 | 0 |
-| prompt | 0 | 0 | 0 | 0 | 0 |
-| skill | 0 | 0 | 0 | 0 | 0 |
-| template | 0 | 0 | 0 | 0 | 0 |
-| workflow | 0 | 0 | 0 | 0 | 0 |
-
-### Tech Stack
-
-| Term | open-design | desigjn toolkit | gsd-design | WEBSITES | design-self-create |
-|------|------|------|------|------|------|
-| angular | 0 | 0 | 0 | 0 | 0 |
-| astro | 0 | 0 | 0 | 0 | 0 |
-| css | 0 | 0 | 0 | 0 | 0 |
-| html | 0 | 0 | 0 | 0 | 0 |
-| js | 0 | 0 | 0 | 0 | 0 |
-| next | 0 | 0 | 0 | 0 | 0 |
-| react | 0 | 0 | 0 | 0 | 0 |
-| tailwind | 0 | 0 | 0 | 0 | 0 |
-| ts | 0 | 0 | 0 | 0 | 0 |
-| vue | 0 | 0 | 0 | 0 | 0 |
-
-### Test Terms
-
-| Term | open-design | desigjn toolkit | gsd-design | WEBSITES | design-self-create |
-|------|------|------|------|------|------|
-| e2e | 0 | 0 | 0 | 0 | 0 |
-| integration | 0 | 0 | 0 | 0 | 0 |
-| playwright | 0 | 0 | 0 | 0 | 0 |
-| spec | 0 | 0 | 0 | 0 | 0 |
-| test | 0 | 0 | 0 | 0 | 0 |
-| unit | 0 | 0 | 0 | 0 | 0 |
-
-## SKILL.md Catalog by Version
-
-### open-design
-
-- **`open-design/docs/examples/saas-landing-skill/SKILL.md`**
-  - Title: SaaS Landing Skill
-
-- **`open-design/skills/audio-jingle/SKILL.md`**
-  - Title: Audio Jingle Skill
-
-- **`open-design/skills/blog-post/SKILL.md`**
-  - Title: Blog Post Skill
-
-- **`open-design/skills/critique/SKILL.md`**
-  - Title: Critique Skill · 5 维度专家评审
-
-- **`open-design/skills/dashboard/SKILL.md`**
-  - Title: Dashboard Skill
-
-- **`open-design/skills/dating-web/SKILL.md`**
-  - Title: Dating Web Skill
-
-- **`open-design/skills/design-brief/SKILL.md`**
-  - Title: Design Brief Skill
-  - Desc: I-Lang formatted design brief or natural language description
-
-- **`open-design/skills/digital-eguide/SKILL.md`**
-  - Title: Digital E-Guide Skill
-
-- **`open-design/skills/docs-page/SKILL.md`**
-  - Title: Docs Page Skill
-
-- **`open-design/skills/editorial-collage-deck/SKILL.md`**
-  - Title: editorial-collage-deck
-
-- **`open-design/skills/editorial-collage/SKILL.md`**
-  - Title: editorial-collage
-
-- **`open-design/skills/email-marketing/SKILL.md`**
-  - Title: Email Marketing Skill
-
-- **`open-design/skills/eng-runbook/SKILL.md`**
-  - Title: Engineering Runbook Skill
-
-- **`open-design/skills/finance-report/SKILL.md`**
-  - Title: Finance Report Skill
-
-- **`open-design/skills/gamified-app/SKILL.md`**
-  - Title: Gamified App Skill
-
-- **`open-design/skills/guizang-ppt/SKILL.md`**
-  - Title: Magazine Web Ppt
-
-- **`open-design/skills/hatch-pet/SKILL.md`**
-  - Title: Hatch Pet
-
-- **`open-design/skills/hr-onboarding/SKILL.md`**
-  - Title: HR Onboarding Skill
-
-- **`open-design/skills/html-ppt-course-module/SKILL.md`**
-  - Title: HTML PPT · Course Module
-
-- **`open-design/skills/html-ppt-dir-key-nav-minimal/SKILL.md`**
-  - Title: HTML PPT · 8 色极简方向键
-
-- **`open-design/skills/html-ppt-graphify-dark-graph/SKILL.md`**
-  - Title: HTML PPT · 暗底知识图谱
-
-- **`open-design/skills/html-ppt-hermes-cyber-terminal/SKILL.md`**
-  - Title: HTML PPT · 暗终端测评
-
-- **`open-design/skills/html-ppt-knowledge-arch-blueprint/SKILL.md`**
-  - Title: HTML PPT · 奶油蓝图架构
-
-- **`open-design/skills/html-ppt-obsidian-claude-gradient/SKILL.md`**
-  - Title: HTML PPT · GitHub 暗紫渐变
-
-- **`open-design/skills/html-ppt-pitch-deck/SKILL.md`**
-  - Title: HTML PPT · Pitch Deck
-
-- **`open-design/skills/html-ppt-presenter-mode-reveal/SKILL.md`**
-  - Title: HTML PPT · Presenter Mode (演讲者模式)
-
-- **`open-design/skills/html-ppt-product-launch/SKILL.md`**
-  - Title: HTML PPT · Product Launch
-
-- **`open-design/skills/html-ppt-taste-brutalist/SKILL.md`**
-  - Title: HTML PPT — Tactical Telemetry / CRT Terminal
-
-- **`open-design/skills/html-ppt-taste-editorial/SKILL.md`**
-  - Title: HTML PPT — Editorial Minimalism
-
-- **`open-design/skills/html-ppt-tech-sharing/SKILL.md`**
-  - Title: HTML PPT · Tech Sharing
-
-- **`open-design/skills/html-ppt-testing-safety-alert/SKILL.md`**
-  - Title: HTML PPT · 红琥珀警示
-
-- **`open-design/skills/html-ppt-weekly-report/SKILL.md`**
-  - Title: HTML PPT · Weekly Report
-
-- **`open-design/skills/html-ppt-xhs-pastel-card/SKILL.md`**
-  - Title: HTML PPT · 柔和马卡龙慢生活
-
-- **`open-design/skills/html-ppt-xhs-post/SKILL.md`**
-  - Title: HTML PPT · 小红书 图文
-
-- **`open-design/skills/html-ppt-xhs-white-editorial/SKILL.md`**
-  - Title: HTML PPT · 白底杂志风
-
-- **`open-design/skills/html-ppt/SKILL.md`**
-  - Title: html-ppt — HTML PPT Studio
-
-- **`open-design/skills/hyperframes/SKILL.md`**
-  - Title: HyperFrames
-
-- **`open-design/skills/image-poster/SKILL.md`**
-  - Title: Image Poster Skill
-
-- **`open-design/skills/invoice/SKILL.md`**
-  - Title: Invoice Skill
-
-- **`open-design/skills/kanban-board/SKILL.md`**
-  - Title: Kanban Board Skill
-
-- **`open-design/skills/magazine-poster/SKILL.md`**
-  - Title: Magazine Poster Skill
-
-- **`open-design/skills/meeting-notes/SKILL.md`**
-  - Title: Meeting Notes Skill
-
-- **`open-design/skills/mobile-app/SKILL.md`**
-  - Title: Mobile App Skill
-
-- **`open-design/skills/mobile-onboarding/SKILL.md`**
-  - Title: Mobile Onboarding Skill
-
-- **`open-design/skills/motion-frames/SKILL.md`**
-  - Title: Motion Frames Skill
-
-- **`open-design/skills/pm-spec/SKILL.md`**
-  - Title: Product Spec Skill
-
-- **`open-design/skills/pptx-html-fidelity-audit/SKILL.md`**
-  - Title: PPTX ↔ HTML Fidelity Audit
-
-- **`open-design/skills/pricing-page/SKILL.md`**
-  - Title: Pricing Page Skill
-
-- **`open-design/skills/replit-deck/SKILL.md`**
-  - Title: Replit Deck Skill
-
-- **`open-design/skills/saas-landing/SKILL.md`**
-  - Title: SaaS Landing Skill
-
-- **`open-design/skills/simple-deck/SKILL.md`**
-  - Title: Simple Deck Skill
-
-- **`open-design/skills/social-carousel/SKILL.md`**
-  - Title: Social Carousel Skill
-
-- **`open-design/skills/sprite-animation/SKILL.md`**
-  - Title: Sprite Animation Skill
-
-- **`open-design/skills/team-okrs/SKILL.md`**
-  - Title: Team OKRs Skill
-
-- **`open-design/skills/tweaks/SKILL.md`**
-  - Title: Tweaks Skill · 参数化变体面板
-
-- **`open-design/skills/video-shortform/SKILL.md`**
-  - Title: Video Shortform Skill
-
-- **`open-design/skills/web-prototype-taste-brutalist/SKILL.md`**
-  - Title: Web Prototype — Industrial Brutalist (Swiss Print)
-
-- **`open-design/skills/web-prototype-taste-editorial/SKILL.md`**
-  - Title: Web Prototype — Editorial Minimalism
-
-- **`open-design/skills/web-prototype-taste-soft/SKILL.md`**
-  - Title: Web Prototype — Soft Premium
-
-- **`open-design/skills/web-prototype/SKILL.md`**
-  - Title: Web Prototype Skill
-
-- **`open-design/skills/weekly-update/SKILL.md`**
-  - Title: Weekly Update Deck Skill
-
-- **`open-design/skills/wireframe-sketch/SKILL.md`**
-  - Title: Wireframe Sketch Skill
-
-### desigjn toolkit
-
-- **`EXTRACT/skills/extract-design/SKILL.md`**
-  - Title: Extract Design Language
-  - Desc: Extract the full design language from any website URL. Produces 8 output files including AI-optimized markdown, visual HTML preview, Tailwind config, React theme, shadcn/ui theme, Figma variables, W3C design tokens, and CSS variables. Also runs WCAG accessibility scoring. Use when user says 'extract design', 'get design system', 'design language', 'design tokens', 'what colors/fonts does this site use', or '/extract-design'.
-
-- **`refs/Scrapling/agent-skill/Scrapling-Skill/SKILL.md`**
-  - Title: Scrapling
-
-- **`refs/browser-harness/SKILL.md`**
-  - Title: browser-harness
-
-- **`refs/gsap-skills/skills/gsap-core/SKILL.md`**
-  - Title: GSAP Core
-
-- **`refs/gsap-skills/skills/gsap-frameworks/SKILL.md`**
-  - Title: GSAP with Vue, Svelte, and Other Frameworks
-
-- **`refs/gsap-skills/skills/gsap-performance/SKILL.md`**
-  - Title: GSAP Performance
-
-- **`refs/gsap-skills/skills/gsap-plugins/SKILL.md`**
-  - Title: GSAP Plugins
-
-- **`refs/gsap-skills/skills/gsap-react/SKILL.md`**
-  - Title: GSAP with React
-
-- **`refs/gsap-skills/skills/gsap-scrolltrigger/SKILL.md`**
-  - Title: GSAP ScrollTrigger
-
-- **`refs/gsap-skills/skills/gsap-timeline/SKILL.md`**
-  - Title: GSAP Timeline
-
-- **`refs/gsap-skills/skills/gsap-utils/SKILL.md`**
-  - Title: gsap.utils
-
-- **`refs/huashu-design/SKILL.md`**
-  - Title: 花叔Design · Huashu-Design
-
-- **`refs/impeccable/plugin/skills/impeccable/SKILL.md`**
-  - Title: Untitled
-
-- **`refs/impeccable/skill/SKILL.md`**
-  - Title: Untitled
-  - Desc: Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks.
-
-- **`refs/magicui/skills/magic-ui/SKILL.md`**
-  - Title: Magic UI
-
-- **`refs/open-design/docs/examples/saas-landing-skill/SKILL.md`**
-  - Title: SaaS Landing Skill
-
-- **`refs/open-design/skills/audio-jingle/SKILL.md`**
-  - Title: Audio Jingle Skill
-
-- **`refs/open-design/skills/blog-post/SKILL.md`**
-  - Title: Blog Post Skill
-
-- **`refs/open-design/skills/critique/SKILL.md`**
-  - Title: Critique Skill · 5 维度专家评审
-
-- **`refs/open-design/skills/dashboard/SKILL.md`**
-  - Title: Dashboard Skill
-
-- **`refs/open-design/skills/dating-web/SKILL.md`**
-  - Title: Dating Web Skill
-
-- **`refs/open-design/skills/design-brief/SKILL.md`**
-  - Title: Design Brief Skill
-  - Desc: I-Lang formatted design brief or natural language description
-
-- **`refs/open-design/skills/digital-eguide/SKILL.md`**
-  - Title: Digital E-Guide Skill
-
-- **`refs/open-design/skills/docs-page/SKILL.md`**
-  - Title: Docs Page Skill
-
-- **`refs/open-design/skills/email-marketing/SKILL.md`**
-  - Title: Email Marketing Skill
-
-- **`refs/open-design/skills/eng-runbook/SKILL.md`**
-  - Title: Engineering Runbook Skill
-
-- **`refs/open-design/skills/finance-report/SKILL.md`**
-  - Title: Finance Report Skill
-
-- **`refs/open-design/skills/gamified-app/SKILL.md`**
-  - Title: Gamified App Skill
-
-- **`refs/open-design/skills/guizang-ppt/SKILL.md`**
-  - Title: Magazine Web Ppt
-
-- **`refs/open-design/skills/hatch-pet/SKILL.md`**
-  - Title: Hatch Pet
-
-- **`refs/open-design/skills/hr-onboarding/SKILL.md`**
-  - Title: HR Onboarding Skill
-
-- **`refs/open-design/skills/html-ppt-course-module/SKILL.md`**
-  - Title: HTML PPT · Course Module
-
-- **`refs/open-design/skills/html-ppt-dir-key-nav-minimal/SKILL.md`**
-  - Title: HTML PPT · 8 色极简方向键
-
-- **`refs/open-design/skills/html-ppt-graphify-dark-graph/SKILL.md`**
-  - Title: HTML PPT · 暗底知识图谱
-
-- **`refs/open-design/skills/html-ppt-hermes-cyber-terminal/SKILL.md`**
-  - Title: HTML PPT · 暗终端测评
-
-- **`refs/open-design/skills/html-ppt-knowledge-arch-blueprint/SKILL.md`**
-  - Title: HTML PPT · 奶油蓝图架构
-
-- **`refs/open-design/skills/html-ppt-obsidian-claude-gradient/SKILL.md`**
-  - Title: HTML PPT · GitHub 暗紫渐变
-
-- **`refs/open-design/skills/html-ppt-pitch-deck/SKILL.md`**
-  - Title: HTML PPT · Pitch Deck
-
-- **`refs/open-design/skills/html-ppt-presenter-mode-reveal/SKILL.md`**
-  - Title: HTML PPT · Presenter Mode (演讲者模式)
-
-- **`refs/open-design/skills/html-ppt-product-launch/SKILL.md`**
-  - Title: HTML PPT · Product Launch
-
-- **`refs/open-design/skills/html-ppt-taste-brutalist/SKILL.md`**
-  - Title: HTML PPT — Tactical Telemetry / CRT Terminal
-
-- **`refs/open-design/skills/html-ppt-taste-editorial/SKILL.md`**
-  - Title: HTML PPT — Editorial Minimalism
-
-- **`refs/open-design/skills/html-ppt-tech-sharing/SKILL.md`**
-  - Title: HTML PPT · Tech Sharing
-
-- **`refs/open-design/skills/html-ppt-testing-safety-alert/SKILL.md`**
-  - Title: HTML PPT · 红琥珀警示
-
-- **`refs/open-design/skills/html-ppt-weekly-report/SKILL.md`**
-  - Title: HTML PPT · Weekly Report
-
-- **`refs/open-design/skills/html-ppt-xhs-pastel-card/SKILL.md`**
-  - Title: HTML PPT · 柔和马卡龙慢生活
-
-- **`refs/open-design/skills/html-ppt-xhs-post/SKILL.md`**
-  - Title: HTML PPT · 小红书 图文
-
-- **`refs/open-design/skills/html-ppt-xhs-white-editorial/SKILL.md`**
-  - Title: HTML PPT · 白底杂志风
-
-- **`refs/open-design/skills/html-ppt/SKILL.md`**
-  - Title: html-ppt — HTML PPT Studio
-
-- **`refs/open-design/skills/hyperframes/SKILL.md`**
-  - Title: HyperFrames
-
-- **`refs/open-design/skills/image-poster/SKILL.md`**
-  - Title: Image Poster Skill
-
-- **`refs/open-design/skills/invoice/SKILL.md`**
-  - Title: Invoice Skill
-
-- **`refs/open-design/skills/kami-deck/SKILL.md`**
-  - Title: kami-deck
-
-- **`refs/open-design/skills/kami-landing/SKILL.md`**
-  - Title: kami-landing
-
-- **`refs/open-design/skills/kanban-board/SKILL.md`**
-  - Title: Kanban Board Skill
-
-- **`refs/open-design/skills/magazine-poster/SKILL.md`**
-  - Title: Magazine Poster Skill
-
-- **`refs/open-design/skills/meeting-notes/SKILL.md`**
-  - Title: Meeting Notes Skill
-
-- **`refs/open-design/skills/mobile-app/SKILL.md`**
-  - Title: Mobile App Skill
-
-- **`refs/open-design/skills/mobile-onboarding/SKILL.md`**
-  - Title: Mobile Onboarding Skill
-
-- **`refs/open-design/skills/motion-frames/SKILL.md`**
-  - Title: Motion Frames Skill
-
-- **`refs/open-design/skills/open-design-landing-deck/SKILL.md`**
-  - Title: open-design-landing-deck
-
-- **`refs/open-design/skills/open-design-landing/SKILL.md`**
-  - Title: open-design-landing
-
-- **`refs/open-design/skills/pm-spec/SKILL.md`**
-  - Title: Product Spec Skill
-
-- **`refs/open-design/skills/pptx-html-fidelity-audit/SKILL.md`**
-  - Title: PPTX ↔ HTML Fidelity Audit
-
-- **`refs/open-design/skills/pricing-page/SKILL.md`**
-  - Title: Pricing Page Skill
-
-- **`refs/open-design/skills/replit-deck/SKILL.md`**
-  - Title: Replit Deck Skill
-
-- **`refs/open-design/skills/saas-landing/SKILL.md`**
-  - Title: SaaS Landing Skill
-
-- **`refs/open-design/skills/simple-deck/SKILL.md`**
-  - Title: Simple Deck Skill
-
-- **`refs/open-design/skills/social-carousel/SKILL.md`**
-  - Title: Social Carousel Skill
-
-- **`refs/open-design/skills/sprite-animation/SKILL.md`**
-  - Title: Sprite Animation Skill
-
-- **`refs/open-design/skills/team-okrs/SKILL.md`**
-  - Title: Team OKRs Skill
-
-- **`refs/open-design/skills/tweaks/SKILL.md`**
-  - Title: Tweaks Skill · 参数化变体面板
-
-- **`refs/open-design/skills/video-shortform/SKILL.md`**
-  - Title: Video Shortform Skill
-
-- **`refs/open-design/skills/web-prototype-taste-brutalist/SKILL.md`**
-  - Title: Web Prototype — Industrial Brutalist (Swiss Print)
-
-- **`refs/open-design/skills/web-prototype-taste-editorial/SKILL.md`**
-  - Title: Web Prototype — Editorial Minimalism
-
-- **`refs/open-design/skills/web-prototype-taste-soft/SKILL.md`**
-  - Title: Web Prototype — Soft Premium
-
-- **`refs/open-design/skills/web-prototype/SKILL.md`**
-  - Title: Web Prototype Skill
-
-- **`refs/open-design/skills/weekly-update/SKILL.md`**
-  - Title: Weekly Update Deck Skill
-
-- **`refs/open-design/skills/wireframe-sketch/SKILL.md`**
-  - Title: Wireframe Sketch Skill
-
-- **`refs/stitch-skills/skills/design-md/SKILL.md`**
-  - Title: Stitch DESIGN.md Skill
-
-- **`refs/stitch-skills/skills/enhance-prompt/SKILL.md`**
-  - Title: Enhance Prompt for Stitch
-
-- **`refs/stitch-skills/skills/react-components/SKILL.md`**
-  - Title: Stitch to React Components
-
-- **`refs/stitch-skills/skills/remotion/SKILL.md`**
-  - Title: Stitch to Remotion Walkthrough Videos
-
-- **`refs/stitch-skills/skills/shadcn-ui/SKILL.md`**
-  - Title: shadcn/ui Component Integration
-
-- **`refs/stitch-skills/skills/stitch-design/SKILL.md`**
-  - Title: Stitch Design Expert
-
-- **`refs/stitch-skills/skills/stitch-loop/SKILL.md`**
-  - Title: Stitch Build Loop
-
-- **`refs/stitch-skills/skills/taste-design/SKILL.md`**
-  - Title: Stitch Design Taste — Semantic Design System Skill
-
-- **`refs/taste-skill/skills/brandkit/SKILL.md`**
-  - Title: BRANDKIT IMAGE GENERATION SKILL
-
-- **`refs/taste-skill/skills/brutalist-skill/SKILL.md`**
-  - Title: SKILL: Industrial Brutalism & Tactical Telemetry UI
-
-- **`refs/taste-skill/skills/gpt-tasteskill/SKILL.md`**
-  - Title: CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING
-
-- **`refs/taste-skill/skills/image-to-code-skill/SKILL.md`**
-  - Title: CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE
-
-- **`refs/taste-skill/skills/imagegen-frontend-mobile/SKILL.md`**
-  - Title: CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION
-
-- **`refs/taste-skill/skills/imagegen-frontend-web/SKILL.md`**
-  - Title: HARD OUTPUT RULE — READ FIRST
-
-- **`refs/taste-skill/skills/minimalist-skill/SKILL.md`**
-  - Title: Protocol: Premium Utilitarian Minimalism UI Architect
-
-- **`refs/taste-skill/skills/output-skill/SKILL.md`**
-  - Title: Full-Output Enforcement
-
-- **`refs/taste-skill/skills/redesign-skill/SKILL.md`**
-  - Title: Redesign Skill
-
-- **`refs/taste-skill/skills/soft-skill/SKILL.md`**
-  - Title: Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier)
-
-- **`refs/taste-skill/skills/stitch-skill/SKILL.md`**
-  - Title: Stitch Design Taste — Semantic Design System Skill
-
-- **`refs/taste-skill/skills/taste-skill/SKILL.md`**
-  - Title: High-Agency Frontend Skill
-
-### gsd-design
-
-No SKILL.md files found.
-
-### WEBSITES
-
-No SKILL.md files found.
-
-### design-self-create
-
-No SKILL.md files found.
-
+Mapping of path patterns to artifact types across all versions.
+
+## Pattern → Type Mapping
+
+| Pattern | Type | Count |
+|---------|------|-------|
+| `.claude/skills` | skill | 507 |
+| `prompt-templates/video` | prompt | 50 |
+| `prompt-templates/image` | prompt | 44 |
+| `skills/hyperframes` | skill | 40 |
+| `.claude/agents` | agent | 35 |
+| `skills/html-ppt` | skill | 25 |
+| `.claude/memory` | memory | 22 |
+| `skills/hatch-pet` | skill | 20 |
+| `schemas/seo-jsonld` | schema | 17 |
+| `exemplars/tier-a-plus` | exemplar | 10 |
+| `exemplars/tier-c-counter-examples` | exemplar | 10 |
+| `scripts/lib` | script | 10 |
+| `tools/pack` | script | 9 |
+| `skills/guizang-ppt` | skill | 8 |
+| `.claude/skills-official` | skill | 6 |
+| `skills/editorial-collage` | skill | 6 |
+| `skills/pptx-html-fidelity-audit` | skill | 6 |
+| `skills/replit-deck` | skill | 6 |
+| `tools/dev` | script | 6 |
+| `CLAUDE.md` | doc | 5 |
+| `.claude/skills-ecc` | skill | 4 |
+| `kimi-claw unorganized assets/web-business` | scaffold | 4 |
+| `.claude/skills` | scaffold | 3 |
+| `AGENTS.md` | doc | 3 |
+| `README.md` | doc | 3 |
+| `kimi builds/kimi` | scaffold | 3 |
+| `prospects/lemons-jewelers` | doc | 3 |
+| `prospects/test-s07-fixture` | doc | 3 |
+| `skills/editorial-collage-deck` | skill | 3 |
+| `skills/mobile-app` | skill | 3 |
+| `skills/simple-deck` | skill | 3 |
+| `skills/web-prototype` | skill | 3 |
+| `templates/client-handoff-template` | script | 3 |
+| `QUALITY.md` | quality-doc | 2 |
+| `apps/packaged` | doc | 2 |
+| `e2e/scripts` | script | 2 |
+| `exemplars/build-case-studies` | exemplar | 2 |
+| `prompts/README.md` | doc | 2 |
+| `prospects/s08-design-fail` | doc | 2 |
+| `prospects/s08-design-pass` | doc | 2 |
+| `prospects/s08-package-ready` | doc | 2 |
+| `prospects/s08-remediation-flow` | doc | 2 |
+| `prospects/s08-verify-probe` | doc | 2 |
+| `prospects/test-slug` | doc | 2 |
+| `quality/project-lifecycle` | quality-doc | 2 |
+| `tools/pack` | other | 2 |
+| `.claude/commands` | command | 1 |
+| `.claude/settings.json` | settings | 1 |
+| `.mcp.json` | settings | 1 |
+| `ARCHITECTURE.md` | doc | 1 |
+| `ASSETS/AGENTS.md` | doc | 1 |
+| `CONTRIBUTING.md` | doc | 1 |
+| `EXTRACT/` | scaffold | 1 |
+| `LAUNCH-GATES.md` | quality-doc | 1 |
+| `MASTER-ROADMAP.md` | doc | 1 |
+| `MOBILE.md` | doc | 1 |
+| `ONBOARDING.md` | doc | 1 |
+| `PLAYBOOKS.md` | doc | 1 |
+| `QUICKSTART.md` | doc | 1 |
+| `TOOLS.md` | doc | 1 |
+| `WORKSPACE.md` | doc | 1 |
+| `apps/AGENTS.md` | doc | 1 |
+| `apps/landing-page` | scaffold | 1 |
+| `apps/web` | scaffold | 1 |
+| `assets/frames` | doc | 1 |
+| `bin/advance-phase.sh` | script | 1 |
+| `bin/crawl4ai` | other | 1 |
+| `bin/project-status.sh` | script | 1 |
+| `bin/run-mcp.sh` | script | 1 |
+| `bin/scaffold-site.sh` | script | 1 |
+| `clients/AGENTS.md` | doc | 1 |
+| `content-packs/README.md` | doc | 1 |
+| `content-packs/music-artist` | doc | 1 |
+| `craft/README.md` | doc | 1 |
+| `design-assets/templates` | doc | 1 |
+| `design-systems/README.md` | doc | 1 |
+| `distant-matter/` | scaffold | 1 |
+| `exemplars/README.md` | exemplar | 1 |
+| `exemplars/_template-teardown.md` | exemplar | 1 |
+| `kimi-claw unorganized assets/AGENTS.md` | doc | 1 |
+| `kimi-claw unorganized assets/web-business` | doc | 1 |
+| `kimi-claw unorganized assets/web-business` | quality-doc | 1 |
+| `milestones/AGENTS.md` | doc | 1 |
+| `milestones/M002-gyr99j` | doc | 1 |
+| `ops/AGENTS.md` | doc | 1 |
+| `ops/LAUNCH-CHECKLIST.md` | quality-doc | 1 |
+| `ops/brand` | doc | 1 |
+| `ops/examples` | doc | 1 |
+| `ops/legal` | doc | 1 |
+| `ops/onboarding` | doc | 1 |
+| `ops/sales` | doc | 1 |
+| `packages/AGENTS.md` | doc | 1 |
+| `playbooks/ai-assisted-site-quality-research.md` | playbook | 1 |
+| `playbooks/ai-assisted-site-quality.md` | playbook | 1 |
+| `playbooks/ai-site-prompt-pack.md` | playbook | 1 |
+| `playbooks/artist-existing-site-rebuild.md` | playbook | 1 |
+| `playbooks/brand-assets.md` | playbook | 1 |
+| `playbooks/competitor-research.md` | playbook | 1 |
+| `playbooks/conversion-flow-testing.md` | playbook | 1 |
+| `playbooks/dark-mode-parity.md` | playbook | 1 |
+| `playbooks/device-matrix.md` | playbook | 1 |
+| `playbooks/dom-box-debugging.md` | playbook | 1 |
+| `playbooks/email-infra.md` | playbook | 1 |
+| `playbooks/forced-colors-mode.md` | playbook | 1 |
+| `playbooks/form-quality.md` | playbook | 1 |
+| `playbooks/industry-kit-restaurant.md` | playbook | 1 |
+| `playbooks/industry-research.md` | playbook | 1 |
+| `playbooks/information-architecture.md` | playbook | 1 |
+| `playbooks/intake-existing-site.md` | playbook | 1 |
+| `playbooks/intake-greenfield.md` | playbook | 1 |
+| `playbooks/maintainability-handoff.md` | playbook | 1 |
+| `playbooks/print-styles.md` | playbook | 1 |
+| `playbooks/product-discovery.md` | playbook | 1 |
+| `playbooks/reduced-motion.md` | playbook | 1 |
+| `playbooks/rtl-audit.md` | playbook | 1 |
+| `playbooks/scenario-routing.md` | playbook | 1 |
+| `playbooks/service-worker-patterns.md` | playbook | 1 |
+| `playbooks/ship-readiness.md` | playbook | 1 |
+| `playbooks/storefront-small-business.md` | playbook | 1 |
+| `playbooks/storybook-setup.md` | playbook | 1 |
+| `playbooks/test-evidence.md` | playbook | 1 |
+| `playbooks/visual-quality-review.md` | playbook | 1 |
+| `playbooks/zoom-200.md` | playbook | 1 |
+| `prompts/AGENTS.md` | doc | 1 |
+| `prospects/AGENTS.md` | doc | 1 |
+| `prospects/malformed-s07-fixture` | doc | 1 |
+| `prospects/s08-remediation-flow` | scaffold | 1 |
+| `prospects/test-slug` | scaffold | 1 |
+| `quality/README.md` | quality-doc | 1 |
+| `quality/click-path-audit` | quality-doc | 1 |
+| `quality/debug` | quality-doc | 1 |
+| `quality/enforcement-map.md` | quality-doc | 1 |
+| `quality/mobile-device-matrix` | quality-doc | 1 |
+| `quality/repeatable-quality.md` | quality-doc | 1 |
+| `quality/ship-gate-gotchas.md` | quality-doc | 1 |
+| `refs/Front-End-Checklist` | exemplar | 1 |
+| `refs/Front-End-Performance-Checklist` | exemplar | 1 |
+| `refs/Scrapling` | exemplar | 1 |
+| `refs/ai-website-cloner-template` | scaffold | 1 |
+| `refs/animate.css` | exemplar | 1 |
+| `refs/awesome-design-md` | exemplar | 1 |
+| `refs/awesome-shadcn-ui` | scaffold | 1 |
+| `refs/browser-harness` | exemplar | 1 |
+| `refs/design-blocks` | exemplar | 1 |
+| `refs/design.md` | exemplar | 1 |
+| `refs/gsap-skills` | exemplar | 1 |
+| `refs/huashu-design` | exemplar | 1 |
+| `refs/impeccable` | scaffold | 1 |
+| `refs/magicui` | exemplar | 1 |
+| `refs/open-design` | exemplar | 1 |
+| `refs/open-lovable` | scaffold | 1 |
+| `refs/react-bits` | scaffold | 1 |
+| `refs/stitch-skills` | exemplar | 1 |
+| `refs/taste-skill` | exemplar | 1 |
+| `refs/ui-ux-pro-max-skill` | exemplar | 1 |
+| `refs/web-check` | scaffold | 1 |
+| `scripts/AGENTS.md` | other | 1 |
+| `scripts/audit.js` | script | 1 |
+| `scripts/bake-community-pets.ts` | script | 1 |
+| `scripts/bake-html-ppt-examples.mjs` | script | 1 |
+| `scripts/check-residual-js.ts` | script | 1 |
+| `scripts/click-path-audit.sh` | script | 1 |
+| `scripts/client-preflight.mjs` | script | 1 |
+| `scripts/create-project.sh` | script | 1 |
+| `scripts/design-shotgun-brief.mjs` | script | 1 |
+| `scripts/dev.sh` | script | 1 |
+| `scripts/fix-dup.mjs` | script | 1 |
+| `scripts/generate-sitemap.js` | script | 1 |
+| `scripts/import-prompt-templates.mjs` | script | 1 |
+| `scripts/launch-check.mjs` | script | 1 |
+| `scripts/postinstall.mjs` | script | 1 |
+| `scripts/project-health.sh` | script | 1 |
+| `scripts/prospect-workflow` | other | 1 |
+| `scripts/prospect-workflow.mjs` | script | 1 |
+| `scripts/quality-check.sh` | script | 1 |
+| `scripts/release-beta.ts` | script | 1 |
+| `scripts/release-stable.ts` | script | 1 |
+| `scripts/responsive.js` | script | 1 |
+| `scripts/scaffold-html-ppt-skills.mjs` | script | 1 |
+| `scripts/screenshot.js` | script | 1 |
+| `scripts/screenshot.sh` | script | 1 |
+| `scripts/site-matrix.mjs` | script | 1 |
+| `scripts/sync-community-pets.ts` | script | 1 |
+| `scripts/sync-design-systems.ts` | script | 1 |
+| `scripts/sync-hyperframes-skill.mjs` | script | 1 |
+| `scripts/sync-litellm-models.ts` | script | 1 |
+| `scripts/test-rg-deploy.sh` | script | 1 |
+| `scripts/verify-a11y.mjs` | script | 1 |
+| `scripts/verify-lighthouse.mjs` | script | 1 |
+| `scripts/verify-m3-s04.mjs` | script | 1 |
+| `scripts/verify-m3-s05.mjs` | script | 1 |
+| `scripts/verify-m5-s01.mjs` | script | 1 |
+| `scripts/verify-m5-s02.mjs` | script | 1 |
+| `scripts/verify-m5-s03.mjs` | script | 1 |
+| `scripts/verify-m5-s04.mjs` | script | 1 |
+| `scripts/verify-m5-s05.mjs` | script | 1 |
+| `scripts/verify-media-models.mjs` | script | 1 |
+| `scripts/verify-s01.mjs` | script | 1 |
+| `scripts/verify-s02.mjs` | script | 1 |
+| `scripts/verify-s03.mjs` | script | 1 |
+| `scripts/verify-s04.mjs` | script | 1 |
+| `scripts/verify-s05.mjs` | script | 1 |
+| `scripts/verify-s06.mjs` | script | 1 |
+| `scripts/verify-s07.mjs` | script | 1 |
+| `scripts/verify-s08.mjs` | script | 1 |
+| `scripts/verify-site.sh` | script | 1 |
+| `scripts/visual-audit.sh` | script | 1 |
+| `site/` | scaffold | 1 |
+| `sites/distant-matter` | scaffold | 1 |
+| `skills/audio-jingle` | skill | 1 |
+| `skills/blog-post` | skill | 1 |
+| `skills/critique` | skill | 1 |
+| `skills/dashboard` | skill | 1 |
+| `skills/dating-web` | skill | 1 |
+| `skills/design-brief` | skill | 1 |
+| `skills/digital-eguide` | skill | 1 |
+| `skills/docs-page` | skill | 1 |
+| `skills/email-marketing` | skill | 1 |
+| `skills/eng-runbook` | skill | 1 |
+| `skills/finance-report` | skill | 1 |
+| `skills/gamified-app` | skill | 1 |
+| `skills/hr-onboarding` | skill | 1 |
+| `skills/html-ppt-course-module` | skill | 1 |
+| `skills/html-ppt-dir-key-nav-minimal` | skill | 1 |
+| `skills/html-ppt-graphify-dark-graph` | skill | 1 |
+| `skills/html-ppt-hermes-cyber-terminal` | skill | 1 |
+| `skills/html-ppt-knowledge-arch-blueprint` | skill | 1 |
+| `skills/html-ppt-obsidian-claude-gradient` | skill | 1 |
+| `skills/html-ppt-pitch-deck` | skill | 1 |
+| `skills/html-ppt-presenter-mode-reveal` | skill | 1 |
+| `skills/html-ppt-product-launch` | skill | 1 |
+| `skills/html-ppt-taste-brutalist` | skill | 1 |
+| `skills/html-ppt-taste-editorial` | skill | 1 |
+| `skills/html-ppt-tech-sharing` | skill | 1 |
+| `skills/html-ppt-testing-safety-alert` | skill | 1 |
+| `skills/html-ppt-weekly-report` | skill | 1 |
+| `skills/html-ppt-xhs-pastel-card` | skill | 1 |
+| `skills/html-ppt-xhs-post` | skill | 1 |
+| `skills/html-ppt-xhs-white-editorial` | skill | 1 |
+| `skills/image-poster` | skill | 1 |
+| `skills/invoice` | skill | 1 |
+| `skills/kanban-board` | skill | 1 |
+| `skills/magazine-poster` | skill | 1 |
+| `skills/meeting-notes` | skill | 1 |
+| `skills/mobile-onboarding` | skill | 1 |
+| `skills/motion-frames` | skill | 1 |
+| `skills/pm-spec` | skill | 1 |
+| `skills/pricing-page` | skill | 1 |
+| `skills/saas-landing` | skill | 1 |
+| `skills/social-carousel` | skill | 1 |
+| `skills/sprite-animation` | skill | 1 |
+| `skills/team-okrs` | skill | 1 |
+| `skills/tweaks` | skill | 1 |
+| `skills/video-shortform` | skill | 1 |
+| `skills/web-prototype-taste-brutalist` | skill | 1 |
+| `skills/web-prototype-taste-editorial` | skill | 1 |
+| `skills/web-prototype-taste-soft` | skill | 1 |
+| `skills/weekly-update` | skill | 1 |
+| `skills/wireframe-sketch` | skill | 1 |
+| `specs/AGENTS.md` | doc | 1 |
+| `specs/bayfront-goldsmith` | scaffold | 1 |
+| `specs/designer-level-website-builder` | scaffold | 1 |
+| `specs/designer-level-website-builder-v2` | scaffold | 1 |
+| `specs/mile-high-jewelry` | scaffold | 1 |
+| `templates/AGENTS.md` | doc | 1 |
+| `templates/client-handoff-template` | doc | 1 |
+| `templates/landing-page` | scaffold | 1 |
+| `templates/local-business-template` | scaffold | 1 |
+| `templates/metzger-website-design` | scaffold | 1 |
+| `templates/spec-rosenberg-jewelers` | scaffold | 1 |
+| `tools/AGENTS.md` | other | 1 |
+| `tools/audit-animations.js` | script | 1 |
+| `tools/batch-audit.js` | script | 1 |
+| `tools/build-sprite.js` | script | 1 |
+| `tools/click-path-audit.js` | script | 1 |
+| `tools/compare-sites.js` | script | 1 |
+| `tools/competitor-research.js` | script | 1 |
+| `tools/dashboard` | other | 1 |
+| `tools/generate-readme.js` | script | 1 |
+| `tools/optimize-images.js` | script | 1 |
+| `tools/scaffold.js` | script | 1 |
+| `tools/setup-comfyui.sh` | script | 1 |
+| `tools/subset-fonts.js` | script | 1 |
+| `tools/swap-content.js` | script | 1 |
+| `tools/template-sync.js` | script | 1 |
+| `tools/template-update.js` | script | 1 |
+| `verify-dark/` | scaffold | 1 |
+| `verify-full/` | scaffold | 1 |
+| `verify-organic/` | scaffold | 1 |
+| `verify-swiss/` | scaffold | 1 |
+
+## Artifact Type Legend
+
+| Type | Meaning |
+|------|---------|
+| `skill` | Reusable capability module (SKILL.md + related) |
+| `agent` | Agent definition/persona |
+| `command` | Claude Code slash command |
+| `playbook` | Step-by-step operational guide |
+| `prompt` | Prompt template |
+| `script` | Executable script (sh, js, ts, py) |
+| `memory` | Persistent memory / context file |
+| `settings` | Configuration (settings.json, .mcp.json) |
+| `quality-doc` | Quality gate / checklist / audit doc |
+| `exemplar` | Reference implementation / cloned repo |
+| `doc` | Repository documentation |
+| `schema` | Data schema / type definition |
+| `scaffold` | Application scaffold (Next.js, Vite, Astro, etc.) |
+| `other` | Uncategorized artifact |
