@@ -472,6 +472,14 @@ async function main() {
       console.error('Error: --research and --city are required for business research mode');
       process.exit(1);
     }
+    // Check if Google Maps browser module is available
+    const gmapsModulePath = resolve(ROOT, 'scripts', 'lib', 'google-maps-browser.mjs');
+    try {
+      await access(gmapsModulePath);
+    } catch {
+      console.error('Error: Business research requires `scripts/lib/google-maps-browser.mjs` — **TODO pending owner** (install Playwright + Google Maps scraper, or use --competitor mode for URL-based analysis)');
+      process.exit(1);
+    }
     const research = await researchBusiness(businessName, city, slug || 'default', { withHuman });
     if (research && slug) {
       await saveResearchArtifact(slug, research);

@@ -35,7 +35,7 @@ Collect four kinds. Five competitors total is the minimum; eight is the ceiling 
 
 **2. In-market adjacent** — Same customer, different service — or same service, different customer. A catering company for the bakery. A restaurant-supply retailer for the bakery-supplier.
 
-**3. Out-of-market exemplar** — A company in a completely different industry that shares the same job-to-be-done. These often have the best UX patterns because they've iterated longer on the core interaction. See `exemplars/` for curated taste anchors.
+**3. Out-of-market exemplar** — A company in a completely different industry that shares the same job-to-be-done. These often have the best UX patterns because they've iterated longer on the core interaction. See `exemplars/` — **TODO pending owner** (scaffold function group) — for curated taste anchors.
 
 **4. Anti-competitor** — The site you do NOT want to look like. Usually a direct competitor with obvious problems. Name it explicitly so the team knows which patterns to actively refuse.
 
@@ -143,7 +143,7 @@ From the scraped content, extract:
 - **Industry jargon that customers know** — terms buyers use when informed (e.g., "HVAC" is universally understood; "mini-split" is known by some).
 - **Industry jargon that customers don't know** — terms to avoid or explain (e.g., "occlusal adjustment" → say "bite correction" instead).
 
-The glossary directly informs `copy-editor` and voice-and-tone decisions. See `conventions/voice-and-tone.md` for the voice framework.
+The glossary directly informs `copy-editor` and voice-and-tone decisions. See `conventions/voice-and-tone.md` — **TODO pending owner** (conventions function group) — for the voice framework.
 
 ### Step 5: Regulatory and compliance scan (30 min)
 
