@@ -1,14 +1,11 @@
 # Function Groups
 
-## intake (7 artifacts)
+## intake (4 artifacts)
 
 - gsd-design | .claude/skills/design-brief/SKILL.md | Parse a structured design brief written in I-Lang protocol format into a concrete design spec. Eliminates ambiguity...
-- gsd-design | .claude/skills/mobile-onboarding/SKILL.md | A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in....
 - gsd-design | playbooks/intake-existing-site.md | The client has a working website. We're replacing it. This playbook ensures nothing of value is lost in the...
 - gsd-design | playbooks/intake-greenfield.md | The client has no website, sometimes no logo, occasionally no finalized business name. Everything starts from zero....
 - open-design | open-design/skills/design-brief/SKILL.md | Parse a structured design brief written in I-Lang protocol format into a concrete design spec. Eliminates ambiguity...
-- open-design | open-design/skills/hr-onboarding/SKILL.md | A new-hire onboarding plan as a single page — first week schedule, buddy + manager intro, learning track, equipment...
-- open-design | open-design/skills/mobile-onboarding/SKILL.md | A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in....
 
 ## discovery (4 artifacts)
 
@@ -33,7 +30,7 @@
 
 _None across all 5 versions._
 
-## build (152 artifacts)
+## build (172 artifacts)
 
 - desigjn-toolkit | EXTRACT/skills/extract-design/SKILL.md | Extract the full design language from any website URL. Produces 8 output files including AI-optimized markdown,...
 - gsd-design | .claude/skills/anthropic-algorithmic-art/SKILL.md | Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when...
@@ -79,6 +76,9 @@ _None across all 5 versions._
 - gsd-design | .claude/skills/gsap/skills/gsap-utils/SKILL.md | Official GSAP skill for gsap.utils — clamp, mapRange, normalize, interpolate, random, snap, toArray, wrap, pipe. Use...
 - gsd-design | .claude/skills/huashu-design/SKILL.md | 花叔Design（Huashu-Design）——用HTML做高保真原型、交互Demo、幻灯片、动画、设计变体探索+设计方向顾问+专家评审的一体化设计能力。HTML是工具不是媒介，根据任务embody不同专家（UX设计师/动画师/幻灯...
 - gsd-design | .claude/skills/image-poster/SKILL.md | Single-image generation skill for posters, key art, and editorial illustrations. Defaults to gpt-image-2 but is...
+- gsd-design | .claude/skills/impeccable/.claude/skills/impeccable/SKILL.md | the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...
+- gsd-design | .claude/skills/impeccable/SKILL.md | the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...
+- gsd-design | .claude/skills/impeccable/skill/SKILL.md | the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...
 - gsd-design | .claude/skills/liquid-glass-design/SKILL.md | iOS 26 Liquid Glass design system — dynamic glass material with blur, reflection, and interactive morphing for...
 - gsd-design | .claude/skills/magazine-poster/SKILL.md | An editorial-style poster — newsprint paper, dateline, oversized serif headline with a struck-through word and...
 - gsd-design | .claude/skills/mobile-app/SKILL.md | A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed...
@@ -133,6 +133,23 @@ _None across all 5 versions._
 - gsd-design | playbooks/artist-existing-site-rebuild.md | Use this when the client is a musician, DJ, performer, creator, label, venue, or other artist-led brand with an...
 - gsd-design | playbooks/industry-kit-restaurant.md | 95% of restaurant searches happen on mobile. The site exists to answer three questions: "What do they serve?", "Are...
 - gsd-design | playbooks/storefront-small-business.md | The "I built websites for local businesses and they actually use them five years later" playbook. Optimized for:...
+- gsd-design | schemas/seo-jsonld/README.md | Drop-in JSON-LD templates for the structured-data types every site eventually needs. Each is a working snippet —...
+- gsd-design | schemas/seo-jsonld/article.json | {{Meta description, 150-160 chars}}
+- gsd-design | schemas/seo-jsonld/blog-posting.json | {{Post excerpt}}
+- gsd-design | schemas/seo-jsonld/breadcrumb.json | Home
+- gsd-design | schemas/seo-jsonld/course.json | {{Course description}}
+- gsd-design | schemas/seo-jsonld/event.json | {{Event description}}
+- gsd-design | schemas/seo-jsonld/faq.json | {{Question 1}}
+- gsd-design | schemas/seo-jsonld/howto.json | {{One-sentence description}}
+- gsd-design | schemas/seo-jsonld/job-posting.json | {{Full job description as HTML}}
+- gsd-design | schemas/seo-jsonld/local-business.json | {{Business Name}}
+- gsd-design | schemas/seo-jsonld/organization.json | {{One-sentence description}}
+- gsd-design | schemas/seo-jsonld/person.json | {{Full Name}}
+- gsd-design | schemas/seo-jsonld/product.json | {{Product description}}
+- gsd-design | schemas/seo-jsonld/recipe.json | {{Description}}
+- gsd-design | schemas/seo-jsonld/software-application.json | {{One-sentence description}}
+- gsd-design | schemas/seo-jsonld/video.json | {{Video description}}
+- gsd-design | schemas/seo-jsonld/website.json | {{Site Name}}
 - open-design | open-design/skills/audio-jingle/SKILL.md | Audio generation skill — jingles, beds, voiceover, and sound effects. Routes music requests to Suno V5 / Udio /...
 - open-design | open-design/skills/blog-post/SKILL.md | A long-form article / blog post — masthead, hero image placeholder, article body with figures and pull quotes,...
 - open-design | open-design/skills/critique/SKILL.md | Run a 5-dimension expert design review on any HTML artifact in the project — Philosophy / Visual hierarchy / Detail...
@@ -270,63 +287,16 @@ _None across all 5 versions._
 - design-self-create | README.md | AI-powered website design workspace. Scaffolds, builds, iterates, and ships professional websites with zero-cost...
 - gsd-design | ONBOARDING.md | You just landed in this workspace (human or AI). This is the fastest path to "doing useful work.
 
-## scaffold (57 artifacts)
+## scaffold (10 artifacts)
 
-- WEBSITES | kimi builds/kimi/4Kimi_Agent_Next.js 14 Multi-Page Site/app/ | Application scaffold: studio-site [secondary: build]
-- WEBSITES | kimi builds/kimi/app 2/ | Application scaffold: my-app [secondary: build]
-- WEBSITES | kimi builds/kimi/app/ | Application scaffold: my-app [secondary: build]
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/local-business-template/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/metzger-website-design-site/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/spec-jewelry-1/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/spec-jewelry-2/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | prospects/s08-remediation-flow/site/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | prospects/test-slug/site/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | specs/bayfront-goldsmith/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | specs/designer-level-website-builder-v2/ | Application scaffold: designer-level-website-builder-v2 [secondary: build]
-- WEBSITES | specs/designer-level-website-builder/ | Application scaffold: designer-level-website-builder [secondary: build]
-- WEBSITES | specs/mile-high-jewelry/ | Application scaffold: local-business-template [secondary: build]
 - WEBSITES | templates/local-business-template/ | Application scaffold: local-business-template [secondary: build]
 - WEBSITES | templates/metzger-website-design/ | Application scaffold: local-business-template [secondary: build]
-- WEBSITES | templates/spec-rosenberg-jewelers/ | Application scaffold: local-business-template [secondary: build]
 - desigjn-toolkit | EXTRACT/website/ | Application scaffold: website [secondary: build]
 - desigjn-toolkit | site/ | Application scaffold: site [secondary: build]
 - design-self-create | TEMPLATE_MAINTENANCE.md | Templates must evolve. Stagnant templates produce stale sites.
-- design-self-create | distant-matter/ | Application scaffold: distant-matter [secondary: build]
-- design-self-create | final-test/ | Application scaffold: final-test [secondary: build]
-- design-self-create | quality-test/ | Application scaffold: quality-test [secondary: build]
-- design-self-create | scaffold-test/ | Application scaffold: scaffold-test [secondary: build]
 - design-self-create | templates/landing-page/ | Application scaffold: landing-page [secondary: build]
-- design-self-create | test-site/ | Application scaffold: test-site [secondary: build]
 - design-self-create | tools/scaffold.js |  Scaffold a new website from a template.
-- design-self-create | verify-dark/ | Application scaffold: verify-dark [secondary: build]
-- design-self-create | verify-full/ | Application scaffold: verify-full [secondary: build]
-- design-self-create | verify-organic/ | Application scaffold: verify-organic [secondary: build]
-- design-self-create | verify-swiss/ | Application scaffold: verify-swiss [secondary: build]
-- gsd-design | .claude/skills/gsap/examples/react/ | Application scaffold: gsap-skills-example-react [secondary: build]
-- gsd-design | .claude/skills/gsap/examples/vue/ | Application scaffold: gsap-vue-example [secondary: build]
-- gsd-design | .claude/skills/impeccable/ | Application scaffold: Design skills, commands, and anti-pattern detection for AI coding agents [secondary: build]
 - gsd-design | bin/scaffold-site.sh | set -euo pipefail
-- gsd-design | schemas/seo-jsonld/README.md | Drop-in JSON-LD templates for the structured-data types every site eventually needs. Each is a working snippet —...
-- gsd-design | schemas/seo-jsonld/article.json | {{Meta description, 150-160 chars}}
-- gsd-design | schemas/seo-jsonld/blog-posting.json | {{Post excerpt}}
-- gsd-design | schemas/seo-jsonld/breadcrumb.json | Home
-- gsd-design | schemas/seo-jsonld/course.json | {{Course description}}
-- gsd-design | schemas/seo-jsonld/event.json | {{Event description}}
-- gsd-design | schemas/seo-jsonld/faq.json | {{Question 1}}
-- gsd-design | schemas/seo-jsonld/howto.json | {{One-sentence description}}
-- gsd-design | schemas/seo-jsonld/job-posting.json | {{Full job description as HTML}}
-- gsd-design | schemas/seo-jsonld/local-business.json | {{Business Name}}
-- gsd-design | schemas/seo-jsonld/organization.json | {{One-sentence description}}
-- gsd-design | schemas/seo-jsonld/person.json | {{Full Name}}
-- gsd-design | schemas/seo-jsonld/product.json | {{Product description}}
-- gsd-design | schemas/seo-jsonld/recipe.json | {{Description}}
-- gsd-design | schemas/seo-jsonld/software-application.json | {{One-sentence description}}
-- gsd-design | schemas/seo-jsonld/video.json | {{Video description}}
-- gsd-design | schemas/seo-jsonld/website.json | {{Site Name}}
-- gsd-design | sites/distant-matter/ | Application scaffold: distant-matter-site [secondary: build]
-- gsd-design | templates/ai-website-cloner/ | Application scaffold: Clone any website into a clean, modern Next.js codebase using AI coding agents [secondary: build]
-- gsd-design | templates/magic-portfolio/ | Application scaffold: @once-ui-system/magic-portfolio [secondary: build]
-- gsd-design | templates/open-lovable/ | Application scaffold: open-lovable [secondary: build]
 - open-design | open-design/apps/landing-page/ | Application scaffold: @open-design/landing-page [secondary: build]
 - open-design | open-design/apps/web/ | Application scaffold: @open-design/web [secondary: build]
 
@@ -518,9 +488,8 @@ _None across all 5 versions._
 
 _None across all 5 versions._
 
-## ungrouped (3 artifacts)
+## ungrouped (2 artifacts)
 
-- WEBSITES | kimi-claw unorganized assets/web-business/LAUNCH-GATES.md | lists every task that **only you can do** because it requires your identity, payment method, or legal signature....
 - WEBSITES | ops/LAUNCH-CHECKLIST.md | Status:** Phase 2 Complete. Ready for Phase 1 (Legal Foundation).
 - desigjn-toolkit | EXTRACT/docs/LAUNCH.md | A ready-to-fire playbook for the Product Hunt + Show HN push that accompanies v8.
 
@@ -528,22 +497,22 @@ _None across all 5 versions._
 
 | Function | Count | Top version |
 |---|---|---|
-| intake | 7 | gsd-design (4) |
+| intake | 4 | gsd-design (3) |
 | discovery | 4 | gsd-design (2) |
 | strategy | 3 | gsd-design (3) |
 | design-spec | 3 | gsd-design (3) |
 | variant-gen | 0 | _none_ |
-| build | 152 | gsd-design (97) |
+| build | 172 | gsd-design (117) |
 | quality | 60 | gsd-design (28) |
 | ship | 6 | gsd-design (4) |
 | post-sale-stub | 0 | _none_ |
 | docs | 3 | gsd-design (1) |
-| scaffold | 57 | gsd-design (25) |
+| scaffold | 10 | design-self-create (3) |
 | tooling | 41 | WEBSITES (14) |
 | exemplars | 54 | gsd-design (33) |
 | meta-orchestration | 51 | gsd-design (37) |
 | memory | 22 | desigjn-toolkit (22) |
 | hooks | 0 | _none_ |
 | vocab-only | 0 | _none_ |
-| ungrouped | 3 | WEBSITES (2) |
-| **TOTAL** | **466** | |
+| ungrouped | 2 | desigjn-toolkit (1) |
+| **TOTAL** | **435** | |

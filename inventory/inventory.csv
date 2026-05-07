@@ -9,7 +9,6 @@ open-design/skills/html-ppt-pitch-deck/SKILL.md,open-design,skill,build,4245,"In
 open-design/skills/html-ppt-weekly-report/SKILL.md,open-design,skill,build,4218,"Team weekly / status-update deck — corporate clarity, 8-cell KPI grid, shipped list, 8-week bar chart, next-week...",78efb9d189530c9b950b4b325da25c50106d366e311629459c00a642621537f1,
 open-design/skills/image-poster/SKILL.md,open-design,skill,build,3474,"Single-image generation skill for posters, key art, and editorial illustrations. Defaults to gpt-image-2 but is...",2b01635910567bb41aad9cd8052ca2490abaeeb5278c1ecad18b12b953dfcfbe,
 open-design/skills/finance-report/SKILL.md,open-design,skill,build,2115,"Quarterly / monthly financial report — masthead with KPIs, revenue and burn charts, P&L summary table, top-line...",d67d6331548ab04bdf8737473beba91e86c4c8ece785bfbff1bce71ffe548c8c,
-open-design/skills/mobile-onboarding/SKILL.md,open-design,skill,intake,1481,"A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in....",a7276c68bbe74d3e9c08451784248e837a5e7dfad441bf52ea9dfbd05f327914,
 open-design/skills/design-brief/SKILL.md,open-design,skill,intake,13426,Parse a structured design brief written in I-Lang protocol format into a concrete design spec. Eliminates ambiguity...,ddcb70ae1ba4688ee948a3a0f8d3fb7888ad89a49d3e71c2e97661de7d81ae5b,
 open-design/skills/magazine-poster/SKILL.md,open-design,skill,build,3581,"An editorial-style poster — newsprint paper, dateline, oversized serif headline with a struck-through word and...",ce20f2731d9c10f7616ccb96e7f1e3b677ca21740915acdf3d87de3861a7a94f,
 open-design/skills/wireframe-sketch/SKILL.md,open-design,skill,build,4030,"A hand-drawn wireframe exploration — graph-paper background, marker / pencil tone, multiple tab labels for variants,...",fd4e93e2cfea8ba71792490528a00f9c4ea4ff228c83bfea4ebe4fe2493f404a,
@@ -50,7 +49,6 @@ open-design/skills/html-ppt-course-module/SKILL.md,open-design,skill,build,4233,
 open-design/skills/docs-page/SKILL.md,open-design,skill,build,2594,"A documentation page — left nav, scrollable article body, right-rail table of contents. Use when the brief mentions...",fb3f506ea8ea7f6f3a154fb23ee327a4ef54d778a5113d00d764fde3b2d229b6,
 open-design/skills/kanban-board/SKILL.md,open-design,skill,build,1504,"Kanban / task board with columns (To do / In progress / In review / Done), draggable-looking cards, assignee...",e91f04ccbba2d11de69043566916a0acf87354e658b69e179a3d3daae8a445c0,
 open-design/skills/tweaks/SKILL.md,open-design,skill,build,8804,"Wrap any HTML artifact with a side panel of live, parameterized controls — accent color, type scale, density,...",1ed8d0c3a7ff61e897ef4653f9b1ec61b82188421d56ad3d544506921e55cad2,
-open-design/skills/hr-onboarding/SKILL.md,open-design,skill,intake,1547,"A new-hire onboarding plan as a single page — first week schedule, buddy + manager intro, learning track, equipment...",d438dbb5847acce5aae1f3034b6b2ab8ce8b4a06185b431b06a95aab7e14d19b,
 open-design/skills/guizang-ppt/SKILL.md,open-design,skill,build,15807,"生成""电子杂志 × 电子墨水""风格的横向翻页网页 PPT（单 HTML 文件），含 WebGL 流体背景、衬线标题 + 非衬线正文、章节幕封、数据大字报、图片网格等模板。当用户需要制作分享 / 演讲 / 发布会风格的网页...",28a3416a0edf34a3289c123b0db233210d31dbd2432decabad4051b0cdfd9fd6,
 open-design/skills/critique/SKILL.md,open-design,skill,build,9684,Run a 5-dimension expert design review on any HTML artifact in the project — Philosophy / Visual hierarchy / Detail...,8727e6489d802edc50746c01a23c0169a2ae517913cb88c9280341ce0c711b71,
 open-design/skills/editorial-collage/SKILL.md,open-design,skill,build,13092,Produce a world-class single-page editorial landing site in the Atelier Zero visual language (Monocle / Apartamento...,24a404978163a51f094adba9d1c8b2cbe9e2d43d9cd459eb380272c9cc63828d,
@@ -212,13 +210,11 @@ exemplars/tier-a-plus/raycast-com.md,gsd-design,exemplar,exemplars,4232,"Spotlig
 .claude/agents/interaction-engineer.md,gsd-design,agent,meta-orchestration,6354,"wiring up interactive patterns. Triggers on ""fix the form"", ""keyboard navigation"", ""focus management"", ""drag and...",232dad8e32922ceb628d45709672f8af24944a2950cf84722cb95421b93e3180,
 .claude/agents/motion-designer.md,gsd-design,agent,meta-orchestration,3727,"adding animations, transitions, or micro-interactions. Triggers on ""animate"", ""page transition"",...",709e75cacbd8e47b305a52bd0de9de38cf7d4c91447762da96534818be55b6b2,
 .claude/commands/multi-frontend.md,gsd-design,command,meta-orchestration,5340,"Run a frontend-focused multi-model workflow for components, layouts, animation, and UI polish.",d0e093a02c3d2ed300c3dd5485f93a363bd45e1ac000fc532e3cea5620c4d336,build
-.claude/skills/impeccable/,gsd-design,scaffold,scaffold,25310193,"Application scaffold: Design skills, commands, and anti-pattern detection for AI coding agents",ab5ca350fa45b43b13ef05d0648fba8d633547cf6d721ca1515b7eb4bba3cefa,build
 .claude/skills/brand-voice/SKILL.md,gsd-design,skill,build,3636,"Build a source-derived writing style profile from real posts, essays, launch notes, docs, or site copy, then reuse...",9c23f871aa77a7d64d2a005fe0849a1380de2a4098d81ec73d13c468e556a59e,
 .claude/skills/mobile-app/SKILL.md,gsd-design,skill,build,3798,A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed...,8be14787443af3a326769dd119c253652588f21972243f0b7ccc53a18781ec31,
 .claude/skills/ui-ux-pro-max/SKILL.md,gsd-design,skill,build,44776,"UI/UX design intelligence for web and mobile. Includes 50+ styles, 161 color palettes, 57 font pairings, 161 product...",9bd26c52dfd10dfd613dd3cc85df217dc25a172e380bde41fdfa6fedda288b2a,
 .claude/skills/image-poster/SKILL.md,gsd-design,skill,build,3474,"Single-image generation skill for posters, key art, and editorial illustrations. Defaults to gpt-image-2 but is...",2b01635910567bb41aad9cd8052ca2490abaeeb5278c1ecad18b12b953dfcfbe,
 .claude/skills/taste-redesign-skill/SKILL.md,gsd-design,skill,build,15060,"Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and...",98ad3e5b051bfb71b2795f7e8a6aa0d32b51ee095606c098a4b2822ac07926c9,
-.claude/skills/mobile-onboarding/SKILL.md,gsd-design,skill,intake,1482,"A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in....",bc95f3cc74cdf7ab57f87e2f8fa8c9e31ec128331461ed797057a38414910546,
 .claude/skills/ui-demo/SKILL.md,gsd-design,skill,build,15244,"Record polished UI demo videos using Playwright. Use when the user asks to create a demo, walkthrough, screen...",b5b2bac1adbd3ffc0b34f589ff26b06ececc7d9f896c5a305b89aa834b0bb254,
 .claude/skills/uiux-slides/SKILL.md,gsd-design,skill,build,1166,"Create strategic HTML presentations with Chart.js, design tokens, responsive layouts, copywriting formulas, and...",e071a7ad7a72f10344d3fe55a29cebf8750a255ecbf98af2daee9e6432bd8b3a,
 .claude/skills/design-brief/SKILL.md,gsd-design,skill,intake,13426,Parse a structured design brief written in I-Lang protocol format into a concrete design spec. Eliminates ambiguity...,ddcb70ae1ba4688ee948a3a0f8d3fb7888ad89a49d3e71c2e97661de7d81ae5b,
@@ -234,6 +230,9 @@ exemplars/tier-a-plus/raycast-com.md,gsd-design,exemplar,exemplars,4232,"Spotlig
 .claude/skills/gamified-app/SKILL.md,gsd-design,skill,build,4456,"A multi-frame gamified mobile-app prototype — three phone frames on a dark showcase stage. Frame 1: cover / poster,...",5762e9e93d53f088277654118bc591bacfa91c8f54aa3e73fe4a577200b59d87,
 .claude/skills/web-prototype/SKILL.md,gsd-design,skill,build,4162,General-purpose desktop web prototype. Single self-contained HTML file built by copying the seed...,b8fdd56defdfe3081f6fe76d325fab4b7739a58b2550ace67f2cf0ab149288a5,
 .claude/skills/uiux-ui-styling/SKILL.md,gsd-design,skill,build,10049,"Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS...",12b07e5b883c72f01e6f103a353f00fba8b512e71ccc29af33ddf1f6aae311ae,
+.claude/skills/impeccable/SKILL.md,gsd-design,skill,build,14145,"the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...",b590bd8b023a71b64550d04da896c63dd99d9658f4584e87244ff47a41784768,
+.claude/skills/impeccable/skill/SKILL.md,gsd-design,skill,build,14145,"the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...",b590bd8b023a71b64550d04da896c63dd99d9658f4584e87244ff47a41784768,
+.claude/skills/impeccable/.claude/skills/impeccable/SKILL.md,gsd-design,skill,build,14121,"the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...",455780e3d23a128564168267a42957c3c4319e0f98760c7e8328f1dafad41098,
 .claude/skills/social-carousel/SKILL.md,gsd-design,skill,tooling,3897,"A three-card social-media carousel laid out as 1080×1080 squares — three cinematic, on-brand panels with display...",cb0c3ac321cbd850a53da00a6ad1b901d40dc89e447c61ed697b456628776f28,
 .claude/skills/blog-post/SKILL.md,gsd-design,skill,build,2749,"A long-form article / blog post — masthead, hero image placeholder, article body with figures and pull quotes,...",4cc5333cf71949b3ae5ce7fdd4a8b97661704297ee09dee599588e3762790457,
 .claude/skills/digital-eguide/SKILL.md,gsd-design,skill,build,3423,"A two-spread digital e-guide preview — page 1 is a cover (display title, author, ""What's inside"" stats, table of...",92f62b5d3a2dbdbb217f2164b59da6bab8473447c5ad014bf6a51d85861a6d6c,
@@ -298,8 +297,6 @@ exemplars/tier-a-plus/raycast-com.md,gsd-design,exemplar,exemplars,4232,"Spotlig
 .claude/skills/taste/skills/redesign-skill/SKILL.md,gsd-design,skill,build,15060,"Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and...",98ad3e5b051bfb71b2795f7e8a6aa0d32b51ee095606c098a4b2822ac07926c9,
 .claude/skills/taste/skills/brandkit/SKILL.md,gsd-design,skill,build,15992,"Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity...",b0c4837e1bd140ca816ae54948754ddd2ac1e2a4d3619363777a80caf00b2ede,
 .claude/skills/taste/skills/soft-skill/SKILL.md,gsd-design,skill,build,10561,"Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and...",e1e32f5e2d420872c6c7332b53d5ff7721946766b78c4822b424c2d512c8fdbc,
-.claude/skills/gsap/examples/vue/,gsd-design,scaffold,scaffold,2973,Application scaffold: gsap-vue-example,8c4ff7a7acfc6808249a8e5921d97da0b9c6593e6f6820a233ffd9b15a5a2d83,build
-.claude/skills/gsap/examples/react/,gsd-design,scaffold,scaffold,2416,Application scaffold: gsap-skills-example-react,f4fd0f037d82be906000b192878b405dbbc0e6d5bf8c548da7bc323a5b5b4710,build
 .claude/skills/gsap/skills/gsap-plugins/SKILL.md,gsd-design,skill,build,21579,"Official GSAP skill for GSAP plugins — registration, ScrollToPlugin, ScrollSmoother, Flip, Draggable, Inertia,...",5838b856c74c07fbc9fa99b6dfd1eee34ea554c3e530c30e0d58014b707d70a4,
 .claude/skills/gsap/skills/gsap-timeline/SKILL.md,gsd-design,skill,build,4394,"Official GSAP skill for timelines — gsap.timeline(), position parameter, nesting, playback. Use when sequencing...",1a8b0f39cc4be3ed3d834b89672e4ae2f151b901dc3450bebf10bbc45379fe02,
 .claude/skills/gsap/skills/gsap-scrolltrigger/SKILL.md,gsd-design,skill,build,18390,"Official GSAP skill for ScrollTrigger — scroll-linked animations, pinning, scrub, triggers. Use when building or...",9351b6666a4749c0740406ea363aaccb99a087ff45cc5e8b99a0f367facf3ef4,
@@ -352,48 +349,30 @@ playbooks/service-worker-patterns.md,gsd-design,playbook,tooling,9218,"When a si
 playbooks/test-evidence.md,gsd-design,playbook,quality,4719,Tests in this workspace must prove user-visible behavior. A test that only proves a component rendered is not enough...,e6df9098b08471839f51bffba1f76e07a08b0d35e23bde73894a8dc29b681fee,
 playbooks/device-matrix.md,gsd-design,playbook,quality,16483,Every site must pass the device matrix before ship. Emulation is the default; real-device sessions are the...,29715201dc157dcf0566ae41e805f0a31a0a43ea61905fe87582cffb3adbd473,
 playbooks/artist-existing-site-rebuild.md,gsd-design,playbook,build,6599,"Use this when the client is a musician, DJ, performer, creator, label, venue, or other artist-led brand with an...",388b8c6319334ee330d695b0f431422cd4bf6d4da873450c3de9cd5f804457c4,
-schemas/seo-jsonld/local-business.json,gsd-design,schema,scaffold,788,{{Business Name}},9399f1a975bd17a75817b2edcefa0158cee628b40d578f11b625e3f9d1487335,
-schemas/seo-jsonld/faq.json,gsd-design,schema,scaffold,442,{{Question 1}},244d46a9aa16ed95462c0ac9dc78f7e879739bc880b2725cc75b4981543e6751,
-schemas/seo-jsonld/website.json,gsd-design,schema,scaffold,354,{{Site Name}},437a3b1dd810372e1dbef795287e3725aa56942d5b69f74386955abfed50347c,
-schemas/seo-jsonld/howto.json,gsd-design,schema,scaffold,812,{{One-sentence description}},3ba3943625d72782d82bae632362c6038fa6ad9e3f0135a38451a43fc558acab,
-schemas/seo-jsonld/blog-posting.json,gsd-design,schema,scaffold,513,{{Post excerpt}},2d939b2f7c65a391a54b5b2f3ef8419d1282805234dee51d5e277d0e302a11a8,
-schemas/seo-jsonld/recipe.json,gsd-design,schema,scaffold,731,{{Description}},5b407a8592179a15e933d79f112d3c57486cfed52517a8f1a19baaa8b48e6358,
-schemas/seo-jsonld/course.json,gsd-design,schema,scaffold,468,{{Course description}},88a88bece756905c07c132eaf07138817c2b1d1d002ea87a82b7b6d83b983690,
-schemas/seo-jsonld/breadcrumb.json,gsd-design,schema,scaffold,444,Home,78c50124f2c78df3e38732db1e942ef0c2fb68f8852cc40f3c69c332ddbb6b3a,
-schemas/seo-jsonld/job-posting.json,gsd-design,schema,scaffold,1012,{{Full job description as HTML}},b759d2a309c81972b3d5cecfbdda8b51be3c6f95550cff0cdb6d7f7c58238af5,
-schemas/seo-jsonld/person.json,gsd-design,schema,scaffold,465,{{Full Name}},7181eed3def4e9f278ea7479c13e823f0c4d3e789e2cf01fba2086c032c07078,
-schemas/seo-jsonld/event.json,gsd-design,schema,scaffold,840,{{Event description}},159a211d203e3d735f5d51f1760fc933f5cde9143041f8b333d83055d3901eda,
-schemas/seo-jsonld/README.md,gsd-design,schema,scaffold,4014,Drop-in JSON-LD templates for the structured-data types every site eventually needs. Each is a working snippet —...,1bd65f5a371bafe4bd1d74fa35b2592872e9ef8a6163ef3e43464c66739438a4,
-schemas/seo-jsonld/article.json,gsd-design,schema,scaffold,865,"{{Meta description, 150-160 chars}}",37b031950488a4b70f0ab1f6163ebc7b33bdc010c41987c84d6352c79c7d7943,
-schemas/seo-jsonld/organization.json,gsd-design,schema,scaffold,600,{{One-sentence description}},52bbc90877c5bce45b26954ac5beab4aca5fb664b6a5b4348930026591961e1e,
-schemas/seo-jsonld/video.json,gsd-design,schema,scaffold,543,{{Video description}},3df4ea5659fadb8047677f27a9d8b946519cfbcdd93ce2d79006b846351b898f,
-schemas/seo-jsonld/product.json,gsd-design,schema,scaffold,734,{{Product description}},b1f7e1e58b96c194a0266569c6c57ac10c19387e0b1875c05d4a64dec856040a,
-schemas/seo-jsonld/software-application.json,gsd-design,schema,scaffold,551,{{One-sentence description}},6b61e99c6fc55206b76d81bace5c0a8ab5af3fef1fc8a5f62d8c7eb80b035b7e,
-sites/distant-matter/,gsd-design,scaffold,scaffold,227633663,Application scaffold: distant-matter-site,041d6d4a262c59fbb7760ba49171bf4648cf93b618b4de1c1fae6dded95f11ec,build
-templates/magic-portfolio/,gsd-design,scaffold,scaffold,16885617,Application scaffold: @once-ui-system/magic-portfolio,8cb41c9e31752274c9fbaa38ac54a668043418cb257da9e8c94876d17b729769,build
-templates/ai-website-cloner/,gsd-design,scaffold,scaffold,1492956,"Application scaffold: Clone any website into a clean, modern Next.js codebase using AI coding agents",089597c7f6c09707a400ab31d14986721568c2b9ad8b3f465acc813dfa53a6c9,build
-templates/open-lovable/,gsd-design,scaffold,scaffold,2887500,Application scaffold: open-lovable,bba406c3ec2cc3def82789d0f2e7c889e4eb043dadae2f2769efaebb147b4f01,build
+schemas/seo-jsonld/local-business.json,gsd-design,schema,build,788,{{Business Name}},9399f1a975bd17a75817b2edcefa0158cee628b40d578f11b625e3f9d1487335,
+schemas/seo-jsonld/faq.json,gsd-design,schema,build,442,{{Question 1}},244d46a9aa16ed95462c0ac9dc78f7e879739bc880b2725cc75b4981543e6751,
+schemas/seo-jsonld/website.json,gsd-design,schema,build,354,{{Site Name}},437a3b1dd810372e1dbef795287e3725aa56942d5b69f74386955abfed50347c,
+schemas/seo-jsonld/howto.json,gsd-design,schema,build,812,{{One-sentence description}},3ba3943625d72782d82bae632362c6038fa6ad9e3f0135a38451a43fc558acab,
+schemas/seo-jsonld/blog-posting.json,gsd-design,schema,build,513,{{Post excerpt}},2d939b2f7c65a391a54b5b2f3ef8419d1282805234dee51d5e277d0e302a11a8,
+schemas/seo-jsonld/recipe.json,gsd-design,schema,build,731,{{Description}},5b407a8592179a15e933d79f112d3c57486cfed52517a8f1a19baaa8b48e6358,
+schemas/seo-jsonld/course.json,gsd-design,schema,build,468,{{Course description}},88a88bece756905c07c132eaf07138817c2b1d1d002ea87a82b7b6d83b983690,
+schemas/seo-jsonld/breadcrumb.json,gsd-design,schema,build,444,Home,78c50124f2c78df3e38732db1e942ef0c2fb68f8852cc40f3c69c332ddbb6b3a,
+schemas/seo-jsonld/job-posting.json,gsd-design,schema,build,1012,{{Full job description as HTML}},b759d2a309c81972b3d5cecfbdda8b51be3c6f95550cff0cdb6d7f7c58238af5,
+schemas/seo-jsonld/person.json,gsd-design,schema,build,465,{{Full Name}},7181eed3def4e9f278ea7479c13e823f0c4d3e789e2cf01fba2086c032c07078,
+schemas/seo-jsonld/event.json,gsd-design,schema,build,840,{{Event description}},159a211d203e3d735f5d51f1760fc933f5cde9143041f8b333d83055d3901eda,
+schemas/seo-jsonld/README.md,gsd-design,schema,build,4014,Drop-in JSON-LD templates for the structured-data types every site eventually needs. Each is a working snippet —...,1bd65f5a371bafe4bd1d74fa35b2592872e9ef8a6163ef3e43464c66739438a4,
+schemas/seo-jsonld/article.json,gsd-design,schema,build,865,"{{Meta description, 150-160 chars}}",37b031950488a4b70f0ab1f6163ebc7b33bdc010c41987c84d6352c79c7d7943,
+schemas/seo-jsonld/organization.json,gsd-design,schema,build,600,{{One-sentence description}},52bbc90877c5bce45b26954ac5beab4aca5fb664b6a5b4348930026591961e1e,
+schemas/seo-jsonld/video.json,gsd-design,schema,build,543,{{Video description}},3df4ea5659fadb8047677f27a9d8b946519cfbcdd93ce2d79006b846351b898f,
+schemas/seo-jsonld/product.json,gsd-design,schema,build,734,{{Product description}},b1f7e1e58b96c194a0266569c6c57ac10c19387e0b1875c05d4a64dec856040a,
+schemas/seo-jsonld/software-application.json,gsd-design,schema,build,551,{{One-sentence description}},6b61e99c6fc55206b76d81bace5c0a8ab5af3fef1fc8a5f62d8c7eb80b035b7e,
 LAUNCH-GATES.md,WEBSITES,quality-doc,quality,3270,"Do NOT send your first cold email until every box in ""This Week"" is checked.",9c6eb974def262ff4af4361f4c7a3b1a23201de86560b8e425e088cd33426ac6,
 MASTER-ROADMAP.md,WEBSITES,doc,meta-orchestration,24618,Last updated:** 2026-04-30 **Current state:** M001 ✅ · M002-66id2a ✅ · M002-3o6uqs ✅ · M002-gyr99j ⬜ · M003-hqckw7 ⬜,9db4c9f42c7abc6e195b6e68d6c3f4062accc64012ae4748d8b891882e54ae29,
 .mcp.json,WEBSITES,settings,meta-orchestration,737,{,949600478bc07208c105f47fa39b1236ac1a73f8e532c24ad3a85dcfc1daffbf,
 README.md,WEBSITES,doc,docs,3026,Local business website operator. Next.js + Vercel + Resend. Productized service.,a5f097fae2d5991115916341533d603257a2b2bb963b67f6557e1ae688dfb4cc,
 AGENTS.md,WEBSITES,doc,meta-orchestration,5099,Productized local-business website operator. Next.js 15 + Vercel + Resend. Three pricing tiers. One-person solo...,33216f441761fab5d61b8b1deacdd7f9b679bd1fdafe4104b88befbf12b2b907,
 CLAUDE.md,WEBSITES,doc,meta-orchestration,4387,provides guidance to Claude Code (claude.ai/code) when working with code in this repository.,4dd2d27ce96b8bb25a70081c0206527dee85590671c662dfff36fcf0ebcc0d96,
-kimi-claw unorganized assets/web-business/LAUNCH-GATES.md,WEBSITES,other,ungrouped,5817,"lists every task that **only you can do** because it requires your identity, payment method, or legal signature....",1c3d9786a09e63bb26acd7503891b2c933412fdc74a501f18700b5d00e811f9d,
-kimi-claw unorganized assets/web-business/templates/local-business-template/,WEBSITES,scaffold,scaffold,114012,Application scaffold: local-business-template,82ddbdbf5e3fe32352b07b301de96e64dae583ea6995267e7e1c5c73cb2dc664,build
-kimi-claw unorganized assets/web-business/templates/spec-jewelry-1/,WEBSITES,scaffold,scaffold,114514,Application scaffold: local-business-template,a8291caf44cfa8268b68c5478c051abf3a960c82cc5543b237cf0010ddd16455,build
-kimi-claw unorganized assets/web-business/templates/spec-jewelry-2/,WEBSITES,scaffold,scaffold,114605,Application scaffold: local-business-template,a8291caf44cfa8268b68c5478c051abf3a960c82cc5543b237cf0010ddd16455,build
-kimi-claw unorganized assets/web-business/templates/metzger-website-design-site/,WEBSITES,scaffold,scaffold,119724,Application scaffold: local-business-template,a8291caf44cfa8268b68c5478c051abf3a960c82cc5543b237cf0010ddd16455,build
 tools/dashboard/test-results/prospect-detail-clicking-card-navigates-to-detail-page-chromium/error-context.md,WEBSITES,script,tooling,398,"- Following Playwright test failed. - Explain why, be concise, respect Playwright best practices. - Provide a...",2b0f8e8f029bf09f3f78c25062da1c641388996939021cdc9f80913b626aec7f,
-prospects/test-slug/site/,WEBSITES,scaffold,scaffold,928599,Application scaffold: local-business-template,8ed41f07c778e22ab6c00ed31c744326951eef4b30f3709858a681634ac5efc9,build
-prospects/s08-remediation-flow/site/,WEBSITES,scaffold,scaffold,161456,Application scaffold: local-business-template,8f658ec51318333d399da51c9e2234cb71ecd77f44837e40c6c2556a642a3c1a,build
-specs/designer-level-website-builder/,WEBSITES,scaffold,scaffold,1896212,Application scaffold: designer-level-website-builder,9d85e5353b9065abb482cee91e51b8cdf2b6d5a0e7b9c2eea3a992ef9dcd742c,build
-specs/designer-level-website-builder-v2/,WEBSITES,scaffold,scaffold,2672191,Application scaffold: designer-level-website-builder-v2,44bac854a6eff841ce34c8d744449cb7c34d2c921ad34f562a34c73baa838a4b,build
-specs/mile-high-jewelry/,WEBSITES,scaffold,scaffold,197201,Application scaffold: local-business-template,a8291caf44cfa8268b68c5478c051abf3a960c82cc5543b237cf0010ddd16455,build
-specs/bayfront-goldsmith/,WEBSITES,scaffold,scaffold,198189,Application scaffold: local-business-template,a8291caf44cfa8268b68c5478c051abf3a960c82cc5543b237cf0010ddd16455,build
-kimi builds/kimi/app/,WEBSITES,scaffold,scaffold,1986085,Application scaffold: my-app,98d448c785fec91b286369d7e525da23209aec0e61820da8d031cea796b8b796,build
-kimi builds/kimi/app 2/,WEBSITES,scaffold,scaffold,2738069,Application scaffold: my-app,967e400410a0ffc0e2e3882d30e9909355503dc2bf3a09a2a5e2cc2a7394e988,build
-kimi builds/kimi/4Kimi_Agent_Next.js 14 Multi-Page Site/app/,WEBSITES,scaffold,scaffold,410281,Application scaffold: studio-site,6733f4e213cd2f6574f6a7873ac45901ddcb258caea5a0f20568fa5a64ea8861,build
 scripts/site-matrix.mjs,WEBSITES,script,tooling,5446,"import { existsSync } from ""node:fs"";",4f889ef1be78040355d5812789adceceb961a06f7390663c1eb841b2004b4b36,
 scripts/verify-m3-s05.mjs,WEBSITES,script,quality,10883,"import { access, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from ""node:fs/promises"";",0d65c903945f20055d6c10c15c1bb553e2270519a7876e3416f145c024b68038,
 scripts/verify-m3-s04.mjs,WEBSITES,script,quality,22554,"import { spawn } from ""node:child_process"";",2f83a4fdc5cd7e9d6ac03fc7ffdc343b9584a6ab5627046d883b57662312073b,
@@ -429,24 +408,14 @@ scripts/lib/audit-runner.mjs,WEBSITES,script,quality,7355,import { spawn } from 
 scripts/lib/gmaps-surf.mjs,WEBSITES,script,tooling,4906, Human-in-the-loop Google Maps review extractor using surf CLI,e6acd70b11e31ddd9bc9720cd0d1d183ce5e1510d627d96c86870df52375d199,
 scripts/lib/api-utils.mjs,WEBSITES,script,tooling,1104,"import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';",a7e9eec8e14dd832148e8921f99c7cd608fea108bff42e13461b6796447a164c,
 templates/local-business-template/,WEBSITES,scaffold,scaffold,166390,Application scaffold: local-business-template,8f658ec51318333d399da51c9e2234cb71ecd77f44837e40c6c2556a642a3c1a,build
-templates/spec-rosenberg-jewelers/,WEBSITES,scaffold,scaffold,287240,Application scaffold: local-business-template,a8291caf44cfa8268b68c5478c051abf3a960c82cc5543b237cf0010ddd16455,build
 templates/metzger-website-design/,WEBSITES,scaffold,scaffold,1839094,Application scaffold: local-business-template,ae48fd869a39e336723f283ce808b48f6396950ce0b171922d7be55a591b2f45,build
 ops/LAUNCH-CHECKLIST.md,WEBSITES,other,ungrouped,6330,Status:** Phase 2 Complete. Ready for Phase 1 (Legal Foundation).,6a0dfdba9a80d2129f895db090e37658158d6215828425932d7f23307d80bf47,
 ARCHITECTURE.md,design-self-create,doc,meta-orchestration,5641,Every tool choice with rationale and rejected alternatives.,154870106f3a55c0d839ac004f309667179664887c399ab3b3278131efe55968,
 TEMPLATE_MAINTENANCE.md,design-self-create,doc,scaffold,1657,Templates must evolve. Stagnant templates produce stale sites.,6c5613d240e30e8d8cb81e199ed12ff547b28aeb48b7ddbfa30fea621a87d731,
-distant-matter/,design-self-create,scaffold,scaffold,28544090,Application scaffold: distant-matter,9fb48567ba365d5be9a2139cadf0294f506d03ab33c993e4402988327c27116a,build
-test-site/,design-self-create,scaffold,scaffold,220525,Application scaffold: test-site,962f7a61c9ea85d68d17933a885f8cfe124be9a0248bab793a0da49a7ae97d3d,build
-final-test/,design-self-create,scaffold,scaffold,2613918,Application scaffold: final-test,5d5135f1bf45478411f2e736a90505d8201c5b941406b837df58c007731c5a91,build
-scaffold-test/,design-self-create,scaffold,scaffold,2841929,Application scaffold: scaffold-test,aa62630a279b31363800e908b95de3c64d044ac2ffd280037628735d23d6a3be,build
-verify-dark/,design-self-create,scaffold,scaffold,2846503,Application scaffold: verify-dark,dd130da4bddae3ab0f32434e70f6ff6c6ebd867d3154d2dc075f5fab35776c98,build
 QUALITY.md,design-self-create,quality-doc,quality,2520,Every site in this workspace must meet these standards. No exceptions.,0fa5d71e2deb2e38192a41b8713661afd2f173744bf783640203e0b80444659c,
-verify-swiss/,design-self-create,scaffold,scaffold,2845699,Application scaffold: verify-swiss,0900027d0b488976555135a17f2370e05ec16c3bd98d2a14df34f9a8ec9bf80b,build
 README.md,design-self-create,doc,docs,2407,"AI-powered website design workspace. Scaffolds, builds, iterates, and ships professional websites with zero-cost...",f270547eab0e34327df5f2fd6e7261d4ea2e450879803593770ad7bbe8a84358,
-verify-full/,design-self-create,scaffold,scaffold,1692578,Application scaffold: verify-full,54006f21d50a98631f4f56d25ab88458c5d2bbe080a40ed4c6e6e7df6feee8ce,build
-verify-organic/,design-self-create,scaffold,scaffold,2846165,Application scaffold: verify-organic,be142947be1330c277a4a9b5579e082907564cf74228597b59febbe83f3268b1,build
 AGENTS.md,design-self-create,doc,meta-orchestration,1373,"Model:** sonnet **Tools:** Read, Edit, Write, Bash",b494e8e3449d9468548d7eb0a2fe2579575fa5bc5e56822b8ac8dff126792e6b,
 CLAUDE.md,design-self-create,doc,meta-orchestration,12359,This workspace scaffolds and builds professional websites with AI assistance. Every decision prioritizes output...,94ee010ee020ed7956552267a7e3fa1e8b05f7aae549bf673ac3b2300b14a908,
-quality-test/,design-self-create,scaffold,scaffold,2841751,Application scaffold: quality-test,02d8e4cc81e6c5e576c0619c3472463d819d7f743fc959de085f6cbf6ab56a04,build
 tools/batch-audit.js,design-self-create,script,quality,1786, Run Lighthouse on all sites in the workspace.,2236b8ec5a78501fed96bb02934f1c1a02424a5b7c9abe9932ab22175572099d,
 tools/template-sync.js,design-self-create,script,tooling,2567, Detect drift between a template and a live site.,8d6e5cc5d6683ee026c258c484ac23f8efe5a65a1daceaafeaf4f9c32097019f,
 tools/generate-readme.js,design-self-create,script,tooling,4505, Client Site README Generator,f30b8b01baf2f92ec0a0e3f654a802708caad39d0b2dfdf3dc2cefbcd1dd1d3d,

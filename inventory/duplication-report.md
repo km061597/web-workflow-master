@@ -2,15 +2,6 @@
 
 ## Identical (sha256 match across versions)
 
-### Cluster (sha256: a8291caf44cf...)
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/spec-jewelry-1/ (114514 bytes)
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/spec-jewelry-2/ (114605 bytes)
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/metzger-website-design-site/ (119724 bytes)
-- WEBSITES | specs/mile-high-jewelry/ (197201 bytes)
-- WEBSITES | specs/bayfront-goldsmith/ (198189 bytes)
-- WEBSITES | templates/spec-rosenberg-jewelers/ (287240 bytes)
-- Recommended canonical: WEBSITES/kimi-claw unorganized assets/web-business/templates/spec-jewelry-1/ (alphabetical first)
-
 ### Cluster (sha256: 8be14787443a...)
 - open-design | open-design/skills/mobile-app/SKILL.md (3798 bytes)
 - gsd-design | .claude/skills/mobile-app/SKILL.md (3798 bytes)
@@ -111,11 +102,6 @@
 - gsd-design | references/front-end-checklist/ (82136 bytes)
 - Recommended canonical: desigjn-toolkit/refs/Front-End-Checklist/ (alphabetical first)
 
-### Cluster (sha256: ab5ca350fa45...)
-- desigjn-toolkit | refs/impeccable/ (33729470 bytes)
-- gsd-design | .claude/skills/impeccable/ (25310193 bytes)
-- Recommended canonical: desigjn-toolkit/refs/impeccable/ (alphabetical first)
-
 ### Cluster (sha256: ce403d5592cc...)
 - desigjn-toolkit | refs/open-design/ (107103567 bytes)
 - gsd-design | references/open-design/ (107103567 bytes)
@@ -126,20 +112,10 @@
 - gsd-design | references/front-end-performance-checklist/ (91033 bytes)
 - Recommended canonical: desigjn-toolkit/refs/Front-End-Performance-Checklist/ (alphabetical first)
 
-### Cluster (sha256: 089597c7f6c0...)
-- desigjn-toolkit | refs/ai-website-cloner-template/ (1492956 bytes)
-- gsd-design | templates/ai-website-cloner/ (1492956 bytes)
-- Recommended canonical: desigjn-toolkit/refs/ai-website-cloner-template/ (alphabetical first)
-
 ### Cluster (sha256: 9edc3219191c...)
 - desigjn-toolkit | refs/awesome-shadcn-ui/ (1496688 bytes)
 - gsd-design | references/awesome-shadcn-ui/ (1496688 bytes)
 - Recommended canonical: desigjn-toolkit/refs/awesome-shadcn-ui/ (alphabetical first)
-
-### Cluster (sha256: bba406c3ec2c...)
-- desigjn-toolkit | refs/open-lovable/ (2887500 bytes)
-- gsd-design | templates/open-lovable/ (2887500 bytes)
-- Recommended canonical: desigjn-toolkit/refs/open-lovable/ (alphabetical first)
 
 ### Cluster (sha256: 98ad3e5b051b...)
 - gsd-design | .claude/skills/taste-redesign-skill/SKILL.md (15060 bytes)
@@ -150,6 +126,11 @@
 - gsd-design | .claude/skills/taste-brutalist-skill/SKILL.md (8456 bytes)
 - gsd-design | .claude/skills/taste/skills/brutalist-skill/SKILL.md (8456 bytes)
 - Recommended canonical: gsd-design/.claude/skills/taste-brutalist-skill/SKILL.md (alphabetical first)
+
+### Cluster (sha256: b590bd8b023a...)
+- gsd-design | .claude/skills/impeccable/SKILL.md (14145 bytes)
+- gsd-design | .claude/skills/impeccable/skill/SKILL.md (14145 bytes)
+- Recommended canonical: gsd-design/.claude/skills/impeccable/SKILL.md (alphabetical first)
 
 ### Cluster (sha256: e1e32f5e2d42...)
 - gsd-design | .claude/skills/taste-soft-skill/SKILL.md (10561 bytes)
@@ -196,11 +177,6 @@
 - gsd-design | .claude/skills/taste-imagegen-frontend-web/SKILL.md (36854 bytes)
 - Recommended canonical: gsd-design/.claude/skills/taste/skills/imagegen-frontend-web/SKILL.md (alphabetical first)
 
-### Cluster (sha256: 8f658ec51318...)
-- WEBSITES | prospects/s08-remediation-flow/site/ (161456 bytes)
-- WEBSITES | templates/local-business-template/ (166390 bytes)
-- Recommended canonical: WEBSITES/prospects/s08-remediation-flow/site/ (alphabetical first)
-
 ## Same name, different content (filename match, sha256 differs)
 
 ### `SKILL.md` (169 versions)
@@ -214,7 +190,6 @@
 - open-design | open-design/skills/html-ppt-weekly-report/SKILL.md (4218 bytes) — Team weekly / status-update deck — corporate clarity, 8-cell KPI grid, shipped list, 8-week bar chart, next-week...
 - open-design | open-design/skills/image-poster/SKILL.md (3474 bytes) — Single-image generation skill for posters, key art, and editorial illustrations. Defaults to gpt-image-2 but is...
 - open-design | open-design/skills/finance-report/SKILL.md (2115 bytes) — Quarterly / monthly financial report — masthead with KPIs, revenue and burn charts, P&L summary table, top-line...
-- open-design | open-design/skills/mobile-onboarding/SKILL.md (1481 bytes) — A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in....
 - open-design | open-design/skills/design-brief/SKILL.md (13426 bytes) — Parse a structured design brief written in I-Lang protocol format into a concrete design spec. Eliminates ambiguity...
 - open-design | open-design/skills/magazine-poster/SKILL.md (3581 bytes) — An editorial-style poster — newsprint paper, dateline, oversized serif headline with a struck-through word and...
 - open-design | open-design/skills/wireframe-sketch/SKILL.md (4030 bytes) — A hand-drawn wireframe exploration — graph-paper background, marker / pencil tone, multiple tab labels for variants,...
@@ -255,7 +230,6 @@
 - open-design | open-design/skills/docs-page/SKILL.md (2594 bytes) — A documentation page — left nav, scrollable article body, right-rail table of contents. Use when the brief mentions...
 - open-design | open-design/skills/kanban-board/SKILL.md (1504 bytes) — Kanban / task board with columns (To do / In progress / In review / Done), draggable-looking cards, assignee...
 - open-design | open-design/skills/tweaks/SKILL.md (8804 bytes) — Wrap any HTML artifact with a side panel of live, parameterized controls — accent color, type scale, density,...
-- open-design | open-design/skills/hr-onboarding/SKILL.md (1547 bytes) — A new-hire onboarding plan as a single page — first week schedule, buddy + manager intro, learning track, equipment...
 - open-design | open-design/skills/guizang-ppt/SKILL.md (15807 bytes) — 生成"电子杂志 × 电子墨水"风格的横向翻页网页 PPT（单 HTML 文件），含 WebGL 流体背景、衬线标题 + 非衬线正文、章节幕封、数据大字报、图片网格等模板。当用户需要制作分享 / 演讲 / 发布会风格的网页...
 - open-design | open-design/skills/critique/SKILL.md (9684 bytes) — Run a 5-dimension expert design review on any HTML artifact in the project — Philosophy / Visual hierarchy / Detail...
 - open-design | open-design/skills/editorial-collage/SKILL.md (13092 bytes) — Produce a world-class single-page editorial landing site in the Atelier Zero visual language (Monocle / Apartamento...
@@ -272,7 +246,6 @@
 - gsd-design | .claude/skills/ui-ux-pro-max/SKILL.md (44776 bytes) — UI/UX design intelligence for web and mobile. Includes 50+ styles, 161 color palettes, 57 font pairings, 161 product...
 - gsd-design | .claude/skills/image-poster/SKILL.md (3474 bytes) — Single-image generation skill for posters, key art, and editorial illustrations. Defaults to gpt-image-2 but is...
 - gsd-design | .claude/skills/taste-redesign-skill/SKILL.md (15060 bytes) — Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and...
-- gsd-design | .claude/skills/mobile-onboarding/SKILL.md (1482 bytes) — A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in....
 - gsd-design | .claude/skills/ui-demo/SKILL.md (15244 bytes) — Record polished UI demo videos using Playwright. Use when the user asks to create a demo, walkthrough, screen...
 - gsd-design | .claude/skills/uiux-slides/SKILL.md (1166 bytes) — Create strategic HTML presentations with Chart.js, design tokens, responsive layouts, copywriting formulas, and...
 - gsd-design | .claude/skills/design-brief/SKILL.md (13426 bytes) — Parse a structured design brief written in I-Lang protocol format into a concrete design spec. Eliminates ambiguity...
@@ -288,6 +261,9 @@
 - gsd-design | .claude/skills/gamified-app/SKILL.md (4456 bytes) — A multi-frame gamified mobile-app prototype — three phone frames on a dark showcase stage. Frame 1: cover / poster,...
 - gsd-design | .claude/skills/web-prototype/SKILL.md (4162 bytes) — General-purpose desktop web prototype. Single self-contained HTML file built by copying the seed...
 - gsd-design | .claude/skills/uiux-ui-styling/SKILL.md (10049 bytes) — Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS...
+- gsd-design | .claude/skills/impeccable/SKILL.md (14145 bytes) — the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...
+- gsd-design | .claude/skills/impeccable/skill/SKILL.md (14145 bytes) — the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...
+- gsd-design | .claude/skills/impeccable/.claude/skills/impeccable/SKILL.md (14121 bytes) — the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt,...
 - gsd-design | .claude/skills/social-carousel/SKILL.md (3897 bytes) — A three-card social-media carousel laid out as 1080×1080 squares — three cinematic, on-brand panels with display...
 - gsd-design | .claude/skills/blog-post/SKILL.md (2749 bytes) — A long-form article / blog post — masthead, hero image placeholder, article body with figures and pull quotes,...
 - gsd-design | .claude/skills/digital-eguide/SKILL.md (3423 bytes) — A two-spread digital e-guide preview — page 1 is a cover (display title, author, "What's inside" stats, table of...
@@ -392,11 +368,6 @@
 - WEBSITES | CLAUDE.md (4387 bytes) — provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 - design-self-create | CLAUDE.md (12359 bytes) — This workspace scaffolds and builds professional websites with AI assistance. Every decision prioritizes output...
 
-### `site` (3 versions)
-- desigjn-toolkit | site/ (10066216 bytes) — Application scaffold: site
-- WEBSITES | prospects/test-slug/site/ (928599 bytes) — Application scaffold: local-business-template
-- WEBSITES | prospects/s08-remediation-flow/site/ (161456 bytes) — Application scaffold: local-business-template
-
 ### `landing-page` (2 versions)
 - open-design | open-design/apps/landing-page/ (120215 bytes) — Application scaffold: @open-design/landing-page
 - design-self-create | templates/landing-page/ (116617 bytes) — Application scaffold: landing-page
@@ -421,22 +392,6 @@
 - gsd-design | QUALITY.md (10331 bytes) — Single source of truth for what "ready to ship" means in this workspace. Every site inherits this. Every agent...
 - design-self-create | QUALITY.md (2520 bytes) — Every site in this workspace must meet these standards. No exceptions.
 
-### `distant-matter` (2 versions)
-- gsd-design | sites/distant-matter/ (227633663 bytes) — Application scaffold: distant-matter-site
-- design-self-create | distant-matter/ (28544090 bytes) — Application scaffold: distant-matter
-
-### `LAUNCH-GATES.md` (2 versions)
-- WEBSITES | LAUNCH-GATES.md (3270 bytes) — Do NOT send your first cold email until every box in "This Week" is checked.
-- WEBSITES | kimi-claw unorganized assets/web-business/LAUNCH-GATES.md (5817 bytes) — lists every task that **only you can do** because it requires your identity, payment method, or legal signature....
-
 ### `AGENTS.md` (2 versions)
 - WEBSITES | AGENTS.md (5099 bytes) — Productized local-business website operator. Next.js 15 + Vercel + Resend. Three pricing tiers. One-person solo...
 - design-self-create | AGENTS.md (1373 bytes) — Model:** sonnet **Tools:** Read, Edit, Write, Bash
-
-### `local-business-template` (2 versions)
-- WEBSITES | kimi-claw unorganized assets/web-business/templates/local-business-template/ (114012 bytes) — Application scaffold: local-business-template
-- WEBSITES | templates/local-business-template/ (166390 bytes) — Application scaffold: local-business-template
-
-### `app` (2 versions)
-- WEBSITES | kimi builds/kimi/app/ (1986085 bytes) — Application scaffold: my-app
-- WEBSITES | kimi builds/kimi/4Kimi_Agent_Next.js 14 Multi-Page Site/app/ (410281 bytes) — Application scaffold: studio-site
