@@ -312,7 +312,7 @@ clients/<slug>/
       competitor-a-mobile.png
       competitor-a-desktop.png
     reports/
-      competitor-stack-analysis.json
+      competitor-stack-analysis-<timestamp>.json
 ```
 
 ### Template for `RESEARCH.md`
