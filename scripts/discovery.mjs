@@ -477,7 +477,7 @@ async function main() {
     try {
       await access(gmapsModulePath);
     } catch {
-      console.error('Error: Business research requires `scripts/lib/google-maps-browser.mjs` — **TODO pending owner** (install Playwright + Google Maps scraper, or use --competitor mode for URL-based analysis)');
+      console.error('Error: Business research requires `scripts/lib/google-maps-browser.mjs` — **TODO pending owner** (install Playwright + Google Maps scraper, or use --analyze mode for URL-based analysis)');
       process.exit(1);
     }
     const research = await researchBusiness(businessName, city, slug || 'default', { withHuman });
