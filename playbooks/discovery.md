@@ -61,7 +61,7 @@ For each competitor, record:
 
 ## Phase 2: Competitor teardown
 
-Score each axis 1-5 for each competitor. This framework mirrors the `exemplars/` teardown structure.
+Score each axis 1-5 for each competitor. This framework mirrors the `exemplars/` — **TODO pending owner** (scaffold function group) — teardown structure.
 
 ### Axis 1: Visual identity
 

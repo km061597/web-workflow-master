@@ -83,7 +83,7 @@
 
 1. **Self-contained vs. modular dependencies**: Chose to make the script fully self-contained with optional heavy dependencies. Tradeoff: the script is ~350 lines instead of ~150 with clear separation. But it can be dropped into any project without the WEBSITES-specific module graph.
 
-2. **curl vs. fetch**: Kept `curl` via `execSync` for competitor HTML fetching (from design-self-create) rather than using `fetch()` or Playwright. Tradeoff: `curl` is fast and bypasses most anti-bot, but it only gets static HTML (no JS-rendered content). For JS-heavy sites, users are directed to use `scrapling` or `firecrawl-cli` per the playbook.
+2. **curl vs. fetch**: Kept `curl` via `execFile` with argv array for competitor HTML fetching (from design-self-create) rather than using `fetch()` or Playwright. Tradeoff: `curl` is fast and bypasses most anti-bot, but it only gets static HTML (no JS-rendered content). For JS-heavy sites, users are directed to use `scrapling` or `firecrawl-cli` per the playbook. **Security fix**: Changed from `execSync` with shell-string interpolation to `execFile` with argv array to prevent shell injection from untrusted URLs.
 
 3. **One script vs. two scripts**: Merged into a single `discovery.mjs` rather than keeping separate `research-orchestrator.mjs` and `competitor-research.js`. Tradeoff: the unified script has two distinct modes that share no runtime state. But having one canonical script reduces cognitive load and aligns with the unified playbook.
 
