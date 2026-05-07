@@ -20,7 +20,7 @@ jobs:
           cache: 'npm'
 
       - name: Install root deps
-        run: npm ci
+        run: npm install
 
       - name: Validate script syntax
         run: npm run validate
@@ -44,7 +44,7 @@ jobs:
           cache: 'npm'
 
       - name: Install deps
-        run: npm ci
+        run: npm install
 
       - name: Type check
         run: npm run typecheck
@@ -71,7 +71,7 @@ jobs:
           cache: 'npm'
 
       - name: Install deps
-        run: npm ci
+        run: npm install
 
       - name: Type check
         run: npm run typecheck || true
@@ -95,7 +95,7 @@ jobs:
           cache: 'npm'
 
       - name: Install deps
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
