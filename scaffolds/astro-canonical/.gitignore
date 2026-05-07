@@ -1,0 +1,9 @@
+node_modules
+.astro
+dist
+*.log
+.env*.local
+.DS_Store
+.lighthouseci
+test-results
+playwright-report

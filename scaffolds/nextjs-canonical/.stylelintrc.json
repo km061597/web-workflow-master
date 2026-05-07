@@ -1,0 +1,14 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-declaration-strict-value"],
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      ["/color$/", "font-size", "font-family"],
+      {
+        "ignoreKeywords": ["inherit", "initial", "transparent", "currentColor"]
+      }
+    ],
+    "selector-class-pattern": null,
+    "custom-property-empty-line-before": null
+  }
+}
