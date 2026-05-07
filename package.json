@@ -1,0 +1,24 @@
+{
+  "name": "web-workflow-master",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered, taste-anchored web design workspace. Multi-site, multi-template, ship-ready.",
+  "workspaces": [
+    "scaffolds/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "test": "npm run test --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "verify:all": "npm run verify:setup --workspaces",
+    "validate": "node --check scripts/discovery.mjs && echo 'scripts/discovery.mjs syntax OK'",
+    "format:check": "prettier --check '**/*.md' '**/*.json' '**/*.yml' '**/*.yaml'"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
