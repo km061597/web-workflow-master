@@ -374,19 +374,6 @@
 - gsd-design | .claude/skills/taste-gpt-tasteskill/SKILL.md (7857 bytes) — Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict...
 - gsd-design | .claude/skills/anthropic-web-artifacts-builder/SKILL.md (3087 bytes) — Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web...
 
-### `files` (11 versions)
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/sveltekit-csp/files/ (1006 bytes) — Application scaffold: (package.json) — no description extracted
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-css-modules/files/ (1935 bytes) — Application scaffold: vite8-react-css-modules-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-tsx-repeated-aside/files/ (2451 bytes) — Application scaffold: vite8-react-tsx-repeated-aside-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-router-spa/files/ (2204 bytes) — Application scaffold: vite8-react-router-spa-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-radix-dialog/files/ (3004 bytes) — Application scaffold: vite8-react-radix-dialog-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/nextjs-inline-csp/files/ (1002 bytes) — Application scaffold: (package.json) — no description extracted
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-vanilla-extract/files/ (2261 bytes) — Application scaffold: vite8-react-vanilla-extract-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-csp-meta/files/ (1993 bytes) — Application scaffold: vite8-react-csp-meta-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-ts/files/ (2190 bytes) — Application scaffold: vite8-react-ts-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-unocss/files/ (1783 bytes) — Application scaffold: vite8-react-unocss-fixture
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-modal/files/ (2190 bytes) — Application scaffold: vite8-react-modal-fixture
-
 ### `README.md` (10 versions)
 - gsd-design | quality/README.md (5306 bytes) — Single source of truth for what "ready to ship" means. Every gate is a tool with a config, runnable both locally...
 - gsd-design | quality/project-lifecycle/README.md (7789 bytes) — Every commercial site goes through 6 phases. Each phase has a definition-of-done that an agent can machine-check....
@@ -435,7 +422,7 @@
 - design-self-create | QUALITY.md (2520 bytes) — Every site in this workspace must meet these standards. No exceptions.
 
 ### `distant-matter` (2 versions)
-- gsd-design | sites/distant-matter/ (227632694 bytes) — Application scaffold: distant-matter-site
+- gsd-design | sites/distant-matter/ (227633663 bytes) — Application scaffold: distant-matter-site
 - design-self-create | distant-matter/ (28544090 bytes) — Application scaffold: distant-matter
 
 ### `LAUNCH-GATES.md` (2 versions)

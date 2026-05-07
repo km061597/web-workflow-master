@@ -270,7 +270,7 @@ _None across all 5 versions._
 - design-self-create | README.md | AI-powered website design workspace. Scaffolds, builds, iterates, and ships professional websites with zero-cost...
 - gsd-design | ONBOARDING.md | You just landed in this workspace (human or AI). This is the fastest path to "doing useful work.
 
-## scaffold (69 artifacts)
+## scaffold (57 artifacts)
 
 - WEBSITES | kimi builds/kimi/4Kimi_Agent_Next.js 14 Multi-Page Site/app/ | Application scaffold: studio-site [secondary: build]
 - WEBSITES | kimi builds/kimi/app 2/ | Application scaffold: my-app [secondary: build]
@@ -305,18 +305,6 @@ _None across all 5 versions._
 - gsd-design | .claude/skills/gsap/examples/react/ | Application scaffold: gsap-skills-example-react [secondary: build]
 - gsd-design | .claude/skills/gsap/examples/vue/ | Application scaffold: gsap-vue-example [secondary: build]
 - gsd-design | .claude/skills/impeccable/ | Application scaffold: Design skills, commands, and anti-pattern detection for AI coding agents [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/fixtures/antipatterns/framework-next-cssinjs/ | Application scaffold: (package.json) — no description extracted [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/nextjs-inline-csp/files/ | Application scaffold: (package.json) — no description extracted [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/sveltekit-csp/files/ | Application scaffold: (package.json) — no description extracted [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-csp-meta/files/ | Application scaffold: vite8-react-csp-meta-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-css-modules/files/ | Application scaffold: vite8-react-css-modules-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-modal/files/ | Application scaffold: vite8-react-modal-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-radix-dialog/files/ | Application scaffold: vite8-react-radix-dialog-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-router-spa/files/ | Application scaffold: vite8-react-router-spa-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-ts/files/ | Application scaffold: vite8-react-ts-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-tsx-repeated-aside/files/ | Application scaffold: vite8-react-tsx-repeated-aside-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-unocss/files/ | Application scaffold: vite8-react-unocss-fixture [secondary: build]
-- gsd-design | .claude/skills/impeccable/tests/framework-fixtures/vite8-react-vanilla-extract/files/ | Application scaffold: vite8-react-vanilla-extract-fixture [secondary: build]
 - gsd-design | bin/scaffold-site.sh | set -euo pipefail
 - gsd-design | schemas/seo-jsonld/README.md | Drop-in JSON-LD templates for the structured-data types every site eventually needs. Each is a working snippet —...
 - gsd-design | schemas/seo-jsonld/article.json | {{Meta description, 150-160 chars}}
@@ -550,7 +538,7 @@ _None across all 5 versions._
 | ship | 6 | gsd-design (4) |
 | post-sale-stub | 0 | _none_ |
 | docs | 3 | gsd-design (1) |
-| scaffold | 69 | gsd-design (37) |
+| scaffold | 57 | gsd-design (25) |
 | tooling | 41 | WEBSITES (14) |
 | exemplars | 54 | gsd-design (33) |
 | meta-orchestration | 51 | gsd-design (37) |
@@ -558,4 +546,4 @@ _None across all 5 versions._
 | hooks | 0 | _none_ |
 | vocab-only | 0 | _none_ |
 | ungrouped | 3 | WEBSITES (2) |
-| **TOTAL** | **478** | |
+| **TOTAL** | **466** | |
