@@ -78,7 +78,7 @@ Score each axis 1-5 for each competitor. This framework mirrors the `exemplars/`
 - Read the CTA labels. "Get Started" vs. "Order Now" vs. "See Menu" — specificity matters
 - Is the copy confident or apologetic? Active or passive?
 - Does it sound like a real person wrote it or like AI-generated filler?
-- Check `exemplars/tier-c-counter-examples/` — does it match any tells?
+- Check `exemplars/tier-c-counter-examples/` — **TODO pending owner** (scaffold function group) — does it match any tells?
 - **Score 1-5:** 1 = lorem-ipsum-tier, 5 = voice you'd recognize blind
 
 ### Axis 3: Information architecture and navigation
@@ -240,7 +240,7 @@ Write it as a **trap to avoid** and cross-reference the counter-example:
 ```
 Trap: Auto-playing hero video on mobile (kills LCP, burns data)
 Source: Competitor B
-Counter-example: exemplars/tier-c-counter-examples/autoplay-video-hero.md
+Counter-example: `exemplars/tier-c-counter-examples/autoplay-video-hero.md` — **TODO pending owner** (scaffold function group)
 Our stance: Static hero image, video available on tap with play icon
 ```
 
@@ -295,10 +295,10 @@ node scripts/discovery.mjs --analyze https://competitor1.com https://competitor2
 For deep teardowns where you want to reverse-engineer tokens (color, type, spacing, components):
 
 ```
-Dispatch: site-cloner agent with the competitor URL
+Dispatch: research-agent (deep-extraction mode) with the competitor URL
 ```
 
-The site-cloner agent extracts design tokens, grid system, component inventory, and motion patterns into a structured report.
+The research-agent extracts design tokens, grid system, component inventory, and motion patterns into a structured report.
 
 ## Output artifacts
 
@@ -321,7 +321,7 @@ clients/<slug>/
 # Discovery research: [Business name] — [Industry]
 
 Date: YYYY-MM-DD
-Analyst: design-researcher agent
+Analyst: research-agent
 
 ## Scope
 - **Business:** [What they sell, specifically]
@@ -449,7 +449,7 @@ At the end of discovery, update the site's DESIGN.md with:
 - [ ] Trust signals inventoried and ranked by impact
 - [ ] Seasonality scan completed (if applicable)
 - [ ] Patterns-to-adopt list with our-execution-plan for each
-- [ ] Traps-to-avoid list cross-referenced to `exemplars/tier-c-counter-examples/`
+- [ ] Traps-to-avoid list cross-referenced to `exemplars/tier-c-counter-examples/` — **TODO pending owner** (scaffold function group)
 - [ ] Differentiation summary written: what we do that none of them do
 - [ ] Table-stakes feature list extracted
 - [ ] `RESEARCH.md` written to `clients/<slug>/research/RESEARCH.md`

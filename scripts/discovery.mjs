@@ -16,7 +16,7 @@
  *   node scripts/discovery.mjs --research "Business Name" --city "City" --slug client-slug --analyze https://competitor.com
  */
 
-import { execSync } from 'node:child_process';
+import { execSync, execFile } from 'node:child_process';
 import { writeFile, mkdir, readFile, access } from 'node:fs/promises';
 import { existsSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -63,11 +63,18 @@ function logCall(category, target, result) {
 
 async function fetchUrl(url, { timeout = 15, stealth = false } = {}) {
   try {
-    const ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
-    const result = execSync(
-      `curl -sL --max-time ${timeout} -H "User-Agent: ${ua}" "${url}"`,
-      { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }
-    );
+    const ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+    const result = await new Promise((resolve, reject) => {
+      execFile(
+        'curl',
+        ['-sL', '--max-time', String(timeout), '-H', `User-Agent: ${ua}`, url],
+        { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 },
+        (error, stdout) => {
+          if (error) reject(error);
+          else resolve(stdout);
+        }
+      );
+    });
     return result;
   } catch {
     return '';
