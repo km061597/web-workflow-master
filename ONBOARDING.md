@@ -1,6 +1,11 @@
-# Web Workflow Master
+# ONBOARDING — First Day in Web Workflow Master
 
-AI-powered, taste-anchored web design workspace. Multi-site, multi-template, ship-ready.
+You just landed in this workspace (human or AI). This is the fastest path to "doing useful work."
+
+If you're an AI agent, this is the target reading order once the companion root docs are emitted:
+`WORKSPACE.md` — **TODO pending owner** → `CLAUDE.md` — **TODO pending owner** → this file → `MOBILE.md` — **TODO pending owner** → `QUALITY.md` — **TODO pending owner** → `TOOLS.md` — **TODO pending owner** → `PLAYBOOKS.md` — **TODO pending owner**.
+
+If you're a human, you can skim — the system is designed to be navigated by AI from inside the work, not memorized.
 
 ## What this workspace is
 
@@ -35,39 +40,7 @@ references/     → upstream open-source repos (READ-ONLY)
 schemas/        → ready-to-paste schema.org JSON-LD templates — **TODO pending owner**
 ```
 
-## Stack
-
-**Base stack** (primary template):
-- Next.js 16 (App Router, TypeScript)
-- React 19
-- Tailwind CSS 4 with CSS variable theming
-- shadcn/ui (base-ui/react primitives)
-- GSAP + Framer Motion for animation
-- Lucide React icons
-- Geist font (Next.js font optimization)
-
-**Alternative templates** (per-project choice):
-- Astro 5 + Tailwind v4 — lightweight marketing sites, portfolios
-- Next.js 15 — stable LTS option when bleeding-edge is not required
-
-**Quality & QA**:
-- Vitest — unit/component tests
-- React Testing Library — component rendering in tests
-- Playwright — E2E tests (Chrome, Firefox, Safari, mobile)
-- axe-core — accessibility testing (WCAG 2.1 AA)
-- Storybook — component isolation + docs + visual testing
-- Lighthouse CI — performance, accessibility, best-practices, SEO
-- Prettier + ESLint + React Scan
-
-**Browser automation**:
-- `surf-cli` — primary browser tool (navigate, screenshot, emulate, click)
-- Playwright CLI — escape-hatch for complex automation
-
-**Research & scraping**:
-- Firecrawl MCP — scrape, extract, crawl competitor/reference sites
-- Browserbase MCP — cloud browser for anti-bot, proxies
-
-## Quick Start
+## Day one — start a new site
 
 ```bash
 # 1. Scaffold a site — do not hand-copy templates
@@ -75,8 +48,10 @@ schemas/        → ready-to-paste schema.org JSON-LD templates — **TODO pendi
 node tools/scaffold.js my-site --template landing-page
 # or, for Next.js builds:
 bin/scaffold-site.sh my-site
+cd sites/my-site
+npm install
 
-# 2. Complete the planning artifacts (hard gates before build)
+# 2. Complete the planning artifacts that are now hard gates
 # - BRIEF.md: client scenario, audience, goal, constraints, exemplars
 # - RESEARCH.md: competitors, industry glossary, compliance, trust signals
 # - IA.md: route inventory, primary/secondary access paths, mobile nav
@@ -86,57 +61,107 @@ bin/scaffold-site.sh my-site
 
 # 3. Advance only when gates pass
 # TODO pending owner: bin/advance-phase.sh
-bin/advance-phase.sh design
-bin/advance-phase.sh build
+../../bin/advance-phase.sh design
+../../bin/advance-phase.sh build
 
-# 4. Install quality runner dependencies
+# 4. Install quality runner dependencies if this site does not already have them
 npm i -D stylelint stylelint-config-standard stylelint-declaration-strict-value         pa11y-ci lost-pixel @lhci/cli size-limit @size-limit/preset-app
 
-# 5. Start dev server
+# 5. Brief the AI on what you're building
+# Open this directory in Claude Code, then dispatch:
+#
+#   Agent({
+#     subagent_type: "art-director",
+#     prompt: "Build a [site type] for [audience] in the style of [exemplar reference]. Mobile-first."
+#   })
+
+# 6. While the AI works, the gate awaits at the end:
 npm run dev
-
-# 6. Capture for visual iteration
-# TODO pending owner: scripts/screenshot.js and scripts/responsive.js
-node scripts/screenshot.js http://localhost:3000 --output my-site.png
-node scripts/responsive.js http://localhost:3000
-
-# 7. Run quality gates
-# TODO pending owner: npm run ship-gate and scripts/audit.js
-npm run ship-gate         # runs all enforceable gates locally
-# or
-node scripts/audit.js http://localhost:3000
+# (in another tab)
+# TODO pending owner: npm run ship-gate
+npm run ship-gate         # runs all gates locally
 ```
 
-## Work Modes
+## Mandatory pre-task checklist (AI agents)
 
-| Mode | Workspace | Key Files | Purpose |
-|---|---|---|---|
-| Discover & Plan | `prospects/`, `clients/` | `BRIEF.md`, `RESEARCH.md`, `IA.md`, `_master-list.md`, per-prospect `dossier.md` | Research, intake, spec before build |
-| Build & Ship | `sites/`, `templates/`, `clients/*/repo/` | Master template repo, site-specific repos | Design, develop, quality gate, deploy |
-| Operate | `ops/` | `pipeline.md`, `maintenance-queue.md`, `quotes.md` | Business ops, CRM, legal, sales, handoff |
+**Before writing ANY code, you MUST complete these steps in order:**
 
-## Client Transformation Standard
+1. **Load anti-slop skill**: Invoke `frontend-aesthetics` skill — **TODO pending owner** (skill not yet bundled). This is NOT optional once the skill exists. It breaks AI out of distributional convergence toward generic AI aesthetics.
+2. **Read these memory files when present** (in this order; memory bundle is **TODO pending owner**):
+   - `.claude/memory/BUILD_GOTCHAS.md` — **TODO pending owner** — know what breaks
+   - `.claude/memory/ANTI_SLOP_GUIDE.md` — **TODO pending owner** — know what to avoid
+   - `.claude/memory/QUALITY_GATES.md` — **TODO pending owner** — know what must pass
+   - `.claude/memory/WORKFLOW.md` — **TODO pending owner** — know the process
+   - `.claude/memory/SKILLS_AND_REFERENCES.md` — **TODO pending owner** — know what exists
+3. **For new designs/builds**: Fill out `.claude/memory/DECISIONS.md` — **TODO pending owner** — BEFORE any code. Spec first, code second. Human approves spec, then you build.
+4. **For animation/component selection**: Read `.claude/memory/COMPONENT_AND_ANIMATION_REGISTRY.md` — **TODO pending owner** — to pick non-repeating components.
 
-Use `ops/client-transformation-workflow.md` — **TODO pending owner** — for every signed build. The process is:
+## Mandatory post-task verification (AI agents)
 
-1. Audit the public footprint.
-2. Convert discovery into a signed SITE-SPEC.
-3. Run `node scripts/design-shotgun-brief.mjs clients/[name]/SITE-SPEC.md --write` — **TODO pending owner** (script not yet bundled).
-4. Run `node scripts/client-preflight.mjs clients/[name]` — **TODO pending owner** (script not yet bundled).
-5. Rescue weak/no-logo brand inputs into a lightweight visual system.
-6. Generate multiple distinct design directions before build.
-7. Build from the chosen direction.
-8. Verify build, mobile, NAP, price context, contact path, and anti-AI-slop checks.
+**After generating ANY frontend output, you MUST verify:**
 
-## Pricing (productized service tier)
+1. **Anti-slop checklist** (from `frontend-aesthetics` skill — **TODO pending owner**):
+   - No Inter, Roboto, Arial, or system fonts
+   - No purple-to-blue gradients on white backgrounds
+   - No #7C3AED or #3B82F6 as primary colors
+   - Not everything centered — asymmetric layouts used
+   - Not everything fades in — animation types varied
+   - No uniform spacing — spatial hierarchy present
+   - No generic copy ("seamless", "robust", "cutting-edge")
+   - Background has atmosphere and depth
+   - Typography pairing has high contrast (weight + size + style)
+   - Color palette from a named theme, not AI defaults
+2. **Dark pattern audit**: No fake urgency, fake social proof, confirmshaming, hidden unsubscribes, forced continuity. See `ANTI_SLOP_GUIDE.md` — **TODO pending owner**.
+3. **Run applicable quality gates** from `QUALITY_GATES.md` — **TODO pending owner** (gates 1–4 on every change once emitted).
+4. **If output fails any check**: Fix it before declaring done. No exceptions.
 
-| Tier | Build | Monthly | Pages |
-|---|---|---|---|
-| Starter | $1,800 | $35 | 3 |
-| Standard | $3,500 | $95 | 5–7 |
-| Premium | $5,500 | $150 | 10+ |
+## Where to look when
 
-## The eight hard rules
+> **Target navigation.** Paths in this table that are not present in this PR are pending their owning function-group PR, even when repeated without inline notes for readability.
+
+| You want to... | Read this |
+|---|---|
+| Understand the workspace structure | `WORKSPACE.md` — **TODO pending owner** |
+| Know which agent to dispatch for what | `CLAUDE.md` — **TODO pending owner** (dispatch table) |
+| Build something mobile-exceptional | `MOBILE.md` — **TODO pending owner** |
+| Know what "ready to ship" means | `QUALITY.md` — **TODO pending owner** + `playbooks/ship-readiness.md` — **TODO pending owner** |
+| Find which CLI to use | `TOOLS.md` — **TODO pending owner** |
+| Pick a site-build playbook | `PLAYBOOKS.md` — **TODO pending owner** |
+| Write copy that doesn't read AI | `conventions/voice-and-tone.md` — **TODO pending owner** + `conventions/microcopy-library.md` — **TODO pending owner** |
+| Set up motion correctly | `conventions/motion-tokens.md` |
+| Pick / fix colors | `conventions/color-apca.md` |
+| Wire analytics | `conventions/analytics-events.md` |
+| See what A+ looks like | `exemplars/tier-a-plus/` |
+| See what to avoid | `exemplars/tier-c-counter-examples/` |
+| Choose existing-site / greenfield / storefront workflow | `playbooks/scenario-routing.md` |
+| Preserve an existing artist / musician / creator site | `playbooks/artist-existing-site-rebuild.md` |
+| Preserve an existing site during rebuild | `playbooks/intake-existing-site.md` |
+| Start with no site / no brand | `playbooks/intake-greenfield.md` |
+| Research an unknown industry | `playbooks/industry-research.md` |
+| Research competitors | `playbooks/competitor-research.md` |
+| Design navigation and route discovery | `playbooks/information-architecture.md` |
+| Build product filtering/sorting/discovery | `playbooks/product-discovery.md` |
+| Build a small-business storefront | `playbooks/storefront-small-business.md` |
+| Prove tests/assertions actually exercise user outcomes | `playbooks/test-evidence.md` — **TODO pending owner** |
+| Run visual QA against exemplars / anti-slop patterns | `playbooks/visual-quality-review.md` — **TODO pending owner** |
+| Prepare owner handoff / maintenance package | `playbooks/maintainability-handoff.md` |
+| Debug a red ship gate without weakening quality | `quality/ship-gate-gotchas.md` |
+| Generate brand assets (favicons, OG, splash) | `playbooks/brand-assets.md` |
+| Build a quality form | `playbooks/form-quality.md` |
+| Add SEO structured data | `schemas/seo-jsonld/README.md` — **TODO pending owner** |
+| Set up Storybook | `playbooks/storybook-setup.md` |
+| Add service workers / offline / PWA install prompt | `playbooks/service-worker-patterns.md` |
+| Build dark mode that doesn't suck | `playbooks/dark-mode-parity.md` |
+| Support RTL languages | `playbooks/rtl-audit.md` |
+| Handle reduced motion / data | `playbooks/reduced-motion.md` |
+| Survive Windows High Contrast | `playbooks/forced-colors-mode.md` |
+| Print stylesheets | `playbooks/print-styles.md` |
+| Survive 200% browser zoom | `playbooks/zoom-200.md` |
+| Send transactional / marketing email | `playbooks/email-infra.md` |
+
+## The eight hard rules (TL;DR of `CLAUDE.md` — **TODO pending owner**)
+
+> Agent names below are target dispatch entries. They become executable only after the `.claude/agents/` bundle lands.
 
 1. **Mobile-first is non-negotiable.** Every UI agent has a mobile DoD. No bare `100vh`. Touch targets ≥ 24 px. Mobile CWV gates are the gate.
 2. **Never echo or commit secrets.** `.env` is gitignored. Reference keys by name only.
@@ -144,7 +169,7 @@ Use `ops/client-transformation-workflow.md` — **TODO pending owner** — for e
 4. **Don't edit `references/`.** They're upstream clones, treated as read-only.
 5. **Don't bypass agents for taste calls.** Implementation is fine inline; aesthetic judgment goes through `design-critic` or `art-director`.
 6. **Verify in a real browser before claiming a UI works.** `art-director` and `accessibility-auditor` exist for this. Static analysis ≠ verification.
-7. **Gate skips are NO-GO.** Skipped quality gates cannot produce a shipping verdict.
+7. **Gate skips are NO-GO.** `ship-gate.sh --skip ...` is for debugging partial reports only; skipped quality gates cannot produce a shipping verdict.
 8. **Parallel dispatch is mandatory** when 2+ specialists have independent work. Single message, multiple `Agent` calls.
 
 ## Common stuck points
@@ -169,8 +194,7 @@ Dispatch `accessibility-auditor`. It owns `quality/a11y/pa11yci.json` — **TODO
 # TODO pending owner: npm run ship-gate
 npm run ship-gate
 ```
-
-Reads all seven executable gates plus the required evidence reports before phase advancement. If green: deploy. If red: read the evidence files, fix, re-run.
+Reads all seven executable gates plus the required evidence reports before phase advancement. If green: deploy. If red: read the evidence files, fix, re-run. Skipped gates are treated as NO-GO.
 
 ### "An agent claimed done but it doesn't work."
 - Did the gate pass? If not, the claim is wrong by definition.
@@ -205,6 +229,10 @@ The workspace itself is versioned via git. `bin/scaffold-site.sh` — **TODO pen
 
 Major version bumps (breaking budgets, removed gates) get a note in `QUALITY.md#changelog` — **TODO pending owner**.
 
-## License
+## Help
 
-MIT
+- Check existing skills via `Skill` tool — many tasks have pre-built ones
+- Read `references/` for the upstream version of any concept
+- Dispatch `art-director` if confused
+
+Now — go build something good.
