@@ -12,14 +12,14 @@
 ### `scripts/lib/research-orchestrator.mjs` (WEBSITES)
 - **Modular ESM architecture** with named exports — better for programmatic reuse than the inline script approach
 - **Cache system** (`loadCache`/`saveCache`) with TTL support — critical for avoiding repeated API calls and rate limits
-- **Geocoding via Nominatim** — self-contained, no API key required
+- **Geocoding via Nominatim** — no API key required
 - **Business research data model** (`research` object with name, address, phone, website, rating, reviews, hours, coordinates, gaps, sources) — well-structured for downstream consumption
 - **`withHuman` flag** for optional enrichment via surf-based scrapers — keeps the core script headless while allowing human-in-the-loop when needed
 - **`saveResearchArtifact()`** with directory creation — automates research artifact persistence
 - **Logging convention** (`logCall` with category/target/result) — consistent with other WEBSITES tooling
 
 ### `tools/competitor-research.js` (design-self-create)
-- **`curl`-based fetching** via `execSync` — simple, self-contained, no heavy dependencies
+- **`curl`-based fetching** via `execFile` argv array — no shell injection risk, no heavy dependencies
 - **Comprehensive stack detection** (WordPress, Shopify, Squarespace, Wix, Webflow, Next.js, Nuxt, React, Vue, Astro, Svelte) — covers all major platforms
 - **CSS framework detection** (Tailwind, Bootstrap) with regex heuristics
 - **Color extraction** (hex + OKLCH) — useful for palette analysis
@@ -52,8 +52,8 @@
 
 ### Optional dependency pattern
 - Google Maps browser scraper, website auditor, Yelp surf, and GMaps surf are all **optional** imports
-- The script attempts to load them dynamically and gracefully skips if modules are absent
-- This makes the core script fully self-contained while allowing teams to plug in heavy browser automation when needed
+- The script attempts to load the Google Maps browser module dynamically; `--research` mode fails fast with a clear error if the module is absent, directing users to `--analyze` mode or module installation.
+- This makes the `--analyze` competitor-analysis mode fully self-contained while `--research` requires the heavy browser automation module.
 
 ### Data model extensions
 - Added `hasTeam`, `hasFAQ`, `hasCTA` to structure detection (beyond the original 4)
@@ -81,9 +81,13 @@
 
 ## Tradeoffs
 
-1. **Self-contained vs. modular dependencies**: Chose to make the script fully self-contained with optional heavy dependencies. Tradeoff: the script is ~350 lines instead of ~150 with clear separation. But it can be dropped into any project without the WEBSITES-specific module graph.
+1. **Modular dependencies**: The script has two distinct modes with different dependency requirements:
+   - `--analyze` (competitor analysis): fully self-contained, uses `execFile` with `curl` for fetching
+   - `--research` (business research): requires `scripts/lib/google-maps-browser.mjs` (Playwright-based Google Maps scraper); fails fast with clear error if absent. This module is **TODO pending owner** (not yet bundled).
+   
+   Tradeoff: the script is ~350 lines instead of ~150 with clear separation. But the competitor-analysis mode can be dropped into any project without heavy dependencies.
 
-2. **curl vs. fetch**: Kept `curl` via `execFile` with argv array for competitor HTML fetching (from design-self-create) rather than using `fetch()` or Playwright. Tradeoff: `curl` is fast and bypasses most anti-bot, but it only gets static HTML (no JS-rendered content). For JS-heavy sites, users are directed to use `scrapling` or `firecrawl-cli` per the playbook. **Security fix**: Changed from `execSync` with shell-string interpolation to `execFile` with argv array to prevent shell injection from untrusted URLs.
+2. **curl vs. fetch**: Replaced `execSync` shell-string curl with `execFile` argv array for competitor HTML fetching (from design-self-create). Tradeoff: `curl` is fast and bypasses most anti-bot, but it only gets static HTML (no JS-rendered content). For JS-heavy sites, users are directed to use `scrapling` or `firecrawl-cli` per the playbook. **Security fix**: `execFile` with argv array prevents shell injection from untrusted URLs.
 
 3. **One script vs. two scripts**: Merged into a single `discovery.mjs` rather than keeping separate `research-orchestrator.mjs` and `competitor-research.js`. Tradeoff: the unified script has two distinct modes that share no runtime state. But having one canonical script reduces cognitive load and aligns with the unified playbook.
 

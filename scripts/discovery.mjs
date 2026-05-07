@@ -16,7 +16,7 @@
  *   node scripts/discovery.mjs --research "Business Name" --city "City" --slug client-slug --analyze https://competitor.com
  */
 
-import { execSync, execFile } from 'node:child_process';
+import { execFile } from 'node:child_process';
 import { writeFile, mkdir, readFile, access } from 'node:fs/promises';
 import { existsSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
