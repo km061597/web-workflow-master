@@ -1,21 +1,48 @@
 # Function Groups Summary
 
-## Artifact Type Distribution
+Pipeline-function classification for Phase 3 synthesis.
 
-- **skill**: 690
-- **script**: 97
-- **prompt**: 94
-- **doc**: 68
-- **exemplar**: 39
-- **scaffold**: 36
-- **agent**: 35
-- **playbook**: 31
-- **memory**: 22
-- **schema**: 17
-- **quality-doc**: 14
-- **other**: 7
-- **settings**: 2
-- **command**: 1
+## Function Distribution
+
+| Function | Count | Description |
+|----------|-------|-------------|
+| `build` | 866 | Skills, agents, commands, scripts, scaffolds — execution artifacts |
+| `discovery` | 133 | Research, exemplars, prompts, competitive analysis |
+| `intake` | 109 | Client onboarding, requirements, schemas, settings, memory |
+| `strategy` | 31 | Planning, playbooks, roadmaps, architecture decisions |
+| `quality` | 14 | Quality gates, audits, checklists, launch criteria |
+
+## Function × Artifact Type Breakdown
+
+
+### `build` (866 rows)
+
+- skill: 690
+- script: 97
+- scaffold: 36
+- agent: 35
+- other: 7
+- command: 1
+
+### `discovery` (133 rows)
+
+- prompt: 94
+- exemplar: 39
+
+### `intake` (109 rows)
+
+- doc: 68
+- memory: 22
+- schema: 17
+- settings: 2
+
+### `quality` (14 rows)
+
+- quality-doc: 14
+
+### `strategy` (31 rows)
+
+- playbook: 31
 
 ## Version Distribution
 
