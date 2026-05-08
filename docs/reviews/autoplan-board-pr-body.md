@@ -21,8 +21,8 @@ The board runs fixture-safe while `metzgerwebsites/web-workflow-master` is publi
 
 - Claude Code plan-mode reviews completed. Findings were fixed and narrow re-review confirmed the final broker dedupe medium issue resolved.
 - Claude Desktop Computer Use review completed. It found B1-B4 blockers around browser broker reachability, ship-gate aliasing, hardcoded slice status, and Telegram integration. Those were fixed in the current branch, and a narrow Claude terminal re-review after commit `82d0bb1` confirmed no blocking findings remain.
-- Kimi/KimiClaw terminal review is documented as blocked by Kimi MCP startup failure; Kimi desktop UI review was prompted and its broker-registry concern now has explicit test coverage.
-- Gemini review is documented as blocked by interactive authentication.
+- Kimi/KimiClaw terminal review is documented as blocked by Kimi MCP startup failure; Kimi/OpenClaw UI re-review on head commit `57ddf9b` reported no blocking findings after broker-registry coverage was added.
+- Gemini review is documented as blocked by interactive authentication and missing `GEMINI_API_KEY` keychain auth.
 
 # Verification
 

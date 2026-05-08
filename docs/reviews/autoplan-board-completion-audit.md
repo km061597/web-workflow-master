@@ -37,10 +37,10 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 | Browser smoke desktop/mobile | refreshed screenshots in `evidence/autoplan/` | Green locally |
 | Broker abuse tests | unsupported action, traversal, absolute path, destructive token, duplicate/rerun behavior | Green locally |
 | Telegram control tests | denied user, allowlisted status/approve, raw command block, invalid target, HTTP CSRF/origin | Green locally |
-| External review | Claude completed; Kimi/KimiClaw UI review was prompted and its broker registry concern now has explicit test coverage; Gemini remains blocked by interactive authentication | Partially complete |
+| External review | Claude completed; Kimi/OpenClaw UI re-review of head commit `57ddf9b` reported no blocking findings; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Partially complete |
 | PR ready with evidence | PR #50 is open, mergeable, CI green, and has the evidence body; GitHub still requires human review approval | Review required |
 
 ## Remaining Before Goal Completion
 
-- Resolve or explicitly defer the remaining external review gap for Gemini interactive authentication.
+- Resolve or explicitly defer the remaining Gemini CLI review gap caused by interactive authentication.
 - Obtain the required GitHub review approval for PR #50, or explicitly accept pre-merge review-ready status as the stop point.
