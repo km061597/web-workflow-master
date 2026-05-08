@@ -145,6 +145,36 @@ test("broker accepts only typed allowlisted actions and blocks abuse cases", () 
   assert.equal(scriptRun.status, 0, scriptRun.stderr);
 });
 
+test("broker registry maps every local action to an existing command surface", () => {
+  const packageJson = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8"));
+  const requests = [
+    { action: "scaffold", args: ["registry-fixture", "--template", "astro-canonical"] },
+    { action: "verify", args: [] },
+    { action: "shipGate", args: [] },
+    { action: "advancePhase", args: ["design"] },
+    { action: "screenshotAudit", args: ["http://127.0.0.1:4177", "--output", "evidence/autoplan/registry-screenshot.json"] },
+    { action: "refreshGithub", args: [] },
+    { action: "refreshBoard", args: [] },
+  ];
+
+  for (const request of requests) {
+    const accepted = processBrokerRequest({ id: `registry-${request.action}`, ...request }, { seen: new Set() });
+    assert.equal(accepted.ok, true, `${request.action} accepted`);
+    const [command, ...argv] = accepted.job.argv;
+
+    if (command === "node") {
+      assert.equal(existsSync(join(repoRoot, argv[0])), true, `${request.action} node script exists`);
+    } else if (command === "npm") {
+      assert.equal(argv[0], "run", `${request.action} uses npm run`);
+      assert.equal(Boolean(packageJson.scripts?.[argv[1]]), true, `${request.action} npm script exists`);
+    } else if (command === "gh") {
+      assert.match(argv.join(" "), /^api repos\//, `${request.action} uses gh repo API`);
+    } else {
+      assert.equal(existsSync(join(repoRoot, command)), true, `${request.action} executable exists`);
+    }
+  }
+});
+
 test("broker execution runs fixed argv and writes job and audit records", async () => {
   const state = { seen: new Set(), running: new Set() };
   const result = await executeBrokerJob({ id: "refresh-board-test", action: "refreshBoard", args: [] }, { root: repoRoot, state });
