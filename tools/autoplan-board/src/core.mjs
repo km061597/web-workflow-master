@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
@@ -67,7 +67,9 @@ const ABSOLUTE_PATH = /^(\/|~\/|[A-Za-z]:[\\/])/;
 const SECRET_PATTERN = /(TOKEN|SECRET|KEY|PASSWORD)=/i;
 const REDACT_PATTERN = /(TOKEN|SECRET|KEY|PASSWORD)(=|:)[^\s"']+/gi;
 const NO_ARG_ACTIONS = new Set(["verify", "shipGate", "refreshGithub", "refreshBoard"]);
-const WRITE_ACTIONS = new Set(["scaffold", "shipGate", "advancePhase", "screenshotAudit", "refreshBoard"]);
+export const WRITE_ACTIONS = new Set(["scaffold", "shipGate", "advancePhase", "screenshotAudit", "refreshBoard"]);
+const RESERVED_EVIDENCE_FILES = new Set(["board-refresh.json", "browser-smoke.json", "dashboard-smoke.json", "ship-gate.json"]);
+const SENSITIVE_QUERY_KEY = /(token|secret|key|password|auth|session|code|credential)/i;
 
 function titleCase(value) {
   return value
@@ -172,6 +174,27 @@ export function evaluatePrivacyGate({ private: isPrivate, fixtureMode = false } 
   if (isPrivate === false && fixtureMode) return { ok: true, reason: "public-repo-fixture-mode" };
   if (isPrivate === true) return { ok: true, reason: "private-repo" };
   return { ok: true, reason: "repo-privacy-unknown-read-only" };
+}
+
+export function evaluateVerifiedPrivacyGate({ private: isPrivate, fixtureMode = false, visibilityVerified = false } = {}) {
+  if (fixtureMode) return evaluatePrivacyGate({ private: isPrivate, fixtureMode });
+  if (isPrivate === true && visibilityVerified) return { ok: true, reason: "private-repo-verified" };
+  if (isPrivate === true && !visibilityVerified) return { ok: false, reason: "repo-privacy-unverified-real-persistence-blocked" };
+  return evaluatePrivacyGate({ private: isPrivate, fixtureMode });
+}
+
+export function verifyGitHubRepoPrivacy(repoSlug = process.env.AUTOPLAN_GITHUB_REPO ?? "metzgerwebsites/web-workflow-master", root = process.cwd()) {
+  const result = spawnSync("gh", ["api", `repos/${repoSlug}`, "--jq", ".private"], {
+    cwd: root,
+    encoding: "utf8",
+    env: githubCliEnv(),
+    shell: false,
+    timeout: 15000,
+  });
+  if (result.status !== 0) return { ok: false, error: "repo-privacy-verification-failed" };
+  const value = result.stdout.trim();
+  if (value !== "true" && value !== "false") return { ok: false, error: "repo-privacy-verification-invalid" };
+  return { ok: true, repo: { private: value === "true", visibilityVerified: true, source: "gh-api" } };
 }
 
 function buildProspectPipeline(cards) {
@@ -368,7 +391,7 @@ function readRepoHealth(root) {
 }
 
 export function getBoardSnapshot({ root = process.cwd(), repo = {}, fixtureMode = false } = {}) {
-  const privacy = evaluatePrivacyGate({ private: repo.private, fixtureMode });
+  const privacy = evaluateVerifiedPrivacyGate({ private: repo.private, visibilityVerified: repo.visibilityVerified, fixtureMode });
   const scannedCards = scanCards(root);
   const cards = scannedCards.length > 0 ? scannedCards : fixtureMode ? fixtureCards() : [];
   const highRisk = SLICES.filter((slice) => slice.reviewRequired).map((slice) => slice.id);
@@ -515,15 +538,20 @@ export async function executeBrokerJob(request, options = {}) {
   if (!queued.ok) return queued;
 
   const job = queued.job;
-  const privacy = evaluatePrivacyGate({
+  const privacy = evaluateVerifiedPrivacyGate({
     private: options.repo?.private,
+    visibilityVerified: options.repo?.visibilityVerified,
     fixtureMode: options.fixtureMode ?? true,
   });
   if (!privacy.ok && WRITE_ACTIONS.has(job.action)) {
+    state.seen.delete(job.dedupeKey);
     return { ok: false, error: privacy.reason };
   }
 
-  if (state.running.has(job.action)) return { ok: false, error: "action-lock-busy" };
+  if (state.running.has(job.action)) {
+    state.seen.delete(job.dedupeKey);
+    return { ok: false, error: "action-lock-busy" };
+  }
 
   const store = options.store ?? new RuntimeStore(root);
   const storedJob = store.writeJob({ ...job, status: "running", startedAt: new Date().toISOString() });
@@ -600,6 +628,17 @@ function sanitizedEnv() {
   );
 }
 
+function githubCliEnv() {
+  return Object.fromEntries(
+    [
+      ...Object.entries(sanitizedEnv()),
+      ...["GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN"]
+        .filter((key) => process.env[key])
+        .map((key) => [key, process.env[key]]),
+    ]
+  );
+}
+
 function redactOutput(output) {
   return output.replace(REDACT_PATTERN, "$1$2[redacted]");
 }
@@ -623,17 +662,61 @@ function commandMap(action, args) {
 function validateBrokerActionArgs(action, args) {
   if (action !== "screenshotAudit") return { ok: true };
 
+  if (!args[0]) return { ok: false, error: "screenshot-url-required" };
+  const urlValidation = validateScreenshotUrl(args[0]);
+  if (!urlValidation.ok) return urlValidation;
+
   const outputIndex = args.indexOf("--output");
   if (outputIndex === -1 || !args[outputIndex + 1]) return { ok: false, error: "screenshot-output-required" };
-  const output = args[outputIndex + 1];
+  const outputValidation = validateScreenshotOutput(args[outputIndex + 1]);
+  if (!outputValidation.ok) return outputValidation;
+  return { ok: true };
+}
+
+export function validateScreenshotOutput(output) {
   const normalized = output.replaceAll("\\", "/");
   if (!/^evidence\/autoplan\/[A-Za-z0-9._-]+\.json$/.test(normalized)) {
     return { ok: false, error: "screenshot-output-not-allowed" };
+  }
+  if (RESERVED_EVIDENCE_FILES.has(normalized.split("/").at(-1))) {
+    return { ok: false, error: "screenshot-output-reserved" };
   }
   if (normalized.split("/").some((part) => part.startsWith("."))) {
     return { ok: false, error: "screenshot-output-not-allowed" };
   }
   return { ok: true };
+}
+
+export function validateScreenshotUrl(value, hostAllowlist = process.env.AUTOPLAN_SCREENSHOT_HOST_ALLOWLIST) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    return { ok: false, error: "screenshot-url-invalid" };
+  }
+  if (!["http:", "https:"].includes(url.protocol)) return { ok: false, error: "screenshot-url-protocol-blocked" };
+  if (url.username || url.password) return { ok: false, error: "screenshot-url-credentials-blocked" };
+  for (const key of url.searchParams.keys()) {
+    if (SENSITIVE_QUERY_KEY.test(key)) return { ok: false, error: "screenshot-url-sensitive-query-blocked" };
+  }
+  const allowedHosts = new Set(
+    (hostAllowlist ?? "127.0.0.1,localhost,::1,[::1]")
+      .split(",")
+      .map((host) => host.trim().toLowerCase())
+      .filter(Boolean)
+  );
+  if (!allowedHosts.has(url.hostname.toLowerCase())) return { ok: false, error: "screenshot-url-host-blocked" };
+  return { ok: true };
+}
+
+export function redactEvidenceUrl(value) {
+  const url = new URL(value);
+  url.username = url.username ? "[redacted]" : "";
+  url.password = url.password ? "[redacted]" : "";
+  for (const key of url.searchParams.keys()) {
+    if (SENSITIVE_QUERY_KEY.test(key)) url.searchParams.set(key, "[redacted]");
+  }
+  return url.toString();
 }
 
 export function runTelegramCommand(message, config = {}) {

@@ -4,7 +4,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { randomUUID } from "node:crypto";
 
-import { executeBrokerJob, getBoardSnapshot, pollTelegramOnce, RuntimeStore, runTelegramCommand } from "./core.mjs";
+import { WRITE_ACTIONS, executeBrokerJob, getBoardSnapshot, pollTelegramOnce, RuntimeStore, runTelegramCommand, verifyGitHubRepoPrivacy } from "./core.mjs";
 import { renderHtml } from "./ui.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -76,6 +76,7 @@ export async function createServer({
   port = 4177,
   fixtureMode = true,
   repo = { private: parseRepoPrivacy(process.env.AUTOPLAN_REPO_PRIVATE) },
+  httpWriteActionsEnabled = process.env.AUTOPLAN_ENABLE_HTTP_WRITE_ACTIONS === "1",
   telegramAllowedUserId = process.env.TELEGRAM_ALLOWED_USER_ID,
   telegramBotToken = process.env.TELEGRAM_BOT_TOKEN,
   telegramPollIntervalMs = Number(process.env.TELEGRAM_POLL_INTERVAL_MS ?? 0),
@@ -84,13 +85,14 @@ export async function createServer({
   const sessionToken = randomUUID();
   const brokerState = { seen: new Set() };
   let telegramOffset = 0;
+  const resolvedRepo = !fixtureMode && !repo.visibilityVerified ? (verifyGitHubRepoPrivacy(process.env.AUTOPLAN_GITHUB_REPO, root).repo ?? { ...repo, visibilityVerified: false }) : repo;
 
   const server = createHttpServer(async (request, response) => {
     try {
       const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
 
       if (request.method === "GET" && url.pathname === "/") {
-        return sendText(response, 200, renderHtml(getBoardSnapshot({ root, repo, fixtureMode }), { sessionToken }));
+        return sendText(response, 200, renderHtml(getBoardSnapshot({ root, repo: resolvedRepo, fixtureMode }), { sessionToken, httpWriteActionsEnabled }));
       }
       if (request.method === "GET" && url.pathname === "/api/health") {
         return sendJson(response, 200, {
@@ -101,7 +103,7 @@ export async function createServer({
         });
       }
       if (request.method === "GET" && url.pathname === "/api/board") {
-        return sendJson(response, 200, getBoardSnapshot({ root, repo, fixtureMode }));
+        return sendJson(response, 200, getBoardSnapshot({ root, repo: resolvedRepo, fixtureMode }));
       }
       if (request.method === "GET" && url.pathname === "/styles.css") {
         return sendText(response, 200, readFileSync(join(publicDir, "styles.css"), "utf8"), "text/css; charset=utf-8");
@@ -115,7 +117,11 @@ export async function createServer({
         if (request.headers["x-autoplan-token"] !== sessionToken) return sendJson(response, 403, { ok: false, error: "csrf-token-invalid" });
         const parsed = await readJsonBody(request);
         if (!parsed.ok) return sendJson(response, 400, { ok: false, error: parsed.error });
-        return sendJson(response, 200, await executeBrokerJob(parsed.value, { root, state: brokerState, repo, fixtureMode }));
+        if (WRITE_ACTIONS.has(parsed.value?.action) && !httpWriteActionsEnabled) {
+          new RuntimeStore(root).writeAudit({ type: "broker.http_write.blocked", action: parsed.value?.action });
+          return sendJson(response, 403, { ok: false, error: "broker-http-write-disabled" });
+        }
+        return sendJson(response, 200, await executeBrokerJob(parsed.value, { root, state: brokerState, repo: resolvedRepo, fixtureMode }));
       }
       if (request.method === "POST" && url.pathname === "/api/telegram") {
         const origin = checkOrigin(request, host);

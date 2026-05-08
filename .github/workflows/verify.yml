@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -27,3 +30,15 @@ jobs:
 
       - name: Run repository verification
         run: npm test
+
+      - name: Verify Autoplan Board package
+        run: npm run dashboard:verify
+
+      - name: Test Autoplan Board package
+        run: npm run dashboard:test
+
+      - name: Install Autoplan smoke browser
+        run: npx playwright install chromium
+
+      - name: Run Autoplan ship gate
+        run: npm run ship-gate

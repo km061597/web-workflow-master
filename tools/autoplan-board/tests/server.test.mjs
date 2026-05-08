@@ -38,6 +38,7 @@ test("server binds to loopback, serves board HTML, and exposes JSON health", asy
     assert.match(html, /aria-expanded="false"/);
     assert.match(html, /name="autoplan-token"/);
     assert.match(html, /data-broker-action="verify"/);
+    assert.match(html, /data-broker-action="shipGate" disabled/);
     assert.doesNotMatch(html, /role="list"/);
   } finally {
     await app.close();
@@ -46,7 +47,7 @@ test("server binds to loopback, serves board HTML, and exposes JSON health", asy
 });
 
 test("server broker endpoint enforces CSRF, origin, JSON parsing, and abuse guards", async () => {
-  const app = await createServer({ root: repoRoot, host: "127.0.0.1", port: 0, fixtureMode: true });
+  const app = await createServer({ root: repoRoot, host: "127.0.0.1", port: 0, fixtureMode: true, httpWriteActionsEnabled: true });
   try {
     const { port } = app.server.address();
     const base = `http://127.0.0.1:${port}`;
@@ -87,6 +88,25 @@ test("server broker endpoint enforces CSRF, origin, JSON parsing, and abuse guar
     assert.equal(absolutePath.response.headers.has("access-control-allow-origin"), false);
   } finally {
     await app.close();
+  }
+});
+
+test("server disables HTTP write broker actions by default", async () => {
+  const root = mkdtempSync(join(tmpdir(), "autoplan-board-http-write-"));
+  const app = await createServer({ root, host: "127.0.0.1", port: 0, fixtureMode: true });
+  try {
+    const { port } = app.server.address();
+    const base = `http://127.0.0.1:${port}`;
+    const writeBlocked = await postJson(`${base}/api/broker`, JSON.stringify({ id: "server-refresh-write", action: "refreshBoard", args: [] }), {
+      "x-autoplan-token": app.sessionToken,
+      origin: base,
+    });
+    assert.equal(writeBlocked.response.status, 403);
+    assert.equal(writeBlocked.json.error, "broker-http-write-disabled");
+    assert.match(readFileSync(join(root, ".autoplan-board", "audit-events.jsonl"), "utf8"), /broker\.http_write\.blocked/);
+  } finally {
+    await app.close();
+    rmSync(root, { recursive: true, force: true });
   }
 });
 

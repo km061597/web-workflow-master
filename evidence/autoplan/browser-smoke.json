@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "checkedAt": "2026-05-08T08:25:36.545Z",
-  "base": "http://127.0.0.1:51125",
+  "checkedAt": "2026-05-08T09:07:19.803Z",
+  "base": "http://127.0.0.1:53042",
   "implementedSlices": 15,
   "fixtureChainStatus": "local-complete",
   "captured": [
@@ -11,7 +11,7 @@
       "width": 1440,
       "height": 900,
       "bytes": 98977,
-      "mtimeMs": 1778228735953.9692
+      "mtimeMs": 1778231239203.2002
     },
     {
       "name": "mobile",
@@ -19,7 +19,7 @@
       "width": 390,
       "height": 844,
       "bytes": 40561,
-      "mtimeMs": 1778228736540.9368
+      "mtimeMs": 1778231239801.0835
     }
   ]
 }

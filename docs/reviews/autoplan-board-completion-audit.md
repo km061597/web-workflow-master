@@ -5,7 +5,7 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 ## Evidence Checked
 
 - Branch: `update/autoplan-board-v1`.
-- GitHub repo state: `metzgerwebsites/web-workflow-master` is public, so broker write actions are blocked when fixture mode is off.
+- GitHub repo state: `metzgerwebsites/web-workflow-master` is public, so broker write actions are blocked when fixture mode is off. Non-fixture write actions require verified GitHub privacy before they can run.
 - PR state at audit time: PR #50 exists at `https://github.com/metzgerwebsites/web-workflow-master/pull/50`; live state must be refreshed with `gh pr view 50 --json url,headRefOid,reviewDecision,mergeStateStatus,statusCheckRollup` before merge.
 - Package: `tools/autoplan-board/`.
 - Runtime state: `.autoplan-board/` is gitignored.
@@ -19,13 +19,13 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
-| S01 private-repo safety gate | `evaluatePrivacyGate()` and tests block real persistence while public unless fixture mode | Green locally |
+| S01 private-repo safety gate | `evaluateVerifiedPrivacyGate()` and tests block real persistence while public or privacy-unverified unless fixture mode | Green locally |
 | S02 isolated board package | `tools/autoplan-board/package.json`, root `dashboard*` scripts | Green locally |
 | S03 runtime state/audit store | `RuntimeStore`, `.autoplan-board/jobs.jsonl`, `.autoplan-board/audit-events.jsonl`, tests | Green locally |
 | S04 workflow master read adapter | board reads root scripts and displays verify/dashboard/GitHub/protection status | Green locally |
 | S05 prospect artifact model | fixture and manifest scan tests map `prospects/*/workflow-manifest.json` into columns | Green locally |
 | S06 live board UI/card detail | HTML/CSS/JS card detail controls, keyboard navigation, desktop/mobile smoke | Green locally |
-| S07 safe broker core | allowlist, fixed argv, `spawn` without shell, sanitized env, timeout, output cap, lock, audit tests | Green locally |
+| S07 safe broker core | allowlist, fixed argv, `spawn` without shell, sanitized env, timeout, output cap, lock, audit tests, default-disabled HTTP writes, and safe shared `screenshotAudit` URL/output validation for broker and direct metadata CLI | Green locally |
 | S08 verify action E2E | `/api/broker` executes `npm run verify` in server test, browser UI exposes `Run verify`, registry tests prove every local broker command surface resolves, and broker execution records job state | Green locally |
 | S09 autoplan sidecars | `.autoplan-board/autoplan-runs/*.json` sidecar reader, ship-gate-stamped fixture sidecar, and tests | Green locally |
 | S10 autonomous fixture chain kickoff | fixture chain summary now requires verify + shipGate runtime evidence before `local-complete`, with source-qualified evidence strings | Green locally, fixture-scope only |
@@ -39,8 +39,8 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 | Browser smoke desktop/mobile | `npm run dashboard:smoke` refreshes `browser-smoke.json`, desktop 1440x900 PNG, and mobile 390x844 PNG; ship gate validates freshness and dimensions | Green locally |
 | Broker abuse tests | unsupported action, traversal, absolute path, destructive token, duplicate/rerun behavior | Green locally |
 | Telegram control tests | denied user, allowlisted status, poller approval path, raw command block, invalid target, HTTP CSRF/origin, and HTTP forged approval block | Green locally |
-| External review | Claude completed, including Computer Use re-review against pushed PR head `6a8e394`; Kimi/OpenClaw UI re-review was corrected from stale `57ddf9b` to actual PR head `6a8e394` and reported no blocking findings; adversarial Codex subagents later found screenshot, privacy, Telegram shim, and documentation gaps that Codex patched in this follow-up; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved after local patch; Gemini lane documented unavailable |
-| PR ready with evidence | PR #50 is open, mergeable, CI green, and has the evidence body; GitHub still requires human review approval | Review required |
+| External review | Claude completed, including Computer Use review; Kimi/OpenClaw UI review reported no blocking findings on the pushed PR head available at that time; adversarial Codex subagents later found screenshot URL/output leakage, locally fetchable HTTP broker-token risk, unverified privacy-guard risk, token-only GitHub privacy verification risk, implicit CI token permissions, and stale documentation. Codex patched those in this follow-up; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved after local patch; Gemini lane documented unavailable |
+| PR ready with evidence | PR #50 is open and has the evidence body; CI/Verify now run package verify/test and ship-gate, but the current local patch still needs commit/push before live PR checks can rerun; GitHub still requires human review approval | Review required |
 
 ## Remaining Before Goal Completion
 

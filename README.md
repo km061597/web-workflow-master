@@ -98,8 +98,8 @@ npm i -D stylelint stylelint-config-standard stylelint-declaration-strict-value 
 # 5. Start dev server
 npm run dev
 
-# 6. Capture for visual iteration.
-node scripts/screenshot.js http://localhost:3000 --output my-site.png
+# 6. Queue screenshot metadata for visual iteration.
+node scripts/screenshot.js http://localhost:3000 --output evidence/autoplan/screenshot-request.json
 node scripts/responsive.js http://localhost:3000
 
 # 7. Run quality gates.

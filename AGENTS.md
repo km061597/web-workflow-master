@@ -134,7 +134,7 @@ Required packet for any Autoplan worker:
 
 - Scope: `tools/autoplan-board/`, root dashboard scripts, `scripts/ship-gate.mjs`, `evidence/autoplan/`, and `docs/reviews/autoplan-board-*.md`.
 - Commands: `npm run dashboard:verify`, `npm run dashboard:test`, `npm run dashboard:smoke`, `npm run dashboard:refresh`, `npm run verify`, and `npm run ship-gate` when claiming local readiness.
-- Evidence: `evidence/autoplan/board-refresh.json`, `evidence/autoplan/browser-smoke.json`, `evidence/autoplan/ship-gate.json`, desktop/mobile screenshots, completion audit, and external review log.
+- Evidence: `evidence/autoplan/board-refresh.json`, `evidence/autoplan/browser-smoke.json`, `evidence/autoplan/dashboard-smoke.json`, `evidence/autoplan/ship-gate.json`, desktop/mobile screenshots, completion audit, external review log, and PR body draft.
 - Stop condition: code-side gates can be green while GitHub remains `REVIEW_REQUIRED`; CODEOWNERS approval is a human process gate.
 
 ### Design System Build

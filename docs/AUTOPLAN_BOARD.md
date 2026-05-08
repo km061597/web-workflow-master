@@ -55,7 +55,7 @@ Runtime state is local and gitignored under `.autoplan-board/`.
 | `.autoplan-board/audit-events.jsonl` | Local audit events including broker, server, ship-gate, and Telegram events. |
 | `.autoplan-board/autoplan-runs/*.json` | Local Autoplan sidecars, including ship-gate-stamped fixture sidecars. |
 
-Do not commit `.autoplan-board/`. The public repository remains fixture-safe; broker write actions are blocked when the repo is public and fixture mode is off.
+Do not commit `.autoplan-board/`. The public repository remains fixture-safe; broker write actions are blocked when the repo is public and fixture mode is off. Non-fixture write actions fail closed unless repo privacy is verified from GitHub.
 
 ## Broker Actions
 
@@ -69,9 +69,9 @@ The allowed broker actions are:
 - `refreshGithub`
 - `refreshBoard`
 
-The broker runs fixed argv with `shell: false`, sanitized environment, path/destructive token rejection, output caps, timeout handling, action locks, dedupe release after completion, and audit records. Registry drift returns `broker-action-unavailable` instead of leaking an uncontrolled exception.
+The broker runs fixed argv with `shell: false`, sanitized environment, path/destructive token rejection, output caps, timeout handling, action locks, dedupe release after completion, and audit records. Registry drift returns `broker-action-unavailable` instead of leaking an uncontrolled exception. HTTP-triggered write actions are disabled by default and require `AUTOPLAN_ENABLE_HTTP_WRITE_ACTIONS=1`; direct CLI gates such as `npm run ship-gate` remain available.
 
-`screenshotAudit` writes screenshot-request metadata only, not PNG browser screenshots, and its `--output` is restricted to `evidence/autoplan/*.json`. Use `npm run dashboard:smoke` for required PNG evidence. `refreshGithub` requires an authenticated `gh` CLI on `PATH`; unauthenticated agents should treat that failure as expected unless live GitHub state is in scope.
+`screenshotAudit` writes screenshot-request metadata only, not PNG browser screenshots. The broker action and direct `scripts/screenshot.js` entrypoint both only accept `http:` or `https:` URLs whose host is in `AUTOPLAN_SCREENSHOT_HOST_ALLOWLIST`, reject credentialed or sensitive-query URLs before writing evidence, and restrict `--output` to non-reserved `evidence/autoplan/*.json` files. Use `npm run dashboard:smoke` for required PNG evidence. `refreshGithub` requires an authenticated `gh` CLI on `PATH`; unauthenticated agents should treat that failure as expected unless live GitHub state is in scope.
 
 ## Telegram Control
 
