@@ -1,22 +1,22 @@
 # Next.js Canonical Scaffold
 
-Production-ready Next.js 16 scaffold with React 19, Tailwind 4, shadcn/ui, and full quality tooling.
+Production-ready Next.js 15 scaffold with React 19, Tailwind 4, shadcn/ui, and full quality tooling.
 
 ## Stack
 
 | Layer | Choice | Version |
 |-------|--------|---------|
-| Framework | Next.js | 16.2.4 |
-| React | React | 19.2.4 |
+| Framework | Next.js | 15.5.18 |
+| React | React | 19.2.6 |
 | Styling | Tailwind CSS | 4.1.5 |
 | Components | shadcn/ui | base-nova |
 | Animation | Motion (Framer Motion) | 12.10 |
 | Icons | Lucide React | 0.509 |
 | Forms | React Hook Form + Zod | 7.56 / 3.25 |
-| Testing | Vitest + Storybook + Playwright | 3.2 / 9.3 / 1.60 |
+| Testing | Vitest + Storybook + Playwright | 3.2 / 10.3 / 1.59 |
 | Linting | ESLint 9 + Prettier + Stylelint | 9.25 / 3.6 / 17.10 |
-| Performance | Lighthouse CI + size-limit | 0.15 / 12.1 |
-| Accessibility | pa11y-ci | 4.1 |
+| Performance | Lighthouse CLI + size-limit | 13.2 / 12.1 |
+| Accessibility | axe-core + Playwright | 4.11 / 1.59 |
 
 ## Quick Start
 
@@ -36,7 +36,7 @@ npm run dev
 | `npm run format` | Prettier write |
 | `npm run typecheck` | TypeScript strict check |
 | `npm run test` | Vitest unit tests |
-| `npm run lighthouse` | Lighthouse CI audit |
+| `npm run lighthouse` | Lighthouse audit against `http://localhost:3000` |
 | `npm run verify:setup` | Pre-ship verification |
 | `npm run verify:viewports` | Responsive breakpoint test |
 | `npm run verify:a11y` | Automated a11y scan |
@@ -58,7 +58,7 @@ npm run dev
 │   ├── verify-setup.mjs
 │   ├── verify-viewports.mjs
 │   └── verify-a11y.mjs
-├── lighthouserc.cjs   # Lighthouse CI config
+├── lighthouserc.cjs   # Lighthouse budget config
 ├── .stylelintrc.json  # Stylelint config
 ├── components.json    # shadcn/ui config
 └── package.json
@@ -72,7 +72,6 @@ Copy `.env.example` → `.env.local` and fill in:
 
 - `NEXT_PUBLIC_SITE_URL` — production domain (required)
 - `RESEND_API_KEY` — email backend (optional)
-- `OPENAI_API_KEY` — AI features (optional)
 
 ### shadcn/ui
 
@@ -96,11 +95,11 @@ Tailwind 4 uses CSS-first configuration. Theme tokens are defined in `src/app/gl
 
 ### Security Headers
 
-CSP and security headers are configured in `next.config.ts`. Customize the CSP policy for your third-party integrations.
+CSP and security headers are configured for static hosts in `public/_headers` and for Vercel in `vercel.json`. Customize the CSP policy for your third-party integrations.
 
 ## Quality Gates
 
-### Lighthouse CI
+### Lighthouse
 
 ```bash
 npm run lighthouse

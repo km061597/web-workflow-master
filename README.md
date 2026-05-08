@@ -38,6 +38,7 @@ schemas/        → ready-to-paste schema.org JSON-LD templates — **TODO pendi
 ## Stack
 
 **Base stack** (primary template):
+
 - Next.js 16 (App Router, TypeScript)
 - React 19
 - Tailwind CSS 4 with CSS variable theming
@@ -47,10 +48,12 @@ schemas/        → ready-to-paste schema.org JSON-LD templates — **TODO pendi
 - Geist font (Next.js font optimization)
 
 **Alternative templates** (per-project choice):
+
 - Astro 5 + Tailwind v4 — lightweight marketing sites, portfolios
 - Next.js 15 — stable LTS option when bleeding-edge is not required
 
 **Quality & QA**:
+
 - Vitest — unit/component tests
 - React Testing Library — component rendering in tests
 - Playwright — E2E tests (Chrome, Firefox, Safari, mobile)
@@ -60,21 +63,22 @@ schemas/        → ready-to-paste schema.org JSON-LD templates — **TODO pendi
 - Prettier + ESLint + React Scan
 
 **Browser automation**:
+
 - `surf-cli` — primary browser tool (navigate, screenshot, emulate, click)
 - Playwright CLI — escape-hatch for complex automation
 
 **Research & scraping**:
+
 - Firecrawl MCP — scrape, extract, crawl competitor/reference sites
 - Browserbase MCP — cloud browser for anti-bot, proxies
 
 ## Quick Start
 
 ```bash
-# 1. Scaffold a site — do not hand-copy templates
-# TODO pending owner: tools/scaffold.js and bin/scaffold-site.sh
-node tools/scaffold.js my-site --template landing-page
-# or, for Next.js builds:
-bin/scaffold-site.sh my-site
+# 1. Scaffold a site — do not hand-copy templates.
+npm run scaffold -- my-site --template nextjs-canonical
+# or:
+bin/scaffold-site.sh my-site nextjs-canonical
 
 # 2. Complete the planning artifacts (hard gates before build)
 # - BRIEF.md: client scenario, audience, goal, constraints, exemplars
@@ -84,8 +88,7 @@ bin/scaffold-site.sh my-site
 # - TESTING.md: observable assertions and negative checks
 # - PRODUCTS.md: required if storefront/catalog is in scope
 
-# 3. Advance only when gates pass
-# TODO pending owner: bin/advance-phase.sh
+# 3. Advance only when gates pass.
 bin/advance-phase.sh design
 bin/advance-phase.sh build
 
@@ -95,25 +98,33 @@ npm i -D stylelint stylelint-config-standard stylelint-declaration-strict-value 
 # 5. Start dev server
 npm run dev
 
-# 6. Capture for visual iteration
-# TODO pending owner: scripts/screenshot.js and scripts/responsive.js
+# 6. Capture for visual iteration.
 node scripts/screenshot.js http://localhost:3000 --output my-site.png
 node scripts/responsive.js http://localhost:3000
 
-# 7. Run quality gates
-# TODO pending owner: npm run ship-gate and scripts/audit.js
+# 7. Run quality gates.
 npm run ship-gate         # runs all enforceable gates locally
 # or
 node scripts/audit.js http://localhost:3000
 ```
 
+## Repository Verification
+
+Run the same gate locally and in GitHub Actions:
+
+```bash
+npm run verify
+```
+
+This checks the root command surface, JavaScript syntax, scaffold setup verification, and the Astro scaffold validator. `npm run ship-gate` is an alias for the same enforced repository gate.
+
 ## Work Modes
 
-| Mode | Workspace | Key Files | Purpose |
-|---|---|---|---|
-| Discover & Plan | `prospects/`, `clients/` | `BRIEF.md`, `RESEARCH.md`, `IA.md`, `_master-list.md`, per-prospect `dossier.md` | Research, intake, spec before build |
-| Build & Ship | `sites/`, `templates/`, `clients/*/repo/` | Master template repo, site-specific repos | Design, develop, quality gate, deploy |
-| Operate | `ops/` | `pipeline.md`, `maintenance-queue.md`, `quotes.md` | Business ops, CRM, legal, sales, handoff |
+| Mode            | Workspace                                 | Key Files                                                                        | Purpose                                  |
+| --------------- | ----------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------- |
+| Discover & Plan | `prospects/`, `clients/`                  | `BRIEF.md`, `RESEARCH.md`, `IA.md`, `_master-list.md`, per-prospect `dossier.md` | Research, intake, spec before build      |
+| Build & Ship    | `sites/`, `templates/`, `clients/*/repo/` | Master template repo, site-specific repos                                        | Design, develop, quality gate, deploy    |
+| Operate         | `ops/`                                    | `pipeline.md`, `maintenance-queue.md`, `quotes.md`                               | Business ops, CRM, legal, sales, handoff |
 
 ## Client Transformation Standard
 
@@ -130,11 +141,11 @@ Use `ops/client-transformation-workflow.md` — **TODO pending owner** — for e
 
 ## Pricing (productized service tier)
 
-| Tier | Build | Monthly | Pages |
-|---|---|---|---|
-| Starter | $1,800 | $35 | 3 |
-| Standard | $3,500 | $95 | 5–7 |
-| Premium | $5,500 | $150 | 10+ |
+| Tier     | Build  | Monthly | Pages |
+| -------- | ------ | ------- | ----- |
+| Starter  | $1,800 | $35     | 3     |
+| Standard | $3,500 | $95     | 5–7   |
+| Premium  | $5,500 | $150    | 10+   |
 
 ## The eight hard rules
 
@@ -150,29 +161,35 @@ Use `ops/client-transformation-workflow.md` — **TODO pending owner** — for e
 ## Common stuck points
 
 ### "Which agent for X?"
+
 Dispatch `art-director`. It owns orchestration. If you don't know the right chain, that's the right call.
 
 ### "I want it to look like [Linear / Stripe / Vercel]."
+
 Dispatch `research-agent` to fill the relevant exemplar in `exemplars/tier-a-plus/`, then dispatch `design-system-agent` with that exemplar as the brief.
 
 ### "It looks generic / AI-slop."
+
 Dispatch `design-critic`. It scans against `exemplars/tier-c-counter-examples/` and surfaces the AI tells. Then dispatch `design-system-agent` or `art-director` to fix.
 
 ### "Lighthouse is failing CWV gates."
+
 Dispatch `performance-engineer`. It owns `quality/lighthouse/budget.json` — **TODO pending owner** (quality function group). Common culprits: unoptimized images, render-blocking JS, fonts without `swap`, third-party tags.
 
 ### "Accessibility violations from pa11y."
+
 Dispatch `accessibility-auditor`. It owns `quality/a11y/pa11yci.json` — **TODO pending owner** (quality function group).
 
 ### "I want to ship — what do I run?"
+
 ```bash
-# TODO pending owner: npm run ship-gate
 npm run ship-gate
 ```
 
 Reads all seven executable gates plus the required evidence reports before phase advancement. If green: deploy. If red: read the evidence files, fix, re-run.
 
 ### "An agent claimed done but it doesn't work."
+
 - Did the gate pass? If not, the claim is wrong by definition.
 - Was a real browser used to verify? `art-director` + `accessibility-auditor`.
 - If a deployed-app issue: dispatch `accessibility-auditor` against the production URL.
@@ -201,7 +218,7 @@ The system improves by accretion. Don't let the perfect be the enemy of the docu
 
 > **Target state.** The following scripts and directories are not yet emitted by any open PR. Marked **TODO pending owner**.
 
-The workspace itself is versioned via git. `bin/scaffold-site.sh` — **TODO pending owner** — and `quality/setup-site.sh` — **TODO pending owner** — copy a portable `quality/` — **TODO pending owner** + `conventions/` — **TODO pending owner** bundle into each site, so a client handoff is not dependent on workspace symlinks. Re-run `../../quality/setup-site.sh` — **TODO pending owner** inside an active site when you intentionally want to refresh that site's copied gate bundle from the workspace. Changes to `playbooks/` — **TODO pending owner** and `schemas/` — **TODO pending owner** are reference material — sites copy what they need.
+The workspace itself is versioned via git. `bin/scaffold-site.sh` creates a site from the checked-in scaffolds. `quality/setup-site.sh` — **TODO pending owner** — will copy a portable `quality/` — **TODO pending owner** + `conventions/` — **TODO pending owner** bundle into each site, so a client handoff is not dependent on workspace symlinks. Re-run `../../quality/setup-site.sh` — **TODO pending owner** inside an active site when you intentionally want to refresh that site's copied gate bundle from the workspace. Changes to `playbooks/` — **TODO pending owner** and `schemas/` — **TODO pending owner** are reference material — sites copy what they need.
 
 Major version bumps (breaking budgets, removed gates) get a note in `QUALITY.md#changelog` — **TODO pending owner**.
 

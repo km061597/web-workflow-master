@@ -1,12 +1,13 @@
-import { execSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 const checks = [
   { name: 'Node 22+', test: () => process.version.match(/^v(\d+)/)?.[1] >= '22' },
   { name: 'Next.js config', test: () => existsSync('next.config.ts') || existsSync('next.config.mjs') },
-  { name: 'Tailwind config', test: () => existsSync('postcss.config.mjs') },
+  { name: 'Tailwind/PostCSS config', test: () => existsSync('postcss.config.mjs') },
   { name: 'App router', test: () => existsSync('src/app/layout.tsx') },
   { name: 'Utils lib', test: () => existsSync('src/lib/utils.ts') },
+  { name: 'Tailwind CSS entry', test: () => existsSync('src/app/globals.css') && readFileSync('src/app/globals.css', 'utf8').includes('@import "tailwindcss"') },
+  { name: 'Env example', test: () => existsSync('.env.example') && readFileSync('.env.example', 'utf8').includes('BUSINESS_EMAIL=') },
 ];
 
 let passed = 0;

@@ -1,6 +1,5 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintConfigPrettier from "eslint-config-prettier";
-import storybook from "eslint-plugin-storybook";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,19 +9,8 @@ const compat = new FlatCompat({ baseDirectory: __dirname });
 const config = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   eslintConfigPrettier,
-  ...storybook.configs["flat/recommended"],
   {
-    ignores: [
-      ".next/**",
-      "out/**",
-      "build/**",
-      "dist/**",
-      "storybook-static/**",
-      "node_modules/**",
-      ".storybook/**",
-      "next-env.d.ts",
-      "scripts/**",
-    ],
+    ignores: [".next/**", "out/**", "build/**", "dist/**", "node_modules/**", "next-env.d.ts"],
   },
 ];
 

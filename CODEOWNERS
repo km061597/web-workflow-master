@@ -1,0 +1,12 @@
+* @metzgerwebsites
+/.github/ @metzgerwebsites
+/scripts/ @metzgerwebsites
+/tools/ @metzgerwebsites
+/bin/ @metzgerwebsites
+/scaffolds/ @metzgerwebsites
+/quality/ @metzgerwebsites
+/playbooks/ @metzgerwebsites
+/README.md @metzgerwebsites
+/ONBOARDING.md @metzgerwebsites
+/package.json @metzgerwebsites
+/package-lock.json @metzgerwebsites

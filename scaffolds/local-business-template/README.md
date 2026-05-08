@@ -1,10 +1,10 @@
 # Local Business Website Template
 
-Next.js 15 + React 19 + Tailwind 4 + Resend. Designed for storefronts, restaurants, salons, clinics, and service-area businesses.
+Next.js 15.5 + React 19 + Tailwind 4 + Resend. Designed for storefronts, restaurants, salons, clinics, and service-area businesses.
 
 ## Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 15.5 (App Router)
 - **Runtime:** React 19, TypeScript 5.7
 - **Styling:** Tailwind CSS 4
 - **Email:** Resend (contact form notifications)

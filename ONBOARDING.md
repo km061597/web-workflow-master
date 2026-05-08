@@ -43,11 +43,10 @@ schemas/        → ready-to-paste schema.org JSON-LD templates — **TODO pendi
 ## Day one — start a new site
 
 ```bash
-# 1. Scaffold a site — do not hand-copy templates
-# TODO pending owner: tools/scaffold.js and bin/scaffold-site.sh
-node tools/scaffold.js my-site --template landing-page
-# or, for Next.js builds:
-bin/scaffold-site.sh my-site
+# 1. Scaffold a site — do not hand-copy templates.
+npm run scaffold -- my-site --template nextjs-canonical
+# or:
+bin/scaffold-site.sh my-site nextjs-canonical
 cd sites/my-site
 npm install
 
@@ -59,8 +58,7 @@ npm install
 # - TESTING.md: observable assertions and negative checks
 # - PRODUCTS.md: required if storefront/catalog is in scope
 
-# 3. Advance only when gates pass
-# TODO pending owner: bin/advance-phase.sh
+# 3. Advance only when gates pass.
 ../../bin/advance-phase.sh design
 ../../bin/advance-phase.sh build
 
@@ -78,7 +76,6 @@ npm i -D stylelint stylelint-config-standard stylelint-declaration-strict-value 
 # 6. While the AI works, the gate awaits at the end:
 npm run dev
 # (in another tab)
-# TODO pending owner: npm run ship-gate
 npm run ship-gate         # runs all gates locally
 ```
 
@@ -119,45 +116,45 @@ npm run ship-gate         # runs all gates locally
 
 > **Target navigation.** Paths in this table that are not present in this PR are pending their owning function-group PR, even when repeated without inline notes for readability.
 
-| You want to... | Read this |
-|---|---|
-| Understand the workspace structure | `WORKSPACE.md` — **TODO pending owner** |
-| Know which agent to dispatch for what | `CLAUDE.md` — **TODO pending owner** (dispatch table) |
-| Build something mobile-exceptional | `MOBILE.md` — **TODO pending owner** |
-| Know what "ready to ship" means | `QUALITY.md` — **TODO pending owner** + `playbooks/ship-readiness.md` — **TODO pending owner** |
-| Find which CLI to use | `TOOLS.md` — **TODO pending owner** |
-| Pick a site-build playbook | `PLAYBOOKS.md` — **TODO pending owner** |
-| Write copy that doesn't read AI | `conventions/voice-and-tone.md` — **TODO pending owner** + `conventions/microcopy-library.md` — **TODO pending owner** |
-| Set up motion correctly | `conventions/motion-tokens.md` |
-| Pick / fix colors | `conventions/color-apca.md` |
-| Wire analytics | `conventions/analytics-events.md` |
-| See what A+ looks like | `exemplars/tier-a-plus/` |
-| See what to avoid | `exemplars/tier-c-counter-examples/` |
-| Choose existing-site / greenfield / storefront workflow | `playbooks/scenario-routing.md` |
-| Preserve an existing artist / musician / creator site | `playbooks/artist-existing-site-rebuild.md` |
-| Preserve an existing site during rebuild | `playbooks/intake-existing-site.md` |
-| Start with no site / no brand | `playbooks/intake-greenfield.md` |
-| Research an unknown industry | `playbooks/industry-research.md` |
-| Research competitors | `playbooks/competitor-research.md` |
-| Design navigation and route discovery | `playbooks/information-architecture.md` |
-| Build product filtering/sorting/discovery | `playbooks/product-discovery.md` |
-| Build a small-business storefront | `playbooks/storefront-small-business.md` |
-| Prove tests/assertions actually exercise user outcomes | `playbooks/test-evidence.md` — **TODO pending owner** |
-| Run visual QA against exemplars / anti-slop patterns | `playbooks/visual-quality-review.md` — **TODO pending owner** |
-| Prepare owner handoff / maintenance package | `playbooks/maintainability-handoff.md` |
-| Debug a red ship gate without weakening quality | `quality/ship-gate-gotchas.md` |
-| Generate brand assets (favicons, OG, splash) | `playbooks/brand-assets.md` |
-| Build a quality form | `playbooks/form-quality.md` |
-| Add SEO structured data | `schemas/seo-jsonld/README.md` — **TODO pending owner** |
-| Set up Storybook | `playbooks/storybook-setup.md` |
-| Add service workers / offline / PWA install prompt | `playbooks/service-worker-patterns.md` |
-| Build dark mode that doesn't suck | `playbooks/dark-mode-parity.md` |
-| Support RTL languages | `playbooks/rtl-audit.md` |
-| Handle reduced motion / data | `playbooks/reduced-motion.md` |
-| Survive Windows High Contrast | `playbooks/forced-colors-mode.md` |
-| Print stylesheets | `playbooks/print-styles.md` |
-| Survive 200% browser zoom | `playbooks/zoom-200.md` |
-| Send transactional / marketing email | `playbooks/email-infra.md` |
+| You want to...                                          | Read this                                                                                                              |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Understand the workspace structure                      | `WORKSPACE.md` — **TODO pending owner**                                                                                |
+| Know which agent to dispatch for what                   | `CLAUDE.md` — **TODO pending owner** (dispatch table)                                                                  |
+| Build something mobile-exceptional                      | `MOBILE.md` — **TODO pending owner**                                                                                   |
+| Know what "ready to ship" means                         | `QUALITY.md` — **TODO pending owner** + `playbooks/ship-readiness.md` — **TODO pending owner**                         |
+| Find which CLI to use                                   | `TOOLS.md` — **TODO pending owner**                                                                                    |
+| Pick a site-build playbook                              | `PLAYBOOKS.md` — **TODO pending owner**                                                                                |
+| Write copy that doesn't read AI                         | `conventions/voice-and-tone.md` — **TODO pending owner** + `conventions/microcopy-library.md` — **TODO pending owner** |
+| Set up motion correctly                                 | `conventions/motion-tokens.md`                                                                                         |
+| Pick / fix colors                                       | `conventions/color-apca.md`                                                                                            |
+| Wire analytics                                          | `conventions/analytics-events.md`                                                                                      |
+| See what A+ looks like                                  | `exemplars/tier-a-plus/`                                                                                               |
+| See what to avoid                                       | `exemplars/tier-c-counter-examples/`                                                                                   |
+| Choose existing-site / greenfield / storefront workflow | `playbooks/scenario-routing.md`                                                                                        |
+| Preserve an existing artist / musician / creator site   | `playbooks/artist-existing-site-rebuild.md`                                                                            |
+| Preserve an existing site during rebuild                | `playbooks/intake-existing-site.md`                                                                                    |
+| Start with no site / no brand                           | `playbooks/intake-greenfield.md`                                                                                       |
+| Research an unknown industry                            | `playbooks/industry-research.md`                                                                                       |
+| Research competitors                                    | `playbooks/competitor-research.md`                                                                                     |
+| Design navigation and route discovery                   | `playbooks/information-architecture.md`                                                                                |
+| Build product filtering/sorting/discovery               | `playbooks/product-discovery.md`                                                                                       |
+| Build a small-business storefront                       | `playbooks/storefront-small-business.md`                                                                               |
+| Prove tests/assertions actually exercise user outcomes  | `playbooks/test-evidence.md` — **TODO pending owner**                                                                  |
+| Run visual QA against exemplars / anti-slop patterns    | `playbooks/visual-quality-review.md` — **TODO pending owner**                                                          |
+| Prepare owner handoff / maintenance package             | `playbooks/maintainability-handoff.md`                                                                                 |
+| Debug a red ship gate without weakening quality         | `quality/ship-gate-gotchas.md`                                                                                         |
+| Generate brand assets (favicons, OG, splash)            | `playbooks/brand-assets.md`                                                                                            |
+| Build a quality form                                    | `playbooks/form-quality.md`                                                                                            |
+| Add SEO structured data                                 | `schemas/seo-jsonld/README.md` — **TODO pending owner**                                                                |
+| Set up Storybook                                        | `playbooks/storybook-setup.md`                                                                                         |
+| Add service workers / offline / PWA install prompt      | `playbooks/service-worker-patterns.md`                                                                                 |
+| Build dark mode that doesn't suck                       | `playbooks/dark-mode-parity.md`                                                                                        |
+| Support RTL languages                                   | `playbooks/rtl-audit.md`                                                                                               |
+| Handle reduced motion / data                            | `playbooks/reduced-motion.md`                                                                                          |
+| Survive Windows High Contrast                           | `playbooks/forced-colors-mode.md`                                                                                      |
+| Print stylesheets                                       | `playbooks/print-styles.md`                                                                                            |
+| Survive 200% browser zoom                               | `playbooks/zoom-200.md`                                                                                                |
+| Send transactional / marketing email                    | `playbooks/email-infra.md`                                                                                             |
 
 ## The eight hard rules (TL;DR of `CLAUDE.md` — **TODO pending owner**)
 
@@ -175,28 +172,35 @@ npm run ship-gate         # runs all gates locally
 ## Common stuck points
 
 ### "Which agent for X?"
+
 Dispatch `art-director`. It owns orchestration. If you don't know the right chain, that's the right call.
 
 ### "I want it to look like [Linear / Stripe / Vercel]."
+
 Dispatch `research-agent` to fill the relevant exemplar in `exemplars/tier-a-plus/`, then dispatch `design-system-agent` with that exemplar as the brief.
 
 ### "It looks generic / AI-slop."
+
 Dispatch `design-critic`. It scans against `exemplars/tier-c-counter-examples/` and surfaces the AI tells. Then dispatch `design-system-agent` or `art-director` to fix.
 
 ### "Lighthouse is failing CWV gates."
+
 Dispatch `performance-engineer`. It owns `quality/lighthouse/budget.json` — **TODO pending owner** (quality function group). Common culprits: unoptimized images, render-blocking JS, fonts without `swap`, third-party tags.
 
 ### "Accessibility violations from pa11y."
+
 Dispatch `accessibility-auditor`. It owns `quality/a11y/pa11yci.json` — **TODO pending owner** (quality function group).
 
 ### "I want to ship — what do I run?"
+
 ```bash
-# TODO pending owner: npm run ship-gate
 npm run ship-gate
 ```
+
 Reads all seven executable gates plus the required evidence reports before phase advancement. If green: deploy. If red: read the evidence files, fix, re-run. Skipped gates are treated as NO-GO.
 
 ### "An agent claimed done but it doesn't work."
+
 - Did the gate pass? If not, the claim is wrong by definition.
 - Was a real browser used to verify? `art-director` + `accessibility-auditor`.
 - If a deployed-app issue: dispatch `accessibility-auditor` against the production URL.
@@ -225,7 +229,7 @@ The system improves by accretion. Don't let the perfect be the enemy of the docu
 
 > **Target state.** The following scripts and directories are not yet emitted by any open PR. Marked **TODO pending owner**.
 
-The workspace itself is versioned via git. `bin/scaffold-site.sh` — **TODO pending owner** — and `quality/setup-site.sh` — **TODO pending owner** — copy a portable `quality/` — **TODO pending owner** + `conventions/` — **TODO pending owner** bundle into each site, so a client handoff is not dependent on workspace symlinks. Re-run `../../quality/setup-site.sh` — **TODO pending owner** inside an active site when you intentionally want to refresh that site's copied gate bundle from the workspace. Changes to `playbooks/` — **TODO pending owner** and `schemas/` — **TODO pending owner** are reference material — sites copy what they need.
+The workspace itself is versioned via git. `bin/scaffold-site.sh` creates a site from the checked-in scaffolds. `quality/setup-site.sh` — **TODO pending owner** — will copy a portable `quality/` — **TODO pending owner** + `conventions/` — **TODO pending owner** bundle into each site, so a client handoff is not dependent on workspace symlinks. Re-run `../../quality/setup-site.sh` — **TODO pending owner** inside an active site when you intentionally want to refresh that site's copied gate bundle from the workspace. Changes to `playbooks/` — **TODO pending owner** and `schemas/` — **TODO pending owner** are reference material — sites copy what they need.
 
 Major version bumps (breaking budgets, removed gates) get a note in `QUALITY.md#changelog` — **TODO pending owner**.
 

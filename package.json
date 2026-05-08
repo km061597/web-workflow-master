@@ -3,22 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "description": "AI-powered, taste-anchored web design workspace. Multi-site, multi-template, ship-ready.",
+  "type": "module",
   "workspaces": [
     "scaffolds/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
-    "lint": "npm run lint --workspaces",
-    "test": "npm run test --workspaces",
-    "typecheck": "npm run typecheck --workspaces",
-    "verify:all": "npm run verify:setup --workspaces",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run verify",
+    "verify": "node scripts/verify-repo.mjs",
+    "verify:all": "npm run verify",
+    "ship-gate": "npm run verify",
+    "scaffold": "node tools/scaffold.js",
+    "audit": "node scripts/audit.js",
     "validate": "node --check scripts/discovery.mjs && echo 'scripts/discovery.mjs syntax OK'",
-    "format:check": "prettier --check '**/*.md' '**/*.json' '**/*.yml' '**/*.yaml'"
+    "format:check": "prettier --check package.json package-lock.json README.md ONBOARDING.md SECURITY.md SECRETS_AUDIT.md .github/*.md .github/workflows/*.yml"
   },
   "devDependencies": {
-    "prettier": "^3.6.0"
+    "prettier": "^3.6.0",
+    "prettier-plugin-tailwindcss": "^0.8.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.10",
+    "next": {
+      "postcss": "^8.5.10"
+    }
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
   }
 }
