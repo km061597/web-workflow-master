@@ -6,5 +6,6 @@ The runtime board state itself is intentionally gitignored under `.autoplan-boar
 
 - `dashboard-smoke.json`: local loopback verification result from `npm run dashboard:verify`.
 - `board-refresh.json`: broker `refreshBoard` snapshot output.
+- `ship-gate.json`: root `npm run ship-gate` summary.
 - `desktop.png`: Chromium desktop smoke screenshot.
 - `mobile.png`: Chromium mobile smoke screenshot.

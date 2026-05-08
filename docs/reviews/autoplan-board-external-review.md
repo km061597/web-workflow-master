@@ -27,6 +27,13 @@ This file records the required pre-PR review state for high-risk slices.
   Re-review found the original blocker classes resolved and one medium remaining issue: `/api/telegram` lacked CSRF/origin guard. That was fixed by applying the same token/origin checks as broker, and server tests now cover both.
   Final Claude plan-mode re-review found no blocking findings. Its only real correctness gap was a low-severity dangling `refreshBoard` broker target; fixed by adding `tools/autoplan-board/scripts/refresh-board.mjs` and test coverage. Claude also noted two info-level display/DOM guards, both fixed.
   A later Claude review of the broker execution/runtime bridge pass found one medium issue: completed broker actions stayed permanently deduped for the server lifetime. Fixed by releasing the dedupe key in `executeBrokerJob()` cleanup and adding rerun regression coverage. Narrow Claude re-review confirmed the medium finding resolved with no new blocker.
+  Claude Desktop was then prompted through Computer Use for a full read-only review of the complete Codex work. It found four high blockers and several medium issues:
+  - B1 dashboard UI could not invoke broker because the random session token was never delivered to the browser.
+  - B2 `shipGate` was only an alias to `verify`.
+  - B3 slice status was hardcoded to `implemented`.
+  - B4 Telegram control was only a local HTTP shim, not a real bot integration path.
+  - Medium issues included absent-Origin handling, ignored args on fixed-argv actions, hardcoded GitHub repo configuration, fixture-chain overclaiming, and no scaffold execution test.
+  Codex fixed those by adding browser broker controls and token meta wiring, a real root `scripts/ship-gate.mjs`, derived slice status, required Origin handling, no-arg rejection for fixed-argv actions, configurable `AUTOPLAN_GITHUB_REPO`, real Telegram polling via `getUpdates` when configured, and scaffold execution coverage.
 - Kimi / KimiClaw: attempted with `kimi --print --plan`; blocked first by `PermissionError: [Errno 1] Operation not permitted: '/Users/kylemetzger/.kimi/logs/kimi.log'`. Escalated retry then failed before review with `Unknown error: Failed to connect MCP servers: {'auto-browser': RuntimeError('Client failed to connect: Connection closed')}` and left stuck review processes, which Codex stopped (`83161`, `83172`). No Kimi edits were made.
 - Gemini CLI: attempted with `gemini --prompt ... --approval-mode plan`; blocked by interactive authentication prompt. The prompt was not approved. No Gemini edits were made.
 

@@ -313,6 +313,35 @@ h1 {
   margin-top: 18px;
 }
 
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.broker-action {
+  border: 1px solid var(--line);
+  background: #1b211b;
+  color: var(--text);
+  padding: 8px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.broker-action:disabled {
+  color: var(--muted);
+  cursor: wait;
+}
+
+.broker-output {
+  display: block;
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  color: var(--green);
+  font-size: 0.78rem;
+}
+
 .ops-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

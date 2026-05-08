@@ -4,7 +4,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { randomUUID } from "node:crypto";
 
-import { executeBrokerJob, getBoardSnapshot, RuntimeStore, runTelegramCommand } from "./core.mjs";
+import { executeBrokerJob, getBoardSnapshot, pollTelegramOnce, RuntimeStore, runTelegramCommand } from "./core.mjs";
 import { renderHtml } from "./ui.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,6 +26,13 @@ function sendText(response, status, body, type = "text/html; charset=utf-8") {
     "x-frame-options": "DENY",
   });
   response.end(body);
+}
+
+function checkOrigin(request, host) {
+  const origin = request.headers.origin ?? "";
+  if (!origin) return { ok: false, error: "origin-required" };
+  if (!origin.startsWith(`http://${host}:`)) return { ok: false, error: "origin-blocked" };
+  return { ok: true };
 }
 
 function readBody(request) {
@@ -70,16 +77,20 @@ export async function createServer({
   fixtureMode = true,
   repo = { private: parseRepoPrivacy(process.env.AUTOPLAN_REPO_PRIVATE) },
   telegramAllowedUserId = process.env.TELEGRAM_ALLOWED_USER_ID,
+  telegramBotToken = process.env.TELEGRAM_BOT_TOKEN,
+  telegramPollIntervalMs = Number(process.env.TELEGRAM_POLL_INTERVAL_MS ?? 0),
+  fetchImpl = fetch,
 } = {}) {
   const sessionToken = randomUUID();
   const brokerState = { seen: new Set() };
+  let telegramOffset = 0;
 
   const server = createHttpServer(async (request, response) => {
     try {
       const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
 
       if (request.method === "GET" && url.pathname === "/") {
-        return sendText(response, 200, renderHtml(getBoardSnapshot({ root, repo, fixtureMode })));
+        return sendText(response, 200, renderHtml(getBoardSnapshot({ root, repo, fixtureMode }), { sessionToken }));
       }
       if (request.method === "GET" && url.pathname === "/api/health") {
         return sendJson(response, 200, {
@@ -99,16 +110,16 @@ export async function createServer({
         return sendText(response, 200, readFileSync(join(publicDir, "app.js"), "utf8"), "text/javascript; charset=utf-8");
       }
       if (request.method === "POST" && url.pathname === "/api/broker") {
-        const origin = request.headers.origin ?? "";
-        if (origin && !origin.startsWith(`http://${host}:`)) return sendJson(response, 403, { ok: false, error: "origin-blocked" });
+        const origin = checkOrigin(request, host);
+        if (!origin.ok) return sendJson(response, 403, { ok: false, error: origin.error });
         if (request.headers["x-autoplan-token"] !== sessionToken) return sendJson(response, 403, { ok: false, error: "csrf-token-invalid" });
         const parsed = await readJsonBody(request);
         if (!parsed.ok) return sendJson(response, 400, { ok: false, error: parsed.error });
         return sendJson(response, 200, await executeBrokerJob(parsed.value, { root, state: brokerState }));
       }
       if (request.method === "POST" && url.pathname === "/api/telegram") {
-        const origin = request.headers.origin ?? "";
-        if (origin && !origin.startsWith(`http://${host}:`)) return sendJson(response, 403, { ok: false, error: "origin-blocked" });
+        const origin = checkOrigin(request, host);
+        if (!origin.ok) return sendJson(response, 403, { ok: false, error: origin.error });
         if (request.headers["x-autoplan-token"] !== sessionToken) return sendJson(response, 403, { ok: false, error: "csrf-token-invalid" });
         const parsed = await readJsonBody(request);
         if (!parsed.ok) return sendJson(response, 400, { ok: false, error: parsed.error });
@@ -128,10 +139,28 @@ export async function createServer({
     server.listen(port, host, resolve);
   });
 
+  const telegramPoller =
+    telegramBotToken && telegramAllowedUserId && telegramPollIntervalMs > 0
+      ? setInterval(async () => {
+          const result = await pollTelegramOnce({
+            botToken: telegramBotToken,
+            allowedUserId: telegramAllowedUserId,
+            offset: telegramOffset,
+            root,
+            fetchImpl,
+          });
+          telegramOffset = result.nextOffset;
+        }, telegramPollIntervalMs)
+      : null;
+
   return {
     server,
     sessionToken,
-    close: () => new Promise((resolve) => server.close(resolve)),
+    close: () =>
+      new Promise((resolve) => {
+        if (telegramPoller) clearInterval(telegramPoller);
+        server.close(resolve);
+      }),
   };
 }
 

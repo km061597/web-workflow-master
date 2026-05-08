@@ -58,13 +58,14 @@ function renderColumn(column) {
   `;
 }
 
-export function renderHtml(snapshot) {
+export function renderHtml(snapshot, { sessionToken = "" } = {}) {
   const privacyClass = snapshot.privacy.ok ? "ok" : "blocked";
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="autoplan-token" content="${escapeHtml(sessionToken)}">
   <title>Autoplan Board</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -129,6 +130,12 @@ export function renderHtml(snapshot) {
       <h2>Operations</h2>
       <p>Typed broker actions only: ${snapshot.gates.brokerActions.map(escapeHtml).join(", ")}.</p>
       <p>Telegram control is allowlist-only and mirrored to audit events.</p>
+      <div class="action-bar" aria-label="Broker actions">
+        <button type="button" class="broker-action" data-broker-action="refreshBoard">Refresh board</button>
+        <button type="button" class="broker-action" data-broker-action="verify">Run verify</button>
+        <button type="button" class="broker-action" data-broker-action="shipGate">Run ship gate</button>
+      </div>
+      <output class="broker-output" aria-live="polite">No broker action running.</output>
       <div class="ops-grid">
         <div>
           <span>Fixture chain</span>

@@ -36,6 +36,8 @@ test("server binds to loopback, serves board HTML, and exposes JSON health", asy
     assert.match(html, /data-board="prospect-pipeline"/);
     assert.match(html, /Evidence rail/);
     assert.match(html, /aria-expanded="false"/);
+    assert.match(html, /name="autoplan-token"/);
+    assert.match(html, /data-broker-action="verify"/);
     assert.doesNotMatch(html, /role="list"/);
   } finally {
     await app.close();
@@ -49,7 +51,11 @@ test("server broker endpoint enforces CSRF, origin, JSON parsing, and abuse guar
     const { port } = app.server.address();
     const base = `http://127.0.0.1:${port}`;
 
-    const missingToken = await postJson(`${base}/api/broker`, JSON.stringify({ action: "verify", args: [] }));
+    const missingOrigin = await postJson(`${base}/api/broker`, JSON.stringify({ action: "verify", args: [] }));
+    assert.equal(missingOrigin.response.status, 403);
+    assert.equal(missingOrigin.json.error, "origin-required");
+
+    const missingToken = await postJson(`${base}/api/broker`, JSON.stringify({ action: "verify", args: [] }), { origin: base });
     assert.equal(missingToken.response.status, 403);
     assert.equal(missingToken.json.error, "csrf-token-invalid");
 
@@ -60,12 +66,13 @@ test("server broker endpoint enforces CSRF, origin, JSON parsing, and abuse guar
     assert.equal(badOrigin.response.status, 403);
     assert.equal(badOrigin.json.error, "origin-blocked");
 
-    const invalidJson = await postJson(`${base}/api/broker`, "{", { "x-autoplan-token": app.sessionToken });
+    const invalidJson = await postJson(`${base}/api/broker`, "{", { "x-autoplan-token": app.sessionToken, origin: base });
     assert.equal(invalidJson.response.status, 400);
     assert.equal(invalidJson.json.error, "invalid-json");
 
     const accepted = await postJson(`${base}/api/broker`, JSON.stringify({ id: "server-verify-test", action: "verify", args: [] }), {
       "x-autoplan-token": app.sessionToken,
+      origin: base,
     });
     assert.equal(accepted.response.status, 200);
     assert.equal(accepted.json.ok, true);
@@ -74,6 +81,7 @@ test("server broker endpoint enforces CSRF, origin, JSON parsing, and abuse guar
 
     const absolutePath = await postJson(`${base}/api/broker`, JSON.stringify({ action: "screenshotAudit", args: ["/etc/passwd"] }), {
       "x-autoplan-token": app.sessionToken,
+      origin: base,
     });
     assert.equal(absolutePath.json.error, "absolute-path-blocked");
     assert.equal(absolutePath.response.headers.has("access-control-allow-origin"), false);
@@ -89,7 +97,11 @@ test("server exposes allowlisted Telegram control endpoint", async () => {
     const { port } = app.server.address();
     const base = `http://127.0.0.1:${port}`;
 
-    const missingToken = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/status" }));
+    const missingOrigin = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/status" }));
+    assert.equal(missingOrigin.response.status, 403);
+    assert.equal(missingOrigin.json.error, "origin-required");
+
+    const missingToken = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/status" }), { origin: base });
     assert.equal(missingToken.response.status, 403);
     assert.equal(missingToken.json.error, "csrf-token-invalid");
 
@@ -102,11 +114,13 @@ test("server exposes allowlisted Telegram control endpoint", async () => {
 
     const denied = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "999", text: "/status" }), {
       "x-autoplan-token": app.sessionToken,
+      origin: base,
     });
     assert.equal(denied.json.error, "telegram-user-denied");
 
     const accepted = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/approve S10" }), {
       "x-autoplan-token": app.sessionToken,
+      origin: base,
     });
     assert.equal(accepted.json.ok, true);
     assert.equal(accepted.json.auditEvent.type, "telegram.approve");
@@ -114,6 +128,7 @@ test("server exposes allowlisted Telegram control endpoint", async () => {
 
     const invalid = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/approve ../../bad" }), {
       "x-autoplan-token": app.sessionToken,
+      origin: base,
     });
     assert.equal(invalid.json.error, "telegram-approval-target-invalid");
   } finally {

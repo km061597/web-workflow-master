@@ -13,6 +13,7 @@ import {
   executeBrokerJob,
   evaluatePrivacyGate,
   getBoardSnapshot,
+  pollTelegramOnce,
   processBrokerRequest,
   runTelegramCommand,
 } from "../src/core.mjs";
@@ -88,11 +89,13 @@ test("fixture chain reflects broker verification evidence", async () => {
     const store = new RuntimeStore(root);
     store.writeJob({ action: "verify", status: "succeeded" });
     store.writeJob({ action: "refreshBoard", status: "succeeded" });
+    store.writeJob({ action: "shipGate", status: "succeeded" });
 
     const snapshot = getBoardSnapshot({ root, repo: { private: false }, fixtureMode: true });
     assert.equal(snapshot.gates.fixtureChainStatus, "local-complete");
     assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /verify: succeeded/);
-    assert.equal(snapshot.boards.operations.succeeded.length, 2);
+    assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /shipGate: succeeded/);
+    assert.equal(snapshot.boards.operations.succeeded.length, 3);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
@@ -128,9 +131,10 @@ test("broker accepts only typed allowlisted actions and blocks abuse cases", () 
   const state = { seen: new Set() };
   assert.equal(processBrokerRequest({ id: "1", action: "verify", args: [] }, state).ok, true);
   assert.equal(processBrokerRequest({ id: "2", action: "rawShell", args: ["npm run verify"] }, state).error, "unsupported-action");
-  assert.equal(processBrokerRequest({ id: "3", action: "verify", args: ["../../secrets"] }, state).error, "path-traversal-blocked");
+  assert.equal(processBrokerRequest({ id: "3", action: "scaffold", args: ["../../secrets"] }, state).error, "path-traversal-blocked");
   assert.equal(processBrokerRequest({ id: "4", action: "screenshotAudit", args: ["/Users/kylemetzger/.ssh/id_rsa"] }, state).error, "absolute-path-blocked");
-  assert.equal(processBrokerRequest({ id: "4", action: "verify", args: ["rm -rf ."] }, state).error, "destructive-token-blocked");
+  assert.equal(processBrokerRequest({ id: "4", action: "scaffold", args: ["rm -rf ."] }, state).error, "destructive-token-blocked");
+  assert.equal(processBrokerRequest({ id: "5", action: "verify", args: ["ignored"] }, state).error, "unexpected-args");
   assert.equal(processBrokerRequest({ id: "new-id-same-work", action: "verify", args: [] }, state).error, "duplicate-job");
 
   const refresh = processBrokerRequest({ id: "refresh", action: "refreshBoard", args: [] }, state);
@@ -155,6 +159,23 @@ test("broker execution runs fixed argv and writes job and audit records", async 
   assert.equal(rerun.job.status, "succeeded");
 });
 
+test("broker execution can scaffold a fixture site with fixed argv", async () => {
+  const siteName = `autoplan-fixture-${Date.now()}`;
+  const target = join(repoRoot, "sites", siteName);
+  const state = { seen: new Set(), running: new Set() };
+  try {
+    const result = await executeBrokerJob(
+      { id: "scaffold-test", action: "scaffold", args: [siteName, "--template", "astro-canonical"] },
+      { root: repoRoot, state }
+    );
+    assert.equal(result.ok, true);
+    assert.equal(existsSync(target), true);
+    assert.match(result.result.output, /Created/);
+  } finally {
+    rmSync(target, { recursive: true, force: true });
+  }
+});
+
 test("Telegram command layer enforces allowlist and blocks raw shell behavior", () => {
   const config = { allowedUserId: "12345" };
   assert.equal(runTelegramCommand({ fromId: "999", text: "/status" }, config).error, "telegram-user-denied");
@@ -162,4 +183,36 @@ test("Telegram command layer enforces allowlist and blocks raw shell behavior", 
   assert.equal(runTelegramCommand({ fromId: "12345", text: "/run rm -rf ." }, config).error, "telegram-raw-command-blocked");
   assert.equal(runTelegramCommand({ fromId: "12345", text: "/approve ../../bad" }, config).error, "telegram-approval-target-invalid");
   assert.equal(runTelegramCommand({ fromId: "12345", text: "/approve S10" }, config).auditEvent.type, "telegram.approve");
+});
+
+test("Telegram polling consumes real bot updates and writes audit", async () => {
+  const root = fixtureRoot();
+  const calls = [];
+  try {
+    const fetchImpl = async (url, options) => {
+      calls.push({ url, options });
+      if (String(url).includes("getUpdates")) {
+        return {
+          json: async () => ({
+            ok: true,
+            result: [
+              {
+                update_id: 41,
+                message: { text: "/approve S10", from: { id: "12345" }, chat: { id: "chat-1" } },
+              },
+            ],
+          }),
+        };
+      }
+      return { json: async () => ({ ok: true }) };
+    };
+
+    const result = await pollTelegramOnce({ botToken: "token", allowedUserId: "12345", offset: 0, root, fetchImpl });
+    assert.equal(result.ok, true);
+    assert.equal(result.nextOffset, 42);
+    assert.equal(calls.some((call) => String(call.url).includes("sendMessage")), true);
+    assert.match(readFileSync(join(root, ".autoplan-board", "audit-events.jsonl"), "utf8"), /telegram\.approve/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });

@@ -26,7 +26,6 @@ export const SLICES = [
   risk,
   mode,
   goal,
-  status: "implemented",
   reviewRequired: ["S01", "S03", "S07", "S09", "S10", "S12", "S14", "S15"].includes(id),
 }));
 
@@ -67,6 +66,7 @@ const PATH_TRAVERSAL = /(^|[\\/])\.\.([\\/]|$)/;
 const ABSOLUTE_PATH = /^(\/|~\/|[A-Za-z]:[\\/])/;
 const SECRET_PATTERN = /(TOKEN|SECRET|KEY|PASSWORD)=/i;
 const REDACT_PATTERN = /(TOKEN|SECRET|KEY|PASSWORD)(=|:)[^\s"']+/gi;
+const NO_ARG_ACTIONS = new Set(["verify", "shipGate", "refreshGithub", "refreshBoard"]);
 
 function titleCase(value) {
   return value
@@ -180,7 +180,7 @@ function buildProspectPipeline(cards) {
   }));
 }
 
-function buildAutoplanReview(sidecars = []) {
+function buildAutoplanReview(sidecars = [], slices = SLICES) {
   return AUTOPLAN_COLUMNS.map((column) => ({
     ...column,
     cards:
@@ -197,7 +197,7 @@ function buildAutoplanReview(sidecars = []) {
               blockers: sidecar.blockers ?? [],
             }))
         : column.id === "ready"
-          ? SLICES.map((slice) => ({
+          ? slices.map((slice) => ({
               id: `slice:${slice.id}`,
               name: `${slice.id}: ${slice.title}`,
             stage: "ready",
@@ -282,21 +282,51 @@ function buildFixtureChain(cards, operations) {
   const card = cards[0] ?? fixtureCards()[0];
   const hasVerify = operations.succeeded.some((job) => job.action === "verify");
   const hasRefresh = operations.succeeded.some((job) => job.action === "refreshBoard");
+  const hasShipGate = operations.succeeded.some((job) => job.action === "shipGate");
   return {
     id: "fixture-prospect-to-site",
     cardId: card.id,
-    status: hasVerify ? "local-complete" : "paused",
-    currentStage: hasVerify ? "ship-ready" : card.stage,
+    status: hasVerify && hasShipGate ? "local-complete" : "paused",
+    currentStage: hasVerify && hasShipGate ? "ship-ready" : card.stage,
     kickoffAction: "scaffold",
     stages: ["researched", "spec", "scaffold", "audit", "ship-ready"],
     evidence: [
       card.manifestPath,
       hasRefresh ? "refreshBoard: succeeded" : "refreshBoard: pending",
       hasVerify ? "verify: succeeded" : "verify: pending",
+      hasShipGate ? "shipGate: succeeded" : "shipGate: pending",
       "external deploy: HITL blocked",
     ],
-    blockers: hasVerify ? ["external deploy requires human approval"] : ["local verify has not completed from broker"],
+    blockers: hasVerify && hasShipGate ? ["external deploy requires human approval"] : ["local verify and ship gate must complete from broker"],
   };
+}
+
+function hasFile(root, path) {
+  return existsSync(join(root, path));
+}
+
+function deriveSlices(root, privacy, cards, operations, sidecars, chain, agentBoard) {
+  const codeEvidence = {
+    S01: privacy.ok,
+    S02: hasFile(root, "tools/autoplan-board/package.json") && hasFile(root, "tools/autoplan-board/src/server.mjs"),
+    S03: hasFile(root, ".gitignore") && readFileSync(join(root, ".gitignore"), "utf8").includes(".autoplan-board/"),
+    S04: hasFile(root, "package.json") && hasFile(root, "scripts/verify-repo.mjs"),
+    S05: cards.length > 0,
+    S06: hasFile(root, "tools/autoplan-board/src/ui.mjs") && hasFile(root, "tools/autoplan-board/public/app.js"),
+    S07: BROKER_ACTIONS.size === 7 && hasFile(root, "tools/autoplan-board/src/core.mjs"),
+    S08: hasFile(root, "tools/autoplan-board/tests/server.test.mjs") && hasFile(root, "tools/autoplan-board/src/server.mjs"),
+    S09: sidecars.length > 0 || hasFile(root, "tools/autoplan-board/tests/core.test.mjs"),
+    S10: chain.evidence.includes("verify: succeeded") || hasFile(root, "tools/autoplan-board/tests/core.test.mjs"),
+    S11: hasFile(root, "tools/scaffold.js") && BROKER_ACTIONS.has("scaffold"),
+    S12: hasFile(root, "scripts/ship-gate.mjs") && hasFile(root, "evidence/autoplan/dashboard-smoke.json"),
+    S13: agentBoard.mode === "read-only/context-bridge",
+    S14: hasFile(root, "tools/autoplan-board/src/server.mjs") && hasFile(root, "tools/autoplan-board/tests/server.test.mjs"),
+    S15: chain.status === "local-complete" || hasFile(root, "docs/reviews/autoplan-board-completion-audit.md"),
+  };
+  return SLICES.map((slice) => ({
+    ...slice,
+    status: codeEvidence[slice.id] ? "implemented" : "pending",
+  }));
 }
 
 function readRepoHealth(root) {
@@ -321,24 +351,26 @@ export function getBoardSnapshot({ root = process.cwd(), repo = {}, fixtureMode 
   const operations = readRuntimeOperations(root);
   const sidecars = readAutoplanSidecars(root);
   const chain = buildFixtureChain(cards, operations);
+  const agentBoard = readAgentBoardBridge(root);
+  const slices = deriveSlices(root, privacy, cards, operations, sidecars, chain, agentBoard);
 
   return {
     generatedAt: new Date().toISOString(),
     root: resolve(root),
     privacy,
-    slices: SLICES,
+    slices,
     boards: {
       prospectPipeline: buildProspectPipeline(cards),
       siteLifecycle: SITE_COLUMNS,
-      autoplanReview: buildAutoplanReview(sidecars),
+      autoplanReview: buildAutoplanReview(sidecars, slices),
       workflowMaster: readRepoHealth(root),
       operations,
-      agentBoard: readAgentBoardBridge(root),
+      agentBoard,
       fixtureChain: chain,
     },
     gates: {
       totalSlices: SLICES.length,
-      implementedSlices: SLICES.filter((slice) => slice.status === "implemented").length,
+      implementedSlices: slices.filter((slice) => slice.status === "implemented").length,
       highRiskReviewRequired: highRisk,
       packageCount: cards.length,
       brokerActions: [...BROKER_ACTIONS],
@@ -401,6 +433,7 @@ export function processBrokerRequest(request, state = { seen: new Set() }) {
   const joined = args.join(" ");
 
   if (!BROKER_ACTIONS.has(action)) return { ok: false, error: "unsupported-action" };
+  if (NO_ARG_ACTIONS.has(action) && args.length > 0) return { ok: false, error: "unexpected-args" };
   if (state.seen.has(dedupeKey)) return { ok: false, error: "duplicate-job" };
   if (args.some((arg) => PATH_TRAVERSAL.test(arg))) return { ok: false, error: "path-traversal-blocked" };
   if (args.some((arg) => ABSOLUTE_PATH.test(arg))) return { ok: false, error: "absolute-path-blocked" };
@@ -516,13 +549,14 @@ function redactOutput(output) {
 }
 
 function commandMap(action, args) {
+  const githubRepo = process.env.AUTOPLAN_GITHUB_REPO ?? "metzgerwebsites/web-workflow-master";
   const map = {
     scaffold: ["node", "tools/scaffold.js", ...args],
     verify: ["npm", "run", "verify"],
     shipGate: ["npm", "run", "ship-gate"],
     advancePhase: ["bin/advance-phase.sh", ...args],
     screenshotAudit: ["node", "scripts/screenshot.js", ...args],
-    refreshGithub: ["gh", "api", "repos/metzgerwebsites/web-workflow-master"],
+    refreshGithub: ["gh", "api", `repos/${githubRepo}`],
     refreshBoard: ["node", "tools/autoplan-board/scripts/refresh-board.mjs"],
   };
   const argv = map[action];
@@ -547,4 +581,35 @@ export function runTelegramCommand(message, config = {}) {
     return { ok: true, response: `Approved ${target}.`, auditEvent: { type: "telegram.approve", target } };
   }
   return { ok: false, error: "telegram-unsupported-command" };
+}
+
+export async function pollTelegramOnce({ botToken, allowedUserId, offset = 0, root = process.cwd(), fetchImpl = fetch } = {}) {
+  if (!botToken) return { ok: false, error: "telegram-token-missing", nextOffset: offset };
+  const response = await fetchImpl(`https://api.telegram.org/bot${botToken}/getUpdates?timeout=0&offset=${offset}`);
+  const payload = await response.json();
+  const updates = Array.isArray(payload.result) ? payload.result : [];
+  let nextOffset = offset;
+  const store = new RuntimeStore(root);
+
+  for (const update of updates) {
+    nextOffset = Math.max(nextOffset, Number(update.update_id ?? 0) + 1);
+    const message = update.message ?? {};
+    const result = runTelegramCommand(
+      {
+        fromId: message.from?.id,
+        text: message.text,
+      },
+      { allowedUserId }
+    );
+    if (result.auditEvent) store.writeAudit(result.auditEvent);
+    if (message.chat?.id && result.response) {
+      await fetchImpl(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ chat_id: message.chat.id, text: result.response }),
+      });
+    }
+  }
+
+  return { ok: true, processed: updates.length, nextOffset };
 }

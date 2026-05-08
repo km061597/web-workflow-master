@@ -13,12 +13,14 @@ The board runs fixture-safe while `metzgerwebsites/web-workflow-master` is publi
 - Mobile browser smoke: `evidence/autoplan/mobile.png`
 - Dashboard smoke JSON: `evidence/autoplan/dashboard-smoke.json`
 - Broker refresh evidence: `evidence/autoplan/board-refresh.json`
+- Ship gate evidence: `evidence/autoplan/ship-gate.json`
 - Completion audit: `docs/reviews/autoplan-board-completion-audit.md`
 - External review log: `docs/reviews/autoplan-board-external-review.md`
 
 # Review State
 
 - Claude Code plan-mode reviews completed. Findings were fixed and narrow re-review confirmed the final broker dedupe medium issue resolved.
+- Claude Desktop Computer Use review completed. It found B1-B4 blockers around browser broker reachability, ship-gate aliasing, hardcoded slice status, and Telegram integration. Those were fixed in the current branch.
 - Kimi/KimiClaw review is documented as blocked by Kimi MCP startup failure.
 - Gemini review is documented as blocked by interactive authentication.
 

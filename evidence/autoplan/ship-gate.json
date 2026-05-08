@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "checkedAt": "2026-05-08T06:16:44.058Z",
+  "checks": [
+    {
+      "command": "npm run verify",
+      "status": 0,
+      "ok": true
+    },
+    {
+      "command": "npm run dashboard:verify",
+      "status": 0,
+      "ok": true
+    },
+    {
+      "command": "npm audit --audit-level=moderate",
+      "status": 0,
+      "ok": true
+    }
+  ],
+  "evidence": [
+    "evidence/autoplan/dashboard-smoke.json",
+    "evidence/autoplan/desktop.png",
+    "evidence/autoplan/mobile.png"
+  ]
+}

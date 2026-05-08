@@ -45,11 +45,15 @@ try {
   assertIncludes(desktopHtml, /Dashboard verify[\s\S]*wired/, "root dashboard:verify script is visible");
   assertIncludes(desktopHtml, /Fixture chain/, "fixture chain status is visible");
   assertIncludes(desktopHtml, /Agent-board bridge/, "agent-board bridge status is visible");
+  assertIncludes(desktopHtml, /name="autoplan-token"/, "session token is delivered to dashboard");
+  assertIncludes(desktopHtml, /data-broker-action="verify"/, "broker verify action is reachable from dashboard");
 
   const css = readFileSync(join(packageRoot, "public", "styles.css"), "utf8");
+  const appJs = readFileSync(join(packageRoot, "public", "app.js"), "utf8");
   assertIncludes(css, /:focus-visible/, "focus-visible styles exist");
   assertIncludes(css, /@media \(max-width: 820px\)/, "mobile media query exists");
   assertIncludes(css, /grid-template-columns: repeat\(7/, "desktop kanban layout exists");
+  assertIncludes(appJs, /fetch\("\/api\/broker"/, "browser invokes broker endpoint");
 
   const html = desktopHtml.toLowerCase();
   for (const banned of ["hero", "purple", "linear-gradient"]) {

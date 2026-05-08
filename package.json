@@ -14,7 +14,7 @@
     "test": "npm run verify",
     "verify": "node scripts/verify-repo.mjs",
     "verify:all": "npm run verify",
-    "ship-gate": "npm run verify",
+    "ship-gate": "node scripts/ship-gate.mjs",
     "dashboard": "npm --prefix tools/autoplan-board run dev",
     "dashboard:install": "npm --prefix tools/autoplan-board install",
     "dashboard:verify": "npm --prefix tools/autoplan-board run verify",
