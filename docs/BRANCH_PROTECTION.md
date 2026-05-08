@@ -7,6 +7,7 @@ This repository is production-ready at the code and CI level only when `main` is
 Use these exact GitHub check names:
 
 - `Validate Workspace`
+- `Dependency Audit`
 - `verify`
 - `Next.js Scaffold`
 - `Astro Scaffold`
@@ -18,7 +19,7 @@ Configure `main` with:
 
 - required status checks enabled
 - branches required to be up to date before merging
-- the five required check names above
+- the six required check names above
 - pull request reviews required before merging
 - at least one approving review
 - stale approvals dismissed when new commits are pushed
@@ -41,6 +42,7 @@ gh api --method PUT repos/metzgerwebsites/web-workflow-master/branches/main/prot
     "strict": true,
     "contexts": [
       "Validate Workspace",
+      "Dependency Audit",
       "verify",
       "Next.js Scaffold",
       "Astro Scaffold",
@@ -87,7 +89,7 @@ Expected:
 
 - `protected` is `true`
 - `required_status_checks.strict` is `true`
-- all five required checks are listed
+- all six required checks are listed, including `Dependency Audit`
 - `enforce_admins.enabled` is `true`
 - `required_pull_request_reviews.required_approving_review_count` is `1`
 - force pushes and deletions are disabled
