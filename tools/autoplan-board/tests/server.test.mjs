@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { test } from "node:test";
@@ -131,6 +131,33 @@ test("server exposes allowlisted Telegram control endpoint", async () => {
       origin: base,
     });
     assert.equal(invalid.json.error, "telegram-approval-target-invalid");
+  } finally {
+    await app.close();
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("Telegram poller records polling failures instead of leaking unhandled rejections", async () => {
+  const root = mkdtempSync(join(tmpdir(), "autoplan-board-telegram-poller-"));
+  const app = await createServer({
+    root,
+    host: "127.0.0.1",
+    port: 0,
+    fixtureMode: true,
+    telegramAllowedUserId: "12345",
+    telegramBotToken: "token",
+    telegramPollIntervalMs: 1,
+    fetchImpl: async () => {
+      throw new Error("telegram-down");
+    },
+  });
+
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 25));
+    const auditPath = join(root, ".autoplan-board", "audit-events.jsonl");
+    assert.equal(existsSync(auditPath), true);
+    assert.match(readFileSync(auditPath, "utf8"), /telegram\.poll\.failed/);
+    assert.match(readFileSync(auditPath, "utf8"), /telegram-down/);
   } finally {
     await app.close();
     rmSync(root, { recursive: true, force: true });

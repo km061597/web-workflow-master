@@ -6,7 +6,7 @@ The board runs fixture-safe while `metzgerwebsites/web-workflow-master` is publi
 
 # Evidence
 
-- `npm --prefix tools/autoplan-board test`: 14/14 pass
+- `npm --prefix tools/autoplan-board test`: 17/17 pass
 - `npm run dashboard:verify`: pass
 - `npm run verify`: pass
 - Desktop browser smoke: `evidence/autoplan/desktop.png`
@@ -20,8 +20,8 @@ The board runs fixture-safe while `metzgerwebsites/web-workflow-master` is publi
 # Review State
 
 - Claude Code plan-mode reviews completed. Findings were fixed and narrow re-review confirmed the final broker dedupe medium issue resolved.
-- Claude Desktop Computer Use review completed. It found B1-B4 blockers around browser broker reachability, ship-gate aliasing, hardcoded slice status, and Telegram integration. Those were fixed in the current branch, and a narrow Claude terminal re-review after commit `82d0bb1` confirmed no blocking findings remain.
-- Kimi/KimiClaw terminal review is documented as blocked by Kimi MCP startup failure; Kimi/OpenClaw UI re-review on head commit `57ddf9b` reported no blocking findings after broker-registry coverage was added.
+- Claude Desktop Computer Use review completed. It found B1-B4 blockers around browser broker reachability, ship-gate aliasing, hardcoded slice status, and Telegram integration. Those were fixed in the current branch, and a narrow Claude terminal re-review after commit `82d0bb1` confirmed no blocking findings remain. Later Claude Desktop Computer Use re-reviews reported PR-ready code state and found only non-gating follow-ups; Codex fixed Telegram poll failure auditing, evidence-backed slice derivation, source-qualified ship-gate chain evidence, and shared board-refresh summary generation.
+- Kimi/KimiClaw terminal review is documented as blocked by Kimi MCP startup failure; Kimi/OpenClaw UI re-review on head commit `57ddf9b` reported no blocking findings after broker-registry coverage was added. A latest Kimi desktop prompt was sent for the final patch and returned no blockers, but appeared to summarize the prior PR-head review rather than independently inspect the local uncommitted diff.
 - Gemini review is documented as blocked by interactive authentication and missing `GEMINI_API_KEY` keychain auth.
 
 # Verification

@@ -142,14 +142,22 @@ export async function createServer({
   const telegramPoller =
     telegramBotToken && telegramAllowedUserId && telegramPollIntervalMs > 0
       ? setInterval(async () => {
-          const result = await pollTelegramOnce({
-            botToken: telegramBotToken,
-            allowedUserId: telegramAllowedUserId,
-            offset: telegramOffset,
-            root,
-            fetchImpl,
-          });
-          telegramOffset = result.nextOffset;
+          try {
+            const result = await pollTelegramOnce({
+              botToken: telegramBotToken,
+              allowedUserId: telegramAllowedUserId,
+              offset: telegramOffset,
+              root,
+              fetchImpl,
+            });
+            telegramOffset = result.nextOffset;
+          } catch (error) {
+            new RuntimeStore(root).writeAudit({
+              type: "telegram.poll.failed",
+              error: error.message,
+              offset: telegramOffset,
+            });
+          }
         }, telegramPollIntervalMs)
       : null;
 

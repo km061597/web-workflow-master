@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -86,16 +86,41 @@ test("snapshot reads autoplan sidecars and agent-board cache without relaunch pa
 test("fixture chain reflects broker verification evidence", async () => {
   const root = fixtureRoot();
   try {
+    await mkdir(join(root, ".autoplan-board", "autoplan-runs"), { recursive: true });
+    await mkdir(join(root, "evidence", "autoplan"), { recursive: true });
+    writeFileSync(
+      join(root, ".autoplan-board", "autoplan-runs", "S09.json"),
+      JSON.stringify({ id: "S09", sliceId: "S09", title: "S09 sidecar verdict", verdict: "advanced", evidence: ["autoplan-runs/S09.json"] })
+    );
+    writeFileSync(join(root, "evidence", "autoplan", "ship-gate.json"), JSON.stringify({ ok: true }));
+    writeFileSync(join(root, "evidence", "autoplan", "dashboard-smoke.json"), JSON.stringify({ ok: true }));
+    writeFileSync(join(root, "evidence", "autoplan", "desktop.png"), "png");
+    writeFileSync(join(root, "evidence", "autoplan", "mobile.png"), "png");
     const store = new RuntimeStore(root);
-    store.writeJob({ action: "verify", status: "succeeded" });
+    store.writeJob({ action: "verify", status: "succeeded", source: "broker" });
     store.writeJob({ action: "refreshBoard", status: "succeeded" });
-    store.writeJob({ action: "shipGate", status: "succeeded" });
+    store.writeJob({ action: "shipGate", status: "succeeded", source: "ship-gate" });
 
     const snapshot = getBoardSnapshot({ root, repo: { private: false }, fixtureMode: true });
     assert.equal(snapshot.gates.fixtureChainStatus, "local-complete");
-    assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /verify: succeeded/);
-    assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /shipGate: succeeded/);
+    assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /verify: succeeded \(broker\)/);
+    assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /shipGate: succeeded \(ship-gate\)/);
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S09").status, "implemented");
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S10").status, "implemented");
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S15").status, "implemented");
     assert.equal(snapshot.boards.operations.succeeded.length, 3);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("slice status remains pending when runtime evidence is absent", async () => {
+  const root = fixtureRoot();
+  try {
+    const snapshot = getBoardSnapshot({ root, repo: { private: false }, fixtureMode: true });
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S09").status, "pending");
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S10").status, "pending");
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S15").status, "pending");
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
@@ -203,6 +228,30 @@ test("broker execution can scaffold a fixture site with fixed argv", async () =>
     assert.match(result.result.output, /Created/);
   } finally {
     rmSync(target, { recursive: true, force: true });
+  }
+});
+
+test("ship gate records fixture integration evidence for derived completion state", () => {
+  const root = fixtureRoot();
+  try {
+    writeFileSync(join(root, "package.json"), JSON.stringify({ scripts: { verify: "node -e \"process.exit(0)\"", "dashboard:verify": "node -e \"process.exit(0)\"" } }));
+    writeFileSync(join(root, "package-lock.json"), JSON.stringify({ lockfileVersion: 3, packages: { "": {} } }));
+    mkdirSync(join(root, "evidence", "autoplan"), { recursive: true });
+    writeFileSync(join(root, "evidence", "autoplan", "dashboard-smoke.json"), JSON.stringify({ ok: true }));
+    writeFileSync(join(root, "evidence", "autoplan", "desktop.png"), "png");
+    writeFileSync(join(root, "evidence", "autoplan", "mobile.png"), "png");
+
+    const result = spawnSync("node", [join(repoRoot, "scripts", "ship-gate.mjs")], { cwd: root, encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+
+    const snapshot = getBoardSnapshot({ root, repo: { private: false }, fixtureMode: true });
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S09").status, "implemented");
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S10").status, "implemented");
+    assert.equal(snapshot.slices.find((slice) => slice.id === "S15").status, "implemented");
+    assert.match(snapshot.boards.fixtureChain.evidence.join("\n"), /shipGate: succeeded \(ship-gate\)/);
+    assert.match(readFileSync(join(root, ".autoplan-board", "audit-events.jsonl"), "utf8"), /ship-gate\.passed/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
   }
 });
 

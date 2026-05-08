@@ -183,30 +183,30 @@ function buildProspectPipeline(cards) {
 function buildAutoplanReview(sidecars = [], slices = SLICES) {
   return AUTOPLAN_COLUMNS.map((column) => ({
     ...column,
-    cards:
-      sidecars.length > 0
-        ? sidecars
-            .filter((sidecar) => sidecar.column === column.id)
-            .map((sidecar) => ({
-              id: `autoplan:${sidecar.id}`,
-              name: sidecar.title,
-              stage: sidecar.verdict,
-              risk: sidecar.risk ?? "high",
-              mode: sidecar.mode ?? "AFK",
-              evidence: sidecar.evidence ?? [],
-              blockers: sidecar.blockers ?? [],
-            }))
-        : column.id === "ready"
-          ? slices.map((slice) => ({
-              id: `slice:${slice.id}`,
-              name: `${slice.id}: ${slice.title}`,
+    cards: [
+      ...sidecars
+        .filter((sidecar) => sidecar.column === column.id)
+        .map((sidecar) => ({
+          id: `autoplan:${sidecar.id}`,
+          name: sidecar.title,
+          stage: sidecar.verdict,
+          risk: sidecar.risk ?? "high",
+          mode: sidecar.mode ?? "AFK",
+          evidence: sidecar.evidence ?? [],
+          blockers: sidecar.blockers ?? [],
+        })),
+      ...(column.id === "ready"
+        ? slices.map((slice) => ({
+            id: `slice:${slice.id}`,
+            name: `${slice.id}: ${slice.title}`,
             stage: "ready",
             risk: slice.risk,
             mode: slice.mode,
             evidence: [slice.goal],
             blockers: slice.reviewRequired ? ["external review required"] : [],
           }))
-        : [],
+        : []),
+    ],
   }));
 }
 
@@ -280,9 +280,14 @@ function readAgentBoardBridge(root) {
 
 function buildFixtureChain(cards, operations) {
   const card = cards[0] ?? fixtureCards()[0];
-  const hasVerify = operations.succeeded.some((job) => job.action === "verify");
-  const hasRefresh = operations.succeeded.some((job) => job.action === "refreshBoard");
-  const hasShipGate = operations.succeeded.some((job) => job.action === "shipGate");
+  const latestSucceeded = (action) => [...operations.succeeded].reverse().find((job) => job.action === action);
+  const verifyJob = latestSucceeded("verify");
+  const refreshJob = latestSucceeded("refreshBoard");
+  const shipGateJob = latestSucceeded("shipGate");
+  const hasVerify = Boolean(verifyJob);
+  const hasRefresh = Boolean(refreshJob);
+  const hasShipGate = Boolean(shipGateJob);
+  const sourcedEvidence = (action, job) => `${action}: succeeded${job?.source ? ` (${job.source})` : ""}`;
   return {
     id: "fixture-prospect-to-site",
     cardId: card.id,
@@ -292,9 +297,9 @@ function buildFixtureChain(cards, operations) {
     stages: ["researched", "spec", "scaffold", "audit", "ship-ready"],
     evidence: [
       card.manifestPath,
-      hasRefresh ? "refreshBoard: succeeded" : "refreshBoard: pending",
-      hasVerify ? "verify: succeeded" : "verify: pending",
-      hasShipGate ? "shipGate: succeeded" : "shipGate: pending",
+      hasRefresh ? sourcedEvidence("refreshBoard", refreshJob) : "refreshBoard: pending",
+      hasVerify ? sourcedEvidence("verify", verifyJob) : "verify: pending",
+      hasShipGate ? sourcedEvidence("shipGate", shipGateJob) : "shipGate: pending",
       "external deploy: HITL blocked",
     ],
     blockers: hasVerify && hasShipGate ? ["external deploy requires human approval"] : ["local verify and ship gate must complete from broker"],
@@ -306,6 +311,24 @@ function hasFile(root, path) {
 }
 
 function deriveSlices(root, privacy, cards, operations, sidecars, chain, agentBoard) {
+  const hasCoreTests = hasFile(root, "tools/autoplan-board/tests/core.test.mjs");
+  const hasServerTests = hasFile(root, "tools/autoplan-board/tests/server.test.mjs");
+  const hasBrokerSurfaces =
+    BROKER_ACTIONS.size === 7 &&
+    hasFile(root, "tools/autoplan-board/src/core.mjs") &&
+    hasCoreTests &&
+    hasFile(root, "tools/scaffold.js") &&
+    hasFile(root, "scripts/verify-repo.mjs") &&
+    hasFile(root, "scripts/ship-gate.mjs") &&
+    hasFile(root, "scripts/screenshot.js") &&
+    hasFile(root, "bin/advance-phase.sh");
+  const hasShipGateEvidence =
+    hasFile(root, "evidence/autoplan/ship-gate.json") &&
+    hasFile(root, "evidence/autoplan/dashboard-smoke.json") &&
+    hasFile(root, "evidence/autoplan/desktop.png") &&
+    hasFile(root, "evidence/autoplan/mobile.png");
+  const hasVerifySucceeded = chain.evidence.some((entry) => entry.startsWith("verify: succeeded"));
+  const hasShipGateSucceeded = chain.evidence.some((entry) => entry.startsWith("shipGate: succeeded"));
   const codeEvidence = {
     S01: privacy.ok,
     S02: hasFile(root, "tools/autoplan-board/package.json") && hasFile(root, "tools/autoplan-board/src/server.mjs"),
@@ -313,15 +336,15 @@ function deriveSlices(root, privacy, cards, operations, sidecars, chain, agentBo
     S04: hasFile(root, "package.json") && hasFile(root, "scripts/verify-repo.mjs"),
     S05: cards.length > 0,
     S06: hasFile(root, "tools/autoplan-board/src/ui.mjs") && hasFile(root, "tools/autoplan-board/public/app.js"),
-    S07: BROKER_ACTIONS.size === 7 && hasFile(root, "tools/autoplan-board/src/core.mjs"),
-    S08: hasFile(root, "tools/autoplan-board/tests/server.test.mjs") && hasFile(root, "tools/autoplan-board/src/server.mjs"),
-    S09: sidecars.length > 0 || hasFile(root, "tools/autoplan-board/tests/core.test.mjs"),
-    S10: chain.evidence.includes("verify: succeeded") || hasFile(root, "tools/autoplan-board/tests/core.test.mjs"),
+    S07: hasBrokerSurfaces,
+    S08: hasServerTests && hasFile(root, "tools/autoplan-board/src/server.mjs") && operations.succeeded.some((job) => job.action === "verify"),
+    S09: sidecars.length > 0,
+    S10: hasVerifySucceeded && hasShipGateSucceeded,
     S11: hasFile(root, "tools/scaffold.js") && BROKER_ACTIONS.has("scaffold"),
-    S12: hasFile(root, "scripts/ship-gate.mjs") && hasFile(root, "evidence/autoplan/dashboard-smoke.json"),
+    S12: hasFile(root, "scripts/ship-gate.mjs") && hasShipGateEvidence,
     S13: agentBoard.mode === "read-only/context-bridge",
-    S14: hasFile(root, "tools/autoplan-board/src/server.mjs") && hasFile(root, "tools/autoplan-board/tests/server.test.mjs"),
-    S15: chain.status === "local-complete" || hasFile(root, "docs/reviews/autoplan-board-completion-audit.md"),
+    S14: hasFile(root, "tools/autoplan-board/src/server.mjs") && hasServerTests,
+    S15: chain.status === "local-complete" && hasShipGateEvidence,
   };
   return SLICES.map((slice) => ({
     ...slice,
@@ -376,6 +399,20 @@ export function getBoardSnapshot({ root = process.cwd(), repo = {}, fixtureMode 
       brokerActions: [...BROKER_ACTIONS],
       fixtureChainStatus: chain.status,
     },
+  };
+}
+
+export function buildBoardRefreshSummary(snapshot, refreshedAt = new Date().toISOString()) {
+  return {
+    ok: true,
+    refreshedAt,
+    privacy: snapshot.privacy,
+    brokerActions: snapshot.gates.brokerActions,
+    sliceCount: snapshot.slices.length,
+    implementedSlices: snapshot.gates.implementedSlices,
+    fixtureChainStatus: snapshot.gates.fixtureChainStatus,
+    prospectCards: snapshot.boards.prospectPipeline.reduce((count, column) => count + column.cards.length, 0),
+    autoplanCards: snapshot.boards.autoplanReview.reduce((count, column) => count + column.cards.length, 0),
   };
 }
 

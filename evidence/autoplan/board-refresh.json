@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "refreshedAt": "2026-05-08T06:35:06.792Z",
+  "refreshedAt": "2026-05-08T07:36:15.769Z",
   "privacy": {
     "ok": true,
     "reason": "public-repo-fixture-mode"
@@ -15,6 +15,8 @@
     "refreshBoard"
   ],
   "sliceCount": 15,
+  "implementedSlices": 15,
+  "fixtureChainStatus": "local-complete",
   "prospectCards": 1,
-  "autoplanCards": 15
+  "autoplanCards": 16
 }
