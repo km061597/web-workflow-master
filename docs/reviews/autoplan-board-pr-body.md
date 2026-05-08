@@ -21,7 +21,7 @@ The board runs fixture-safe while `metzgerwebsites/web-workflow-master` is publi
 
 - Claude Code plan-mode reviews completed. Findings were fixed and narrow re-review confirmed the final broker dedupe medium issue resolved.
 - Claude Desktop Computer Use review completed. It found B1-B4 blockers around browser broker reachability, ship-gate aliasing, hardcoded slice status, and Telegram integration. Those were fixed in the current branch, and a narrow Claude terminal re-review after commit `82d0bb1` confirmed no blocking findings remain. Later Claude Desktop Computer Use re-reviews reported PR-ready code state and found only non-gating follow-ups; Codex fixed Telegram poll failure auditing, evidence-backed slice derivation, source-qualified ship-gate chain evidence, and shared board-refresh summary generation.
-- Kimi/KimiClaw terminal review is documented as blocked by Kimi MCP startup failure; Kimi/OpenClaw UI re-review on head commit `57ddf9b` reported no blocking findings after broker-registry coverage was added. A latest Kimi desktop prompt was sent for the final patch and returned no blockers, but appeared to summarize the prior PR-head review rather than independently inspect the local uncommitted diff.
+- Kimi/KimiClaw terminal review is documented as blocked by Kimi MCP startup failure; Kimi/OpenClaw UI re-review on head commit `57ddf9b` reported no blocking findings after broker-registry coverage was added. A latest Kimi desktop final report returned no blockers and two medium hardening notes; both were fixed with controlled broker registry drift handling and generic HTTP 500 responses.
 - Gemini review is documented as blocked by interactive authentication and missing `GEMINI_API_KEY` keychain auth.
 
 # Verification

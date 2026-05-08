@@ -130,7 +130,8 @@ export async function createServer({
 
       return sendJson(response, 404, { ok: false, error: "not-found" });
     } catch (error) {
-      return sendJson(response, 500, { ok: false, error: "internal-error", message: error.message });
+      new RuntimeStore(root).writeAudit({ type: "server.request.failed", path: request.url, error: error.message });
+      return sendJson(response, 500, { ok: false, error: "internal-error" });
     }
   });
 

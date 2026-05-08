@@ -39,7 +39,7 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 | Browser smoke desktop/mobile | refreshed screenshots in `evidence/autoplan/` | Green locally |
 | Broker abuse tests | unsupported action, traversal, absolute path, destructive token, duplicate/rerun behavior | Green locally |
 | Telegram control tests | denied user, allowlisted status/approve, raw command block, invalid target, HTTP CSRF/origin | Green locally |
-| External review | Claude completed, including Computer Use re-review after final fixes; latest Claude medium notes were fixed or reduced to documented non-gating risk; Kimi/OpenClaw UI re-review of head commit `57ddf9b` reported no blocking findings; latest Kimi desktop prompt summarized the prior clean review but did not independently inspect the uncommitted diff; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved; Gemini lane documented unavailable |
+| External review | Claude completed, including Computer Use re-review after final fixes; latest Claude medium notes were fixed or reduced to documented non-gating risk; Kimi/OpenClaw UI re-review of head commit `57ddf9b` reported no blocking findings; latest Kimi desktop final report found no blockers and two medium hardening notes, both fixed; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved; Gemini lane documented unavailable |
 | PR ready with evidence | PR #50 is open, mergeable, CI green, and has the evidence body; GitHub still requires human review approval | Review required |
 
 ## Remaining Before Goal Completion

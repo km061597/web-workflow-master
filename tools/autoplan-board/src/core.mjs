@@ -478,6 +478,13 @@ export function processBrokerRequest(request, state = { seen: new Set() }) {
   if (SECRET_PATTERN.test(joined)) return { ok: false, error: "disallowed-env-blocked" };
   if (joined.length > 4096) return { ok: false, error: "output-cap-blocked" };
 
+  let argv;
+  try {
+    argv = commandMap(action, args);
+  } catch {
+    return { ok: false, error: "broker-action-unavailable" };
+  }
+
   state.seen.add(dedupeKey);
   return {
     ok: true,
@@ -486,7 +493,7 @@ export function processBrokerRequest(request, state = { seen: new Set() }) {
       action,
       args,
       dedupeKey,
-      argv: commandMap(action, args),
+      argv,
       timeoutMs: 120000,
       outputCapBytes: 65536,
       cwd: "repo-root",
