@@ -118,6 +118,8 @@ npm run verify
 
 This checks the root command surface, JavaScript syntax, scaffold setup verification, and the Astro scaffold validator. `npm run ship-gate` is an alias for the same enforced repository gate.
 
+For the repository-level release gate, `main` must require the GitHub checks listed in [docs/BRANCH_PROTECTION.md](docs/BRANCH_PROTECTION.md). A green workflow run is advisory until branch protection or an equivalent ruleset is applied.
+
 ## Work Modes
 
 | Mode            | Workspace                                 | Key Files                                                                        | Purpose                                  |
