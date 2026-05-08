@@ -6,7 +6,7 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 
 - Branch: `update/autoplan-board-v1`.
 - GitHub repo state: `metzgerwebsites/web-workflow-master` is public, so broker write actions are blocked when fixture mode is off. Non-fixture write actions require verified GitHub privacy before they can run.
-- PR state at audit time: PR #50 exists at `https://github.com/metzgerwebsites/web-workflow-master/pull/50`; latest checked head is `a47578841e5319ebfcb73ffc8218927c40a07da7`; all GitHub CI/Verify checks are green; `reviewDecision` remains `REVIEW_REQUIRED`.
+- PR state at audit time: PR #50 exists at `https://github.com/metzgerwebsites/web-workflow-master/pull/50`; the live head and checks must be refreshed with `gh pr view 50 --json url,headRefOid,reviewDecision,mergeStateStatus,statusCheckRollup` before merge. The latest live check during this audit showed all GitHub CI/Verify checks green and `reviewDecision` still `REVIEW_REQUIRED`.
 - Package: `tools/autoplan-board/`.
 - Runtime state: `.autoplan-board/` is gitignored.
 - Evidence: `evidence/autoplan/dashboard-smoke.json`, `evidence/autoplan/browser-smoke.json`, `evidence/autoplan/board-refresh.json`, `evidence/autoplan/desktop.png`, `evidence/autoplan/mobile.png`.
@@ -40,7 +40,7 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 | Broker abuse tests | unsupported action, traversal, absolute path, destructive token, duplicate/rerun behavior | Green locally |
 | Telegram control tests | denied user, allowlisted status, poller approval path, raw command block, invalid target, HTTP CSRF/origin, and HTTP forged approval block | Green locally |
 | External review | Claude completed, including Computer Use review; Kimi/OpenClaw UI review reported no blocking findings on the pushed PR heads; adversarial Codex subagents found screenshot URL/output leakage, locally fetchable HTTP broker-token risk, unverified privacy-guard risk, token-only GitHub privacy verification risk, implicit CI token permissions, and stale documentation. Codex patched those and adjudicated the late Kimi 22/22 medium notes against the actual tree; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved or documented; Gemini lane documented unavailable |
-| PR ready with evidence | PR #50 is open and has the evidence body; commit `a47578841e5319ebfcb73ffc8218927c40a07da7` is pushed; CI/Verify run package verify/test and ship-gate, and all GitHub checks are green; GitHub still requires human review approval | Review required |
+| PR ready with evidence | PR #50 is open and has the evidence body; CI/Verify run package verify/test and ship-gate; the live PR check command must be rerun before merge; GitHub still requires human review approval | Review required |
 
 ## Remaining Before Goal Completion
 
