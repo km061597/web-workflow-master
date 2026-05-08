@@ -116,9 +116,26 @@ Run the same gate locally and in GitHub Actions:
 npm run verify
 ```
 
-This checks the root command surface, JavaScript syntax, scaffold setup verification, and the Astro scaffold validator. `npm run ship-gate` is an alias for the same enforced repository gate.
+This checks the root command surface, JavaScript syntax, scaffold setup verification, and the Astro scaffold validator. `npm run ship-gate` is the Autoplan release gate; it also runs dashboard verification, npm audit, browser smoke capture, Autoplan evidence freshness checks, runtime evidence stamping, and board refresh.
 
 For the repository-level release gate, `main` must require the GitHub checks listed in [docs/BRANCH_PROTECTION.md](docs/BRANCH_PROTECTION.md). A green workflow run is advisory until branch protection or an equivalent ruleset is applied.
+
+## Autoplan Board
+
+Autoplan Board v1 is the local operator dashboard under `tools/autoplan-board/`. It is linked as a root npm workspace and exposed through root scripts so agents can discover and run it without guessing paths:
+
+```bash
+npm run dashboard
+npm run dashboard:verify
+npm run dashboard:test
+npm run dashboard:smoke
+npm run dashboard:refresh
+npm run ship-gate
+```
+
+`npm run dashboard` binds the loopback dashboard at `http://127.0.0.1:4177` by default; override with `AUTOPLAN_BOARD_PORT`.
+
+Agent wiring, broker actions, runtime state, Telegram controls, evidence files, and completion gates are documented in [docs/AUTOPLAN_BOARD.md](docs/AUTOPLAN_BOARD.md). Review and PR evidence lives in [docs/reviews/autoplan-board-completion-audit.md](docs/reviews/autoplan-board-completion-audit.md), [docs/reviews/autoplan-board-external-review.md](docs/reviews/autoplan-board-external-review.md), and [docs/reviews/autoplan-board-pr-body.md](docs/reviews/autoplan-board-pr-body.md).
 
 ## Work Modes
 
@@ -188,7 +205,7 @@ Dispatch `accessibility-auditor`. It owns `quality/a11y/pa11yci.json` — **TODO
 npm run ship-gate
 ```
 
-Reads all seven executable gates plus the required evidence reports before phase advancement. If green: deploy. If red: read the evidence files, fix, re-run.
+Runs the repository gate, dashboard gate, npm audit, browser smoke capture, and Autoplan evidence checks before phase advancement. If green: deploy only after required human review gates are satisfied. If red: read the evidence files, fix, re-run.
 
 ### "An agent claimed done but it doesn't work."
 

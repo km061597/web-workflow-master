@@ -158,6 +158,10 @@ test("broker accepts only typed allowlisted actions and blocks abuse cases", () 
   assert.equal(processBrokerRequest({ id: "2", action: "rawShell", args: ["npm run verify"] }, state).error, "unsupported-action");
   assert.equal(processBrokerRequest({ id: "3", action: "scaffold", args: ["../../secrets"] }, state).error, "path-traversal-blocked");
   assert.equal(processBrokerRequest({ id: "4", action: "screenshotAudit", args: ["/Users/kylemetzger/.ssh/id_rsa"] }, state).error, "absolute-path-blocked");
+  assert.equal(
+    processBrokerRequest({ id: "4b", action: "screenshotAudit", args: ["http://127.0.0.1:4177", "--output", "package.json"] }, state).error,
+    "screenshot-output-not-allowed"
+  );
   assert.equal(processBrokerRequest({ id: "4", action: "scaffold", args: ["rm -rf ."] }, state).error, "destructive-token-blocked");
   assert.equal(processBrokerRequest({ id: "5", action: "verify", args: ["ignored"] }, state).error, "unexpected-args");
   assert.equal(processBrokerRequest({ id: "new-id-same-work", action: "verify", args: [] }, state).error, "duplicate-job");
@@ -214,6 +218,15 @@ test("broker execution runs fixed argv and writes job and audit records", async 
   assert.equal(rerun.job.status, "succeeded");
 });
 
+test("broker blocks write-producing actions when public repo fixture mode is off", async () => {
+  const result = await executeBrokerJob(
+    { id: "public-real-write", action: "refreshBoard", args: [] },
+    { root: repoRoot, repo: { private: false }, fixtureMode: false, state: { seen: new Set(), running: new Set() } }
+  );
+  assert.equal(result.ok, false);
+  assert.equal(result.error, "repo-public-real-persistence-blocked");
+});
+
 test("broker execution can scaffold a fixture site with fixed argv", async () => {
   const siteName = `autoplan-fixture-${Date.now()}`;
   const target = join(repoRoot, "sites", siteName);
@@ -234,12 +247,60 @@ test("broker execution can scaffold a fixture site with fixed argv", async () =>
 test("ship gate records fixture integration evidence for derived completion state", () => {
   const root = fixtureRoot();
   try {
-    writeFileSync(join(root, "package.json"), JSON.stringify({ scripts: { verify: "node -e \"process.exit(0)\"", "dashboard:verify": "node -e \"process.exit(0)\"" } }));
+    const fakeSmoke = `
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+const evidence = join(process.cwd(), "evidence", "autoplan");
+mkdirSync(evidence, { recursive: true });
+function png(width, height) {
+  const buffer = Buffer.alloc(2048);
+  Buffer.from("89504e470d0a1a0a", "hex").copy(buffer, 0);
+  buffer.writeUInt32BE(13, 8);
+  buffer.write("IHDR", 12, "ascii");
+  buffer.writeUInt32BE(width, 16);
+  buffer.writeUInt32BE(height, 20);
+  buffer[24] = 8;
+  buffer[25] = 2;
+  buffer.write("IEND", 37, "ascii");
+  return buffer;
+}
+writeFileSync(join(evidence, "desktop.png"), png(1440, 900));
+writeFileSync(join(evidence, "mobile.png"), png(390, 844));
+writeFileSync(join(evidence, "browser-smoke.json"), JSON.stringify({ ok: true, implementedSlices: 15, fixtureChainStatus: "local-complete" }));
+`;
+    writeFileSync(join(root, "fake-browser-smoke.mjs"), fakeSmoke);
+    writeFileSync(
+      join(root, "package.json"),
+      JSON.stringify({
+        scripts: {
+          verify: "node -e \"process.exit(0)\"",
+          "dashboard:verify": "node -e \"process.exit(0)\"",
+          "dashboard:smoke": "node fake-browser-smoke.mjs",
+        },
+      })
+    );
     writeFileSync(join(root, "package-lock.json"), JSON.stringify({ lockfileVersion: 3, packages: { "": {} } }));
+    mkdirSync(join(root, "tools", "autoplan-board", "src"), { recursive: true });
+    mkdirSync(join(root, "tools", "autoplan-board", "tests"), { recursive: true });
+    mkdirSync(join(root, "tools", "autoplan-board", "public"), { recursive: true });
+    mkdirSync(join(root, "tools"), { recursive: true });
+    mkdirSync(join(root, "scripts"), { recursive: true });
+    mkdirSync(join(root, "bin"), { recursive: true });
+    writeFileSync(join(root, ".gitignore"), ".autoplan-board/\n");
+    writeFileSync(join(root, "tools", "autoplan-board", "package.json"), "{}");
+    writeFileSync(join(root, "tools", "autoplan-board", "src", "core.mjs"), "");
+    writeFileSync(join(root, "tools", "autoplan-board", "src", "server.mjs"), "");
+    writeFileSync(join(root, "tools", "autoplan-board", "src", "ui.mjs"), "");
+    writeFileSync(join(root, "tools", "autoplan-board", "public", "app.js"), "");
+    writeFileSync(join(root, "tools", "autoplan-board", "tests", "core.test.mjs"), "");
+    writeFileSync(join(root, "tools", "autoplan-board", "tests", "server.test.mjs"), "");
+    writeFileSync(join(root, "tools", "scaffold.js"), "");
+    writeFileSync(join(root, "scripts", "verify-repo.mjs"), "");
+    writeFileSync(join(root, "scripts", "ship-gate.mjs"), "");
+    writeFileSync(join(root, "scripts", "screenshot.js"), "");
+    writeFileSync(join(root, "bin", "advance-phase.sh"), "");
     mkdirSync(join(root, "evidence", "autoplan"), { recursive: true });
     writeFileSync(join(root, "evidence", "autoplan", "dashboard-smoke.json"), JSON.stringify({ ok: true }));
-    writeFileSync(join(root, "evidence", "autoplan", "desktop.png"), "png");
-    writeFileSync(join(root, "evidence", "autoplan", "mobile.png"), "png");
 
     const result = spawnSync("node", [join(repoRoot, "scripts", "ship-gate.mjs")], { cwd: root, encoding: "utf8" });
     assert.equal(result.status, 0, result.stderr);

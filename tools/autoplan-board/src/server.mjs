@@ -115,7 +115,7 @@ export async function createServer({
         if (request.headers["x-autoplan-token"] !== sessionToken) return sendJson(response, 403, { ok: false, error: "csrf-token-invalid" });
         const parsed = await readJsonBody(request);
         if (!parsed.ok) return sendJson(response, 400, { ok: false, error: parsed.error });
-        return sendJson(response, 200, await executeBrokerJob(parsed.value, { root, state: brokerState }));
+        return sendJson(response, 200, await executeBrokerJob(parsed.value, { root, state: brokerState, repo, fixtureMode }));
       }
       if (request.method === "POST" && url.pathname === "/api/telegram") {
         const origin = checkOrigin(request, host);
@@ -124,7 +124,14 @@ export async function createServer({
         const parsed = await readJsonBody(request);
         if (!parsed.ok) return sendJson(response, 400, { ok: false, error: parsed.error });
         const telegramResult = runTelegramCommand(parsed.value, { allowedUserId: telegramAllowedUserId });
-        if (telegramResult.auditEvent) new RuntimeStore(root).writeAudit(telegramResult.auditEvent);
+        if (telegramResult.auditEvent) {
+          new RuntimeStore(root).writeAudit({
+            type: "telegram.http_shim.blocked",
+            requestedType: telegramResult.auditEvent.type,
+            target: telegramResult.auditEvent.target,
+          });
+          return sendJson(response, 403, { ok: false, error: "telegram-http-shim-read-only" });
+        }
         return sendJson(response, 200, telegramResult);
       }
 

@@ -137,6 +137,12 @@ These rules are not suggestions. They are the minimum quality floor.
 
 | Task                 | Command                                         |
 | -------------------- | ----------------------------------------------- |
+| Autoplan dashboard   | `npm run dashboard`                             |
+| Autoplan verify      | `npm run dashboard:verify`                      |
+| Autoplan tests       | `npm run dashboard:test`                        |
+| Autoplan smoke       | `npm run dashboard:smoke`                       |
+| Autoplan refresh     | `npm run dashboard:refresh`                     |
+| Autoplan ship gate   | `npm run ship-gate`                             |
 | Dev server + browser | `./scripts/dev.sh`                              |
 | Dev server only      | `cd site && npm run dev`                        |
 | Build                | `cd site && npm run build`                      |
@@ -159,6 +165,9 @@ These rules are not suggestions. They are the minimum quality floor.
 | A11y sweep           | `axe <url>`                                     |
 | Image optimization   | `sharp -i in.jpg -o out.avif`                   |
 | SVG optimization     | `svgo input.svg`                                |
+
+For Autoplan Board work, read [docs/AUTOPLAN_BOARD.md](docs/AUTOPLAN_BOARD.md) before reviewing or editing. It links the package, broker actions, runtime state, Telegram controls, evidence files, and PR review gates that agents must use.
+`npm run dashboard` opens the loopback dashboard at `http://127.0.0.1:4177` by default; override with `AUTOPLAN_BOARD_PORT`.
 
 ## Design System
 

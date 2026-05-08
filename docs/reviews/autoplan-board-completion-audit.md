@@ -5,11 +5,11 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 ## Evidence Checked
 
 - Branch: `update/autoplan-board-v1`.
-- GitHub repo state: `metzgerwebsites/web-workflow-master` is public, so the board remains fixture-safe and refuses real prospect/client persistence.
-- PR state at audit time: PR #50 exists at `https://github.com/metzgerwebsites/web-workflow-master/pull/50`; GitHub reports the branch mergeable with CI checks green and `reviewDecision: REVIEW_REQUIRED`.
+- GitHub repo state: `metzgerwebsites/web-workflow-master` is public, so broker write actions are blocked when fixture mode is off.
+- PR state at audit time: PR #50 exists at `https://github.com/metzgerwebsites/web-workflow-master/pull/50`; live state must be refreshed with `gh pr view 50 --json url,headRefOid,reviewDecision,mergeStateStatus,statusCheckRollup` before merge.
 - Package: `tools/autoplan-board/`.
 - Runtime state: `.autoplan-board/` is gitignored.
-- Evidence: `evidence/autoplan/dashboard-smoke.json`, `evidence/autoplan/board-refresh.json`, `evidence/autoplan/desktop.png`, `evidence/autoplan/mobile.png`.
+- Evidence: `evidence/autoplan/dashboard-smoke.json`, `evidence/autoplan/browser-smoke.json`, `evidence/autoplan/board-refresh.json`, `evidence/autoplan/desktop.png`, `evidence/autoplan/mobile.png`.
 - Board status evidence: `evidence/autoplan/board-refresh.json` records `implementedSlices: 15` and `fixtureChainStatus: "local-complete"` after ship gate runtime evidence is stamped.
 - Fixture chain evidence now source-qualifies ship-gate-stamped runtime records, for example `verify: succeeded (ship-gate)` and `shipGate: succeeded (ship-gate)`.
 - Ship gate evidence: `evidence/autoplan/ship-gate.json`.
@@ -30,16 +30,16 @@ Objective: ship Autoplan Board v1 for `metzgerwebsites/web-workflow-master` thro
 | S09 autoplan sidecars | `.autoplan-board/autoplan-runs/*.json` sidecar reader, ship-gate-stamped fixture sidecar, and tests | Green locally |
 | S10 autonomous fixture chain kickoff | fixture chain summary now requires verify + shipGate runtime evidence before `local-complete`, with source-qualified evidence strings | Green locally, fixture-scope only |
 | S11 scaffold-to-site stage | broker maps `scaffold` to existing `tools/scaffold.js`; tests execute scaffold into a temporary fixture site | Green locally, no real client data |
-| S12 audit/evidence gate | `scripts/ship-gate.mjs` runs root verify, dashboard verify, npm audit, and checks evidence files | Green locally |
+| S12 audit/evidence gate | `scripts/ship-gate.mjs` runs root verify, dashboard verify, npm audit, browser smoke, PNG dimension/freshness checks, and evidence consistency checks | Green locally |
 | S13 agent-board bridge | read-only `.agent-board` cache bridge and static no-relaunch test | Green locally |
-| S14 Telegram control | allowlist/raw-command tests, CSRF/origin HTTP tests, persisted audit event, and `pollTelegramOnce()` covers real bot `getUpdates`/`sendMessage` flow | Green locally |
+| S14 Telegram control | allowlist/raw-command tests, CSRF/origin HTTP tests, read-only HTTP shim blocking for forged approvals, and `pollTelegramOnce()` covers real bot `getUpdates`/`sendMessage` flow | Green locally |
 | S15 full local integration gate | package tests, dashboard verify, root verify, ship gate, browser smoke, review log, and board snapshot reporting 15/15 implemented | Local gates green |
 | `npm run verify` | latest run passed | Green locally |
 | `npm run dashboard:verify` | latest run passed | Green locally |
-| Browser smoke desktop/mobile | refreshed screenshots in `evidence/autoplan/` | Green locally |
+| Browser smoke desktop/mobile | `npm run dashboard:smoke` refreshes `browser-smoke.json`, desktop 1440x900 PNG, and mobile 390x844 PNG; ship gate validates freshness and dimensions | Green locally |
 | Broker abuse tests | unsupported action, traversal, absolute path, destructive token, duplicate/rerun behavior | Green locally |
-| Telegram control tests | denied user, allowlisted status/approve, raw command block, invalid target, HTTP CSRF/origin | Green locally |
-| External review | Claude completed, including Computer Use re-review after final fixes; latest Claude medium notes were fixed or reduced to documented non-gating risk; Kimi/OpenClaw UI re-review of head commit `57ddf9b` reported no blocking findings; latest Kimi desktop final report found no blockers and two medium hardening notes, both fixed; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved; Gemini lane documented unavailable |
+| Telegram control tests | denied user, allowlisted status, poller approval path, raw command block, invalid target, HTTP CSRF/origin, and HTTP forged approval block | Green locally |
+| External review | Claude completed, including Computer Use re-review against pushed PR head `6a8e394`; Kimi/OpenClaw UI re-review was corrected from stale `57ddf9b` to actual PR head `6a8e394` and reported no blocking findings; adversarial Codex subagents later found screenshot, privacy, Telegram shim, and documentation gaps that Codex patched in this follow-up; Gemini remains blocked by interactive authentication and no `GEMINI_API_KEY` keychain item is present | Code-review findings resolved after local patch; Gemini lane documented unavailable |
 | PR ready with evidence | PR #50 is open, mergeable, CI green, and has the evidence body; GitHub still requires human review approval | Review required |
 
 ## Remaining Before Goal Completion

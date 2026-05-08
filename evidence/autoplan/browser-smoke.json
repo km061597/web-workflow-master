@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "checkedAt": "2026-05-08T08:25:36.545Z",
+  "base": "http://127.0.0.1:51125",
+  "implementedSlices": 15,
+  "fixtureChainStatus": "local-complete",
+  "captured": [
+    {
+      "name": "desktop",
+      "path": "evidence/autoplan/desktop.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 98977,
+      "mtimeMs": 1778228735953.9692
+    },
+    {
+      "name": "mobile",
+      "path": "evidence/autoplan/mobile.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 40561,
+      "mtimeMs": 1778228736540.9368
+    }
+  ]
+}

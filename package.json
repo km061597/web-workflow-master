@@ -5,7 +5,8 @@
   "description": "AI-powered, taste-anchored web design workspace. Multi-site, multi-template, ship-ready.",
   "type": "module",
   "workspaces": [
-    "scaffolds/*"
+    "scaffolds/*",
+    "tools/autoplan-board"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
@@ -18,6 +19,9 @@
     "dashboard": "npm --prefix tools/autoplan-board run dev",
     "dashboard:install": "npm --prefix tools/autoplan-board install",
     "dashboard:verify": "npm --prefix tools/autoplan-board run verify",
+    "dashboard:smoke": "npm --prefix tools/autoplan-board run browser-smoke",
+    "dashboard:refresh": "npm --prefix tools/autoplan-board run refresh-board",
+    "dashboard:test": "npm --prefix tools/autoplan-board test",
     "scaffold": "node tools/scaffold.js",
     "audit": "node scripts/audit.js",
     "validate": "node --check scripts/discovery.mjs && echo 'scripts/discovery.mjs syntax OK'",

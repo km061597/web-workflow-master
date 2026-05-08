@@ -67,6 +67,7 @@ const ABSOLUTE_PATH = /^(\/|~\/|[A-Za-z]:[\\/])/;
 const SECRET_PATTERN = /(TOKEN|SECRET|KEY|PASSWORD)=/i;
 const REDACT_PATTERN = /(TOKEN|SECRET|KEY|PASSWORD)(=|:)[^\s"']+/gi;
 const NO_ARG_ACTIONS = new Set(["verify", "shipGate", "refreshGithub", "refreshBoard"]);
+const WRITE_ACTIONS = new Set(["scaffold", "shipGate", "advancePhase", "screenshotAudit", "refreshBoard"]);
 
 function titleCase(value) {
   return value
@@ -478,6 +479,9 @@ export function processBrokerRequest(request, state = { seen: new Set() }) {
   if (SECRET_PATTERN.test(joined)) return { ok: false, error: "disallowed-env-blocked" };
   if (joined.length > 4096) return { ok: false, error: "output-cap-blocked" };
 
+  const actionValidation = validateBrokerActionArgs(action, args);
+  if (!actionValidation.ok) return actionValidation;
+
   let argv;
   try {
     argv = commandMap(action, args);
@@ -511,6 +515,14 @@ export async function executeBrokerJob(request, options = {}) {
   if (!queued.ok) return queued;
 
   const job = queued.job;
+  const privacy = evaluatePrivacyGate({
+    private: options.repo?.private,
+    fixtureMode: options.fixtureMode ?? true,
+  });
+  if (!privacy.ok && WRITE_ACTIONS.has(job.action)) {
+    return { ok: false, error: privacy.reason };
+  }
+
   if (state.running.has(job.action)) return { ok: false, error: "action-lock-busy" };
 
   const store = options.store ?? new RuntimeStore(root);
@@ -606,6 +618,22 @@ function commandMap(action, args) {
   const argv = map[action];
   if (!argv) throw new Error(`No command map registered for broker action: ${action}`);
   return argv;
+}
+
+function validateBrokerActionArgs(action, args) {
+  if (action !== "screenshotAudit") return { ok: true };
+
+  const outputIndex = args.indexOf("--output");
+  if (outputIndex === -1 || !args[outputIndex + 1]) return { ok: false, error: "screenshot-output-required" };
+  const output = args[outputIndex + 1];
+  const normalized = output.replaceAll("\\", "/");
+  if (!/^evidence\/autoplan\/[A-Za-z0-9._-]+\.json$/.test(normalized)) {
+    return { ok: false, error: "screenshot-output-not-allowed" };
+  }
+  if (normalized.split("/").some((part) => part.startsWith("."))) {
+    return { ok: false, error: "screenshot-output-not-allowed" };
+  }
+  return { ok: true };
 }
 
 export function runTelegramCommand(message, config = {}) {

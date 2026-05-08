@@ -118,13 +118,20 @@ test("server exposes allowlisted Telegram control endpoint", async () => {
     });
     assert.equal(denied.json.error, "telegram-user-denied");
 
-    const accepted = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/approve S10" }), {
+    const accepted = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/status" }), {
       "x-autoplan-token": app.sessionToken,
       origin: base,
     });
     assert.equal(accepted.json.ok, true);
-    assert.equal(accepted.json.auditEvent.type, "telegram.approve");
-    assert.match(readFileSync(join(root, ".autoplan-board", "audit-events.jsonl"), "utf8"), /telegram\.approve/);
+    assert.match(accepted.json.response, /Autoplan Board/);
+
+    const forgedApproval = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/approve S10" }), {
+      "x-autoplan-token": app.sessionToken,
+      origin: base,
+    });
+    assert.equal(forgedApproval.response.status, 403);
+    assert.equal(forgedApproval.json.error, "telegram-http-shim-read-only");
+    assert.match(readFileSync(join(root, ".autoplan-board", "audit-events.jsonl"), "utf8"), /telegram\.http_shim\.blocked/);
 
     const invalid = await postJson(`${base}/api/telegram`, JSON.stringify({ fromId: "12345", text: "/approve ../../bad" }), {
       "x-autoplan-token": app.sessionToken,
