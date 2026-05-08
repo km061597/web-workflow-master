@@ -25,7 +25,7 @@ The board runs fixture-safe while `metzgerwebsites/web-workflow-master` is publi
 # Verification
 
 - [x] `npm run verify` passes locally.
-- [ ] `npm audit --audit-level=moderate` passes locally.
+- [x] `npm audit --audit-level=moderate` passes locally.
 - [x] Any active command added to docs exists in this branch.
 - [x] Scaffold setup checks pass for changed scaffolds.
 - [x] No secrets, tokens, or real customer credentials are committed.
