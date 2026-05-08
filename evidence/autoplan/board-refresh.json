@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "refreshedAt": "2026-05-08T05:55:19.574Z",
+  "privacy": {
+    "ok": true,
+    "reason": "public-repo-fixture-mode"
+  },
+  "brokerActions": [
+    "scaffold",
+    "verify",
+    "shipGate",
+    "advancePhase",
+    "screenshotAudit",
+    "refreshGithub",
+    "refreshBoard"
+  ],
+  "sliceCount": 15,
+  "prospectCards": 1,
+  "autoplanCards": 15
+}
